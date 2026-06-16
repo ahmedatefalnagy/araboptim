@@ -1,0 +1,3786 @@
+[
+    {
+        "entry_no": "JV-000093",
+        "entry_date": "2005-02-20",
+        "status": "posted",
+        "debit": "20791.25",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000001",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "208799.34",
+        "credit": "0.00",
+        "description": "اثبات الرصيد الافتتاحي للعام 2025"
+    },
+    {
+        "entry_no": "JV-000001",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "55.97",
+        "credit": "0.00",
+        "description": "اثبات الرصيد الافتتاحي للعام 2025"
+    },
+    {
+        "entry_no": "JV-000001",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "20.00",
+        "credit": "0.00",
+        "description": "اثبات الرصيد الافتتاحي للعام 2025"
+    },
+    {
+        "entry_no": "JV-000002",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "50.00",
+        "description": "إثبات تحويل بنك الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000002",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "50.00",
+        "credit": "0.00",
+        "description": "إثبات تحويل بنك الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000003",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "10.00",
+        "credit": "0.00",
+        "description": "إتبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000003",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "10.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000004",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "2070.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000004",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2070.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000005",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "2070.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000005",
+        "entry_date": "2025-01-01",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2070.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى  الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000313",
+        "entry_date": "2025-01-02",
+        "status": "posted",
+        "debit": "2070.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي المشتريات من الراجحي إدارة"
+    },
+    {
+        "entry_no": "JV-000313",
+        "entry_date": "2025-01-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2070.00",
+        "description": "إثبات تحويل من الراجحي إدارة الي الراجحي المشتريات"
+    },
+    {
+        "entry_no": "JV-000314",
+        "entry_date": "2025-01-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2070.00",
+        "description": "إثبات تحويل من الراجحي إدارة الي حساب مؤسسة التفاؤل اللوجستية"
+    },
+    {
+        "entry_no": "JV-000006",
+        "entry_date": "2025-01-03",
+        "status": "posted",
+        "debit": "2050.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000006",
+        "entry_date": "2025-01-03",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2050.00",
+        "description": "إثبات تحويل من الراجحى إدارة الى الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000007",
+        "entry_date": "2025-01-03",
+        "status": "posted",
+        "debit": "200.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000007",
+        "entry_date": "2025-01-03",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "200.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000315",
+        "entry_date": "2025-01-03",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "230.00",
+        "description": "إثبات تحويل من الراجحي إدارة الى مؤسسة التفاؤل اللوجستية"
+    },
+    {
+        "entry_no": "JV-000008",
+        "entry_date": "2025-01-04",
+        "status": "posted",
+        "debit": "20750.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000008",
+        "entry_date": "2025-01-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "20750.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000009",
+        "entry_date": "2025-01-04",
+        "status": "posted",
+        "debit": "3200.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000009",
+        "entry_date": "2025-01-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3200.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000010",
+        "entry_date": "2025-01-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3200.00",
+        "description": "إثبات تحويل الراجحى الرئيسى الى التفاؤل اللوجستيةالى مؤسسة ا"
+    },
+    {
+        "entry_no": "JV-000011",
+        "entry_date": "2025-01-04",
+        "status": "posted",
+        "debit": "3000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000011",
+        "entry_date": "2025-01-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000012",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "17141.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000012",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "17141.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000013",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "10000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى  من الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000013",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "10000.00",
+        "description": "إثبات تحويل من الراجحى مشتريات الى الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000014",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "15000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة   من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000014",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "15000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000015",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "6400.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000015",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "6400.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000312",
+        "entry_date": "2025-01-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "8800.00",
+        "description": "إثبات تحويل من الراجحي إدارة الى التفاؤل اللوجستية"
+    },
+    {
+        "entry_no": "JV-000016",
+        "entry_date": "2025-01-06",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4400.00",
+        "description": "إثبات تمويل الراجحى المشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000016",
+        "entry_date": "2025-01-06",
+        "status": "posted",
+        "debit": "4400.00",
+        "credit": "0.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000017",
+        "entry_date": "2025-01-06",
+        "status": "posted",
+        "debit": "8050.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من مردودات المشتريات"
+    },
+    {
+        "entry_no": "JV-000018",
+        "entry_date": "2025-01-06",
+        "status": "posted",
+        "debit": "1050.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل من الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000018",
+        "entry_date": "2025-01-06",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1050.00",
+        "description": "إثبات تمويل من الراجحي الادارة الي الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000019",
+        "entry_date": "2025-01-08",
+        "status": "posted",
+        "debit": "2800.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل من الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000019",
+        "entry_date": "2025-01-08",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2800.00",
+        "description": "إثبات تمويل من الراجحي الادارة الي الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000020",
+        "entry_date": "2025-01-10",
+        "status": "posted",
+        "debit": "19747.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل من الراجحي الادارة الي الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000020",
+        "entry_date": "2025-01-10",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "19747.00",
+        "description": "إثبات تمويل من الراجحي الادارة الي الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000021",
+        "entry_date": "2025-01-10",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "138400.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى جارى صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000022",
+        "entry_date": "2025-01-11",
+        "status": "posted",
+        "debit": "1006.25",
+        "credit": "0.00",
+        "description": "إثبات إيرادات من مجمع مستوصف هاو الطبى"
+    },
+    {
+        "entry_no": "JV-000023",
+        "entry_date": "2025-01-13",
+        "status": "posted",
+        "debit": "900.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من اللوجستية"
+    },
+    {
+        "entry_no": "JV-000024",
+        "entry_date": "2025-01-13",
+        "status": "posted",
+        "debit": "900.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000024",
+        "entry_date": "2025-01-13",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "900.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000025",
+        "entry_date": "2025-01-14",
+        "status": "posted",
+        "debit": "600.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000025",
+        "entry_date": "2025-01-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "600.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000026",
+        "entry_date": "2025-01-14",
+        "status": "posted",
+        "debit": "150.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000026",
+        "entry_date": "2025-01-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "150.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000027",
+        "entry_date": "2025-01-15",
+        "status": "posted",
+        "debit": "17987.73",
+        "credit": "0.00",
+        "description": "إثبات إيرادات من مجموعة زيد الحسين واخوانه"
+    },
+    {
+        "entry_no": "JV-000028",
+        "entry_date": "2025-01-15",
+        "status": "posted",
+        "debit": "14787.85",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000028",
+        "entry_date": "2025-01-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "14787.85",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000029",
+        "entry_date": "2025-01-15",
+        "status": "posted",
+        "debit": "3200.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000029",
+        "entry_date": "2025-01-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3200.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000030",
+        "entry_date": "2025-01-15",
+        "status": "posted",
+        "debit": "2200.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000030",
+        "entry_date": "2025-01-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2200.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000031",
+        "entry_date": "2025-01-16",
+        "status": "posted",
+        "debit": "267.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000031",
+        "entry_date": "2025-01-16",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "267.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000032",
+        "entry_date": "2025-01-16",
+        "status": "posted",
+        "debit": "900.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من الانماء الرئيسى"
+    },
+    {
+        "entry_no": "JV-000316",
+        "entry_date": "2025-01-16",
+        "status": "posted",
+        "debit": "5.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي المشتريات من الراجحي إدارة"
+    },
+    {
+        "entry_no": "JV-000316",
+        "entry_date": "2025-01-16",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5.00",
+        "description": "إثبات تحويل من الراجحي إدارة الي الراجحي المشتريات"
+    },
+    {
+        "entry_no": "JV-000033",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "900.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000033",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "900.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000034",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "100000.00",
+        "credit": "0.00",
+        "description": "إثبات إيرادات من شركة الخدمات العربية"
+    },
+    {
+        "entry_no": "JV-000035",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "1650.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000035",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1650.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000036",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "4163.00",
+        "credit": "0.00",
+        "description": "إثبات إيرادات من زيد الحسين"
+    },
+    {
+        "entry_no": "JV-000037",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "13500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000037",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "13500.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000317",
+        "entry_date": "2025-01-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1650.00",
+        "description": "إثبات تحويل من حساب الراجحي الادارة الى مؤسسة التفاؤل اللوجستية"
+    },
+    {
+        "entry_no": "JV-000038",
+        "entry_date": "2025-01-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "40000.00",
+        "description": "إثبات تحويل الراجحى الرئيسى الى جارى صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000039",
+        "entry_date": "2025-01-20",
+        "status": "posted",
+        "debit": "102420.00",
+        "credit": "0.00",
+        "description": "إثبات إيرادات من شركة الخدمات العربية"
+    },
+    {
+        "entry_no": "JV-000040",
+        "entry_date": "2025-01-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "150000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى جارى صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000041",
+        "entry_date": "2025-01-21",
+        "status": "posted",
+        "debit": "200.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000041",
+        "entry_date": "2025-01-21",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "200.00",
+        "description": "إثبات تحويل من الراجحى إدارة الى الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000042",
+        "entry_date": "2025-01-22",
+        "status": "posted",
+        "debit": "1600.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000042",
+        "entry_date": "2025-01-22",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1600.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000043",
+        "entry_date": "2025-01-26",
+        "status": "posted",
+        "debit": "75000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من جارى صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000044",
+        "entry_date": "2025-01-26",
+        "status": "posted",
+        "debit": "75000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000044",
+        "entry_date": "2025-01-26",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "75000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000045",
+        "entry_date": "2025-01-26",
+        "status": "posted",
+        "debit": "33.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000045",
+        "entry_date": "2025-01-26",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "33.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000046",
+        "entry_date": "2025-01-27",
+        "status": "posted",
+        "debit": "5000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من جارى صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000047",
+        "entry_date": "2025-01-27",
+        "status": "posted",
+        "debit": "5000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000047",
+        "entry_date": "2025-01-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000048",
+        "entry_date": "2025-01-27",
+        "status": "posted",
+        "debit": "575.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من جارى صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000049",
+        "entry_date": "2025-01-27",
+        "status": "posted",
+        "debit": "575.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000049",
+        "entry_date": "2025-01-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "575.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000050",
+        "entry_date": "2025-01-28",
+        "status": "posted",
+        "debit": "3910.00",
+        "credit": "0.00",
+        "description": "إثبات إيرادات من زيد الحسين"
+    },
+    {
+        "entry_no": "JV-000051",
+        "entry_date": "2025-01-29",
+        "status": "posted",
+        "debit": "943.00",
+        "credit": "0.00",
+        "description": "إثبات إيرادات من مجمع هاو الطبى"
+    },
+    {
+        "entry_no": "JV-000052",
+        "entry_date": "2025-01-29",
+        "status": "posted",
+        "debit": "3335.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى مشتريات من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000052",
+        "entry_date": "2025-01-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3335.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى مشتريات"
+    },
+    {
+        "entry_no": "JV-000053",
+        "entry_date": "2025-02-01",
+        "status": "posted",
+        "debit": "1500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000053",
+        "entry_date": "2025-02-01",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1500.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000321",
+        "entry_date": "2025-02-02",
+        "status": "posted",
+        "debit": "4099.48",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000321",
+        "entry_date": "2025-02-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4099.48",
+        "description": "إثبات تحويل من الراجحي الادارة الي حساب الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000054",
+        "entry_date": "2025-02-04",
+        "status": "posted",
+        "debit": "1870.00",
+        "credit": "0.00",
+        "description": "إثبات ايرادات من شركة الخدمات العربية"
+    },
+    {
+        "entry_no": "JV-000055",
+        "entry_date": "2025-02-04",
+        "status": "posted",
+        "debit": "20000.00",
+        "credit": "0.00",
+        "description": "إثبات ايرادات من شركة الخدمات العربية"
+    },
+    {
+        "entry_no": "JV-000056",
+        "entry_date": "2025-02-04",
+        "status": "posted",
+        "debit": "3000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000056",
+        "entry_date": "2025-02-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000318",
+        "entry_date": "2025-02-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3000.00",
+        "description": "إثبات تحويل من الراجحي إدارة إلى مؤسسة التفاؤل اللوجستية"
+    },
+    {
+        "entry_no": "JV-000057",
+        "entry_date": "2025-02-05",
+        "status": "posted",
+        "debit": "1888.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000057",
+        "entry_date": "2025-02-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1888.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000058",
+        "entry_date": "2025-02-05",
+        "status": "posted",
+        "debit": "17000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000058",
+        "entry_date": "2025-02-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "17000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000060",
+        "entry_date": "2025-02-09",
+        "status": "posted",
+        "debit": "60.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000060",
+        "entry_date": "2025-02-09",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "60.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000076",
+        "entry_date": "2025-02-09",
+        "status": "posted",
+        "debit": "60.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من جارى صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000061",
+        "entry_date": "2025-02-10",
+        "status": "posted",
+        "debit": "50000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من الاهلي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000062",
+        "entry_date": "2025-02-10",
+        "status": "posted",
+        "debit": "45000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من الاهلي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000063",
+        "entry_date": "2025-02-10",
+        "status": "posted",
+        "debit": "2183.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000063",
+        "entry_date": "2025-02-10",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2183.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000064",
+        "entry_date": "2025-02-11",
+        "status": "posted",
+        "debit": "42365.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من الاهلي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000065",
+        "entry_date": "2025-02-11",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "100000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000066",
+        "entry_date": "2025-02-12",
+        "status": "posted",
+        "debit": "10.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي المشتريات من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000066",
+        "entry_date": "2025-02-12",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "10.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي المشتريات"
+    },
+    {
+        "entry_no": "JV-000068",
+        "entry_date": "2025-02-12",
+        "status": "posted",
+        "debit": "24000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي المشتريات من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000068",
+        "entry_date": "2025-02-12",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "24000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي المشتريات"
+    },
+    {
+        "entry_no": "JV-000077",
+        "entry_date": "2025-02-12",
+        "status": "posted",
+        "debit": "11000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000077",
+        "entry_date": "2025-02-12",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "11000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000069",
+        "entry_date": "2025-02-13",
+        "status": "posted",
+        "debit": "2758.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من الاهلي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000070",
+        "entry_date": "2025-02-13",
+        "status": "posted",
+        "debit": "350.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000070",
+        "entry_date": "2025-02-13",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "350.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000071",
+        "entry_date": "2025-02-14",
+        "status": "posted",
+        "debit": "740.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000071",
+        "entry_date": "2025-02-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "740.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000072",
+        "entry_date": "2025-02-14",
+        "status": "posted",
+        "debit": "1840.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000072",
+        "entry_date": "2025-02-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1840.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000067",
+        "entry_date": "2025-02-15",
+        "status": "posted",
+        "debit": "18000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000067",
+        "entry_date": "2025-02-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "18000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000074",
+        "entry_date": "2025-02-15",
+        "status": "posted",
+        "debit": "18000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من الخزينة"
+    },
+    {
+        "entry_no": "JV-000079",
+        "entry_date": "2025-02-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.47",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000080",
+        "entry_date": "2025-02-18",
+        "status": "posted",
+        "debit": "19350.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000081",
+        "entry_date": "2025-02-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "178.02",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000082",
+        "entry_date": "2025-02-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "114.53",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000083",
+        "entry_date": "2025-02-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1950.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000084",
+        "entry_date": "2025-02-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "17104.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000085",
+        "entry_date": "2025-02-19",
+        "status": "posted",
+        "debit": "24615.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من شركة التفاؤل اللوجستية"
+    },
+    {
+        "entry_no": "JV-000086",
+        "entry_date": "2025-02-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5000.00",
+        "description": "أثبات صرف عهدة من الراجحي الرئيسي الي محمد جلال"
+    },
+    {
+        "entry_no": "JV-000087",
+        "entry_date": "2025-02-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1.15",
+        "description": "إثبات رسوم بنكية طبقا لكشف الحساب"
+    },
+    {
+        "entry_no": "JV-000088",
+        "entry_date": "2025-02-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "19614.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى التفاؤل اللوجستية"
+    },
+    {
+        "entry_no": "JV-000089",
+        "entry_date": "2025-02-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1.15",
+        "description": "إثبات رسوم بنكية طبقا لكشف الحساب"
+    },
+    {
+        "entry_no": "JV-000090",
+        "entry_date": "2025-02-20",
+        "status": "posted",
+        "debit": "19000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري حفر الباطن نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000091",
+        "entry_date": "2025-02-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "174.80",
+        "description": "إثبات رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000095",
+        "entry_date": "2025-02-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "191.30",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000115",
+        "entry_date": "2025-02-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "18827.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000097",
+        "entry_date": "2025-02-21",
+        "status": "posted",
+        "debit": "0.01",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000098",
+        "entry_date": "2025-02-21",
+        "status": "posted",
+        "debit": "20000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000099",
+        "entry_date": "2025-02-21",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "184.00",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000100",
+        "entry_date": "2025-02-21",
+        "status": "posted",
+        "debit": "20000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000116",
+        "entry_date": "2025-02-21",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "20600.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000101",
+        "entry_date": "2025-02-22",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "184.00",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000102",
+        "entry_date": "2025-02-22",
+        "status": "posted",
+        "debit": "1382.50",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000103",
+        "entry_date": "2025-02-22",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "12.72",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000104",
+        "entry_date": "2025-02-22",
+        "status": "posted",
+        "debit": "45.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000105",
+        "entry_date": "2025-02-22",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.41",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000106",
+        "entry_date": "2025-02-22",
+        "status": "posted",
+        "debit": "0.01",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري حفر الباطن نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000107",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "17000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من الاهلى"
+    },
+    {
+        "entry_no": "JV-000108",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "9000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000108",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "9000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000109",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "4500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000109",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4500.00",
+        "description": "إثبات تحويل من الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000110",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000110",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "500.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى  الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000111",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "20135.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000112",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "185.24",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000113",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "5100.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000113",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5100.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000114",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "200.00",
+        "description": "إثبات صرف مكافأة من الراجحى الرئيسى للموظف ناصر الحصرى"
+    },
+    {
+        "entry_no": "JV-000117",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "19000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000117",
+        "entry_date": "2025-02-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "19000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000118",
+        "entry_date": "2025-02-24",
+        "status": "posted",
+        "debit": "30000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى الرئيسى من ساير سودان الرشيدى"
+    },
+    {
+        "entry_no": "JV-000119",
+        "entry_date": "2025-02-24",
+        "status": "posted",
+        "debit": "20592.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000120",
+        "entry_date": "2025-02-24",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "189.44",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000121",
+        "entry_date": "2025-02-25",
+        "status": "draft",
+        "debit": "0.00",
+        "credit": "58480.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000138",
+        "entry_date": "2025-02-25",
+        "status": "posted",
+        "debit": "58480.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000122",
+        "entry_date": "2025-02-26",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "127000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى جارى صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000123",
+        "entry_date": "2025-02-26",
+        "status": "posted",
+        "debit": "726.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000123",
+        "entry_date": "2025-02-26",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "726.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000124",
+        "entry_date": "2025-02-26",
+        "status": "posted",
+        "debit": "200.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000124",
+        "entry_date": "2025-02-26",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "200.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000125",
+        "entry_date": "2025-02-26",
+        "status": "posted",
+        "debit": "3000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000125",
+        "entry_date": "2025-02-26",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3000.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000126",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "4.01",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000127",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.03",
+        "description": "إثبات سداد رسوم نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000128",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "35.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000129",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.32",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000130",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "3225.75",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000131",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "29.68",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000132",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3225.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000133",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "1550.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000133",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1550.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000134",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "5300.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000134",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5300.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000135",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "450.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000136",
+        "entry_date": "2025-02-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4.14",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000137",
+        "entry_date": "2025-02-28",
+        "status": "posted",
+        "debit": "5660.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحى إدارة من الراجحى الرئيسى"
+    },
+    {
+        "entry_no": "JV-000137",
+        "entry_date": "2025-02-28",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5660.00",
+        "description": "إثبات تحويل من الراجحى الرئيسى الى الراجحى إدارة"
+    },
+    {
+        "entry_no": "JV-000139",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "150.00",
+        "description": "إثبات سداد فواتير  نظام سداد من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000140",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "10959.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000141",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "100.82",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000142",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "60.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000144",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "43.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000146",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "10000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000147",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000148",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1730.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000149",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "4673.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000149",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4673.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000196",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.40",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000197",
+        "entry_date": "2025-03-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.55",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000150",
+        "entry_date": "2025-03-04",
+        "status": "posted",
+        "debit": "217.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000151",
+        "entry_date": "2025-03-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1.99",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000152",
+        "entry_date": "2025-03-04",
+        "status": "posted",
+        "debit": "10000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000153",
+        "entry_date": "2025-03-04",
+        "status": "posted",
+        "debit": "10000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000153",
+        "entry_date": "2025-03-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "10000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000154",
+        "entry_date": "2025-03-05",
+        "status": "posted",
+        "debit": "93.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000155",
+        "entry_date": "2025-03-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.86",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000156",
+        "entry_date": "2025-03-06",
+        "status": "posted",
+        "debit": "16000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من مؤسسة بنية الريادة للمقاولات العامة"
+    },
+    {
+        "entry_no": "JV-000157",
+        "entry_date": "2025-03-06",
+        "status": "posted",
+        "debit": "18000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من مؤسسة بنية الريادة للمقاولات العامة"
+    },
+    {
+        "entry_no": "JV-000158",
+        "entry_date": "2025-03-06",
+        "status": "posted",
+        "debit": "18000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من مؤسسة بنية الريادة للمقاولات العامة"
+    },
+    {
+        "entry_no": "JV-000159",
+        "entry_date": "2025-03-06",
+        "status": "posted",
+        "debit": "19000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من مؤسسة بنية الريادة للمقاولات العامة"
+    },
+    {
+        "entry_no": "JV-000160",
+        "entry_date": "2025-03-06",
+        "status": "posted",
+        "debit": "19000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من مؤسسة بنية الريادة للمقاولات العامة"
+    },
+    {
+        "entry_no": "JV-000161",
+        "entry_date": "2025-03-06",
+        "status": "posted",
+        "debit": "10000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من مؤسسة بنية الريادة للمقاولات العامة"
+    },
+    {
+        "entry_no": "JV-000198",
+        "entry_date": "2025-03-06",
+        "status": "posted",
+        "debit": "19000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من مؤسسة بنية الريادة للمقاولات العامة"
+    },
+    {
+        "entry_no": "JV-000162",
+        "entry_date": "2025-03-07",
+        "status": "posted",
+        "debit": "74.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000163",
+        "entry_date": "2025-03-07",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.69",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000164",
+        "entry_date": "2025-03-07",
+        "status": "posted",
+        "debit": "90000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000164",
+        "entry_date": "2025-03-07",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "90000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000165",
+        "entry_date": "2025-03-07",
+        "status": "posted",
+        "debit": "2027.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000166",
+        "entry_date": "2025-03-07",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "18.65",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000167",
+        "entry_date": "2025-03-07",
+        "status": "posted",
+        "debit": "17.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل  الراجحي الرئيسي من حساب نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000168",
+        "entry_date": "2025-03-07",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.16",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000169",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "800.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000169",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "800.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000170",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "800.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000170",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "800.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000171",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "214.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000171",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "214.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000172",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "214.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع المغسلة عن طريق احمد جلال"
+    },
+    {
+        "entry_no": "JV-000173",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "1300.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000174",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "11.96",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000175",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "2000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000176",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "200.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000176",
+        "entry_date": "2025-03-08",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "200.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000177",
+        "entry_date": "2025-03-09",
+        "status": "posted",
+        "debit": "105.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000178",
+        "entry_date": "2025-03-09",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.96",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000179",
+        "entry_date": "2025-03-10",
+        "status": "posted",
+        "debit": "702.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000180",
+        "entry_date": "2025-03-10",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "6.45",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000181",
+        "entry_date": "2025-03-10",
+        "status": "posted",
+        "debit": "10000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي المشتريات من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000181",
+        "entry_date": "2025-03-10",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "10000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي المشتريات"
+    },
+    {
+        "entry_no": "JV-000182",
+        "entry_date": "2025-03-10",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000183",
+        "entry_date": "2025-03-11",
+        "status": "posted",
+        "debit": "1500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000184",
+        "entry_date": "2025-03-11",
+        "status": "posted",
+        "debit": "1000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000185",
+        "entry_date": "2025-03-11",
+        "status": "posted",
+        "debit": "2500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000185",
+        "entry_date": "2025-03-11",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2500.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000186",
+        "entry_date": "2025-03-11",
+        "status": "posted",
+        "debit": "9000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000187",
+        "entry_date": "2025-03-11",
+        "status": "posted",
+        "debit": "9000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000187",
+        "entry_date": "2025-03-11",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "9000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000188",
+        "entry_date": "2025-03-12",
+        "status": "posted",
+        "debit": "102.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000189",
+        "entry_date": "2025-03-12",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.94",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000190",
+        "entry_date": "2025-03-12",
+        "status": "posted",
+        "debit": "235.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000191",
+        "entry_date": "2025-03-12",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2.16",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000192",
+        "entry_date": "2025-03-13",
+        "status": "posted",
+        "debit": "870.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000193",
+        "entry_date": "2025-03-13",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "8.00",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000194",
+        "entry_date": "2025-03-13",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1208.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000200",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "10000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من الخزينة"
+    },
+    {
+        "entry_no": "JV-000201",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "25000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من الخزينة"
+    },
+    {
+        "entry_no": "JV-000202",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "25000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من الخزينة"
+    },
+    {
+        "entry_no": "JV-000203",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "714.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000203",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "714.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000204",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "16525.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000204",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "16525.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000205",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "20.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000205",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "20.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000206",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "2000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000206",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000207",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "4000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000207",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000208",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "2000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000208",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000209",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "16000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000209",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "16000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000210",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "2500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000210",
+        "entry_date": "2025-03-14",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2500.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000211",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "719.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000212",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "6.61",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000213",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "719.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000214",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "75.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000214",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "75.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000215",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "132.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000216",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1.23",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000217",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "16500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000217",
+        "entry_date": "2025-03-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "16500.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000218",
+        "entry_date": "2025-03-16",
+        "status": "posted",
+        "debit": "2120.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000219",
+        "entry_date": "2025-03-16",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "19.51",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000220",
+        "entry_date": "2025-03-16",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2120.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000221",
+        "entry_date": "2025-03-17",
+        "status": "posted",
+        "debit": "360.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000222",
+        "entry_date": "2025-03-17",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3.31",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000223",
+        "entry_date": "2025-03-17",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "360.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000224",
+        "entry_date": "2025-03-17",
+        "status": "posted",
+        "debit": "37.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000225",
+        "entry_date": "2025-03-17",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.33",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000226",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "1380.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000227",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "1380.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي المشتريات من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000227",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1380.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي المشتريات"
+    },
+    {
+        "entry_no": "JV-000228",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "1930.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000229",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "17.62",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000230",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "0.01",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000231",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1930.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000232",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "17.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000233",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "17.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000234",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "172.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000235",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1.59",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000236",
+        "entry_date": "2025-03-18",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1930.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000237",
+        "entry_date": "2025-03-19",
+        "status": "posted",
+        "debit": "66.70",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000238",
+        "entry_date": "2025-03-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.61",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000239",
+        "entry_date": "2025-03-19",
+        "status": "posted",
+        "debit": "18268.50",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000240",
+        "entry_date": "2025-03-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "168.07",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000241",
+        "entry_date": "2025-03-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000242",
+        "entry_date": "2025-03-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000247",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000248",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000249",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "38.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000250",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.35",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000251",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "115.00",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000252",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "0.01",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000253",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "19500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000254",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "179.40",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000255",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "407.93",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000243",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "2342.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000244",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "21.55",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000245",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "27.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000246",
+        "entry_date": "2025-03-20",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.25",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000256",
+        "entry_date": "2025-03-21",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "10000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000257",
+        "entry_date": "2025-03-21",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "9920.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000258",
+        "entry_date": "2025-03-21",
+        "status": "posted",
+        "debit": "200.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000258",
+        "entry_date": "2025-03-21",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "200.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000259",
+        "entry_date": "2025-03-21",
+        "status": "posted",
+        "debit": "582.75",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000260",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "472.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000261",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4.35",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000262",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "300.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000263",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2.76",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000264",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "772.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000265",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "4857.22",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000266",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "5000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000266",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000267",
+        "entry_date": "2025-03-23",
+        "status": "posted",
+        "debit": "2400.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000268",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "3400.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000268",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3400.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000269",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "9000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000270",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "82.80",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000271",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "54.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000272",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.51",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000273",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000273",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "500.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000274",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "9000.00",
+        "description": null
+    },
+    {
+        "entry_no": "JV-000275",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "1749.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000276",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "16.09",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000308",
+        "entry_date": "2025-03-24",
+        "status": "posted",
+        "debit": "1000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب احمد عاطف"
+    },
+    {
+        "entry_no": "JV-000277",
+        "entry_date": "2025-03-25",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1749.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب عبد الله عمران نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000278",
+        "entry_date": "2025-03-25",
+        "status": "posted",
+        "debit": "27.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000279",
+        "entry_date": "2025-03-25",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.26",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000280",
+        "entry_date": "2025-03-27",
+        "status": "posted",
+        "debit": "120.01",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000281",
+        "entry_date": "2025-03-27",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1.10",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000282",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "7.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000283",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.07",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000288",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "3000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000289",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "5500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000290",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "4500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000291",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000292",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000293",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "3000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000294",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "3000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000295",
+        "entry_date": "2025-03-28",
+        "status": "posted",
+        "debit": "10000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000296",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "30000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي المشتريات من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000296",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "30000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي الراجحي المشتريات"
+    },
+    {
+        "entry_no": "JV-000297",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "37000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000298",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "25500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الصندوق شيك شركة اليمامة"
+    },
+    {
+        "entry_no": "JV-000299",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "2050.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000299",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2050.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000300",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "2000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000300",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000301",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "3000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000301",
+        "entry_date": "2025-03-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000302",
+        "entry_date": "2025-03-30",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "150.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي فواتير نظام سداد"
+    },
+    {
+        "entry_no": "JV-000303",
+        "entry_date": "2025-03-30",
+        "status": "posted",
+        "debit": "360.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000307",
+        "entry_date": "2025-03-31",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.55",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000319",
+        "entry_date": "2025-04-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "150.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي فواتير نظام سداد"
+    },
+    {
+        "entry_no": "JV-000320",
+        "entry_date": "2025-04-02",
+        "status": "posted",
+        "debit": "2049.74",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000320",
+        "entry_date": "2025-04-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2049.74",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000322",
+        "entry_date": "2025-04-02",
+        "status": "posted",
+        "debit": "3.54",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من الراجحي المشتريات"
+    },
+    {
+        "entry_no": "JV-000322",
+        "entry_date": "2025-04-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3.54",
+        "description": "إثبات تحويل من الراجحي المشتريات الي حساب الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000323",
+        "entry_date": "2025-04-02",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "10000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب مؤسسة سفوح الاعمار"
+    },
+    {
+        "entry_no": "JV-000324",
+        "entry_date": "2025-04-03",
+        "status": "posted",
+        "debit": "19000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000325",
+        "entry_date": "2025-04-03",
+        "status": "posted",
+        "debit": "19071.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000325",
+        "entry_date": "2025-04-03",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "19071.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000326",
+        "entry_date": "2025-04-03",
+        "status": "posted",
+        "debit": "5.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000326",
+        "entry_date": "2025-04-03",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "5.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000327",
+        "entry_date": "2025-04-03",
+        "status": "posted",
+        "debit": "600.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000327",
+        "entry_date": "2025-04-03",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "600.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000328",
+        "entry_date": "2025-04-04",
+        "status": "posted",
+        "debit": "16.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000329",
+        "entry_date": "2025-04-04",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.16",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000330",
+        "entry_date": "2025-04-05",
+        "status": "posted",
+        "debit": "3500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000330",
+        "entry_date": "2025-04-05",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "3500.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000331",
+        "entry_date": "2025-04-06",
+        "status": "posted",
+        "debit": "240.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000332",
+        "entry_date": "2025-04-06",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2.21",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000333",
+        "entry_date": "2025-04-06",
+        "status": "posted",
+        "debit": "1000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000334",
+        "entry_date": "2025-04-06",
+        "status": "posted",
+        "debit": "1000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000334",
+        "entry_date": "2025-04-06",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000335",
+        "entry_date": "2025-04-06",
+        "status": "posted",
+        "debit": "535.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000335",
+        "entry_date": "2025-04-06",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "535.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000336",
+        "entry_date": "2025-04-07",
+        "status": "posted",
+        "debit": "8.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000337",
+        "entry_date": "2025-04-07",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.07",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000338",
+        "entry_date": "2025-04-08",
+        "status": "posted",
+        "debit": "15.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000339",
+        "entry_date": "2025-04-08",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.14",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000340",
+        "entry_date": "2025-04-09",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "100.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي فواتير نظام سداد"
+    },
+    {
+        "entry_no": "JV-000341",
+        "entry_date": "2025-04-09",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "150.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي فواتير نظام سداد"
+    },
+    {
+        "entry_no": "JV-000342",
+        "entry_date": "2025-04-09",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "150.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي احمد عاطف لنقل السيارة الايسوزو"
+    },
+    {
+        "entry_no": "JV-000343",
+        "entry_date": "2025-04-09",
+        "status": "posted",
+        "debit": "43.70",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000344",
+        "entry_date": "2025-04-10",
+        "status": "posted",
+        "debit": "15.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000345",
+        "entry_date": "2025-04-10",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.15",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000346",
+        "entry_date": "2025-04-13",
+        "status": "posted",
+        "debit": "47.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000347",
+        "entry_date": "2025-04-13",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.44",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000348",
+        "entry_date": "2025-04-13",
+        "status": "posted",
+        "debit": "20000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبدالله عمران (شركة بناء التطويرللمقاولات العامة)"
+    },
+    {
+        "entry_no": "JV-000349",
+        "entry_date": "2025-04-13",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "20000.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب نقاط بيع عبدالله عمران"
+    },
+    {
+        "entry_no": "JV-000350",
+        "entry_date": "2025-04-15",
+        "status": "posted",
+        "debit": "4500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000351",
+        "entry_date": "2025-04-15",
+        "status": "posted",
+        "debit": "4500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000351",
+        "entry_date": "2025-04-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "4500.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000352",
+        "entry_date": "2025-04-15",
+        "status": "posted",
+        "debit": "12500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000353",
+        "entry_date": "2025-04-15",
+        "status": "posted",
+        "debit": "12500.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000353",
+        "entry_date": "2025-04-15",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "12500.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000354",
+        "entry_date": "2025-04-16",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "150.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي فواتير نظام سداد"
+    },
+    {
+        "entry_no": "JV-000355",
+        "entry_date": "2025-04-16",
+        "status": "posted",
+        "debit": "55.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000356",
+        "entry_date": "2025-04-16",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.51",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000357",
+        "entry_date": "2025-04-19",
+        "status": "posted",
+        "debit": "16.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000358",
+        "entry_date": "2025-04-19",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.13",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000359",
+        "entry_date": "2025-04-21",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "115.00",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000360",
+        "entry_date": "2025-04-22",
+        "status": "posted",
+        "debit": "13.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000361",
+        "entry_date": "2025-04-22",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.12",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000362",
+        "entry_date": "2025-04-23",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "30.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000363",
+        "entry_date": "2025-04-25",
+        "status": "posted",
+        "debit": "4.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000364",
+        "entry_date": "2025-04-25",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.03",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000365",
+        "entry_date": "2025-04-27",
+        "status": "posted",
+        "debit": "5000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبدالله عمران  (شركة بناء التطويرللمقاولات العامة)"
+    },
+    {
+        "entry_no": "JV-000366",
+        "entry_date": "2025-04-27",
+        "status": "posted",
+        "debit": "5000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبدالله عمران (مسلط دويحم سالم العازمي العتيبي)"
+    },
+    {
+        "entry_no": "JV-000367",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "5.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000368",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.05",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000369",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "0.01",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000370",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1423.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب نقاط بيع عبدالله عمران"
+    },
+    {
+        "entry_no": "JV-000371",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "845.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000371",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "845.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000372",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "835.01",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000373",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "7.69",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000374",
+        "entry_date": "2025-04-28",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "827.31",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000375",
+        "entry_date": "2025-04-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "300.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي فواتير نظام سداد"
+    },
+    {
+        "entry_no": "JV-000376",
+        "entry_date": "2025-04-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "100.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي فواتير نظام سداد"
+    },
+    {
+        "entry_no": "JV-000377",
+        "entry_date": "2025-04-29",
+        "status": "posted",
+        "debit": "300.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من فواتير نظام سداد"
+    },
+    {
+        "entry_no": "JV-000378",
+        "entry_date": "2025-04-29",
+        "status": "posted",
+        "debit": "20000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000379",
+        "entry_date": "2025-04-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "184.00",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000380",
+        "entry_date": "2025-04-29",
+        "status": "posted",
+        "debit": "1667.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000381",
+        "entry_date": "2025-04-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "15.33",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000382",
+        "entry_date": "2025-04-29",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "1667.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب جاري نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000383",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "20000.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000384",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "184.00",
+        "description": "إثبات سداد رسوم نقاط بيع عبد الله عمران"
+    },
+    {
+        "entry_no": "JV-000385",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "14300.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من حساب جاري صاحب المؤسسة"
+    },
+    {
+        "entry_no": "JV-000386",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "14381.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل حساب الراجحي الادارة من الراجحي الرئيسي"
+    },
+    {
+        "entry_no": "JV-000386",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "14381.00",
+        "description": "إثبات تحويل من الراجحي الرئيسي الي حساب الراجحي الادارة"
+    },
+    {
+        "entry_no": "JV-000387",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "10.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع المغسلة"
+    },
+    {
+        "entry_no": "JV-000388",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "0.10",
+        "description": "إثبات سداد رسوم المغسلة نقاط بيع"
+    },
+    {
+        "entry_no": "JV-000389",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "290.00",
+        "credit": "0.00",
+        "description": "إثبات تمويل الراجحي الرئيسي من نقاط بيع حفر الباطن"
+    },
+    {
+        "entry_no": "JV-000390",
+        "entry_date": "2025-04-30",
+        "status": "posted",
+        "debit": "0.00",
+        "credit": "2.67",
+        "description": "إثبات سداد رسوم نقاط بيع حفر الباطن"
+    }
+]

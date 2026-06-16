@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary: #0f172a; /* Deep Slate */
+    --accent: #2563eb;  /* Blue */
+    --background: #f8fafc;
+    --surface: #ffffff;
+}
+
+@layer base {
+    body {
+        @apply bg-[#f8fafc] text-slate-950 antialiased;
+        font-family: 'Inter', 'Cairo', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-black tracking-tight text-slate-950;
+    }
+}
+
+@layer components {
+    /* High-Density Inputs */
+    input[type="text"], input[type="date"], input[type="number"], select, textarea {
+        @apply bg-slate-50 border-slate-200 rounded-lg px-3 py-2 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-slate-200 focus:border-slate-400 transition-all outline-none;
+    }
+
+    .btn-premium {
+        @apply inline-flex items-center justify-center px-6 py-2.5 rounded-xl font-black text-sm transition-all duration-200 active:scale-95 shadow-sm hover:shadow-xl hover:-translate-y-0.5;
+    }
+    
+    .btn-primary {
+        @apply btn-premium bg-slate-900 text-white hover:bg-slate-800;
+    }
+
+    .btn-secondary {
+        @apply btn-premium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50;
+    }
+
+    /* Custom Table Scrollbar for Data Density */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-slate-200 rounded-full hover:bg-slate-300;
+    }
+}
+
+/* Printing Optimization */
+@media print {
+    .hide-print { display: none !important; }
+    body { background: white !important; padding: 0 !important; margin: 0 !important; }
+    .mx-auto { max-width: 100% !important; margin: 0 !important; width: 100% !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+[dir="rtl"] select {
+    background-position: left 0.75rem center !important;
+}
+
+/* Animation Utilities */
+.animate-in {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
