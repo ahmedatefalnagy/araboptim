@@ -671,19 +671,36 @@ class HRController extends Controller
         ]);
 
         if (empty($validated['employee_no'])) {
-            $lastEmployee = Employee::orderBy('id', 'desc')->first();
-            $lastNum = 0;
+            $isDriver = !empty($validated['is_driver']);
+            if ($isDriver) {
+                $lastEmployee = Employee::where('is_driver', true)->orderBy('id', 'desc')->first();
+                $lastNum = 1000;
+            } else {
+                $lastEmployee = Employee::where('is_driver', false)->orderBy('id', 'desc')->first();
+                $lastNum = 0;
+            }
+            
             if ($lastEmployee && preg_match('/(\d+)/', $lastEmployee->employee_no, $matches)) {
                 $lastNum = (int)$matches[1];
+                if ($isDriver && $lastNum < 1000) $lastNum = 1000;
             }
             $validated['employee_no'] = 'EMP-' . str_pad($lastNum + 1, 5, '0', STR_PAD_LEFT);
         }
 
-        if (is_null($validated['basic_salary'])) {
+        if (is_null($validated['basic_salary']) || $validated['basic_salary'] === '') {
             $validated['basic_salary'] = 0;
         }
-        if (is_null($validated['commission'])) {
+        if (is_null($validated['commission']) || $validated['commission'] === '') {
             $validated['commission'] = 0;
+        }
+        if (empty($validated['housing_allowance'])) {
+            $validated['housing_allowance'] = 0;
+        }
+        if (empty($validated['transport_allowance'])) {
+            $validated['transport_allowance'] = 0;
+        }
+        if (empty($validated['other_allowances'])) {
+            $validated['other_allowances'] = 0;
         }
 
         if ($request->hasFile('license_copy')) {
@@ -755,11 +772,20 @@ class HRController extends Controller
             $validated['employee_no'] = $employee->employee_no;
         }
 
-        if (is_null($validated['basic_salary'])) {
+        if (is_null($validated['basic_salary']) || $validated['basic_salary'] === '') {
             $validated['basic_salary'] = 0;
         }
-        if (is_null($validated['commission'])) {
+        if (is_null($validated['commission']) || $validated['commission'] === '') {
             $validated['commission'] = 0;
+        }
+        if (empty($validated['housing_allowance'])) {
+            $validated['housing_allowance'] = 0;
+        }
+        if (empty($validated['transport_allowance'])) {
+            $validated['transport_allowance'] = 0;
+        }
+        if (empty($validated['other_allowances'])) {
+            $validated['other_allowances'] = 0;
         }
 
         if ($request->hasFile('license_copy')) {

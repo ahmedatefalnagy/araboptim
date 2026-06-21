@@ -7,7 +7,7 @@ export default function Index({ auth, vehicles, drivers, flash }) {
     const [editTarget, setEditTarget] = useState(null);
     const [viewMode, setViewMode] = useState('kanban');
     
-    const { data, setData, post, processing, reset, errors, delete: destroy } = useForm({
+    const { data, setData, post, put, processing, reset, errors, delete: destroy } = useForm({
         plate_no: '',
         model: '',
         type: 'head',
@@ -41,13 +41,21 @@ export default function Index({ auth, vehicles, drivers, flash }) {
 
     const submit = (e) => {
         e.preventDefault();
-        const url = editTarget ? route('logistics.vehicles.update', editTarget) : route('logistics.vehicles.store');
-        post(url, {
-            onSuccess: () => {
-                setIsFormOpen(false);
-                reset();
-            }
-        });
+        if (editTarget) {
+            put(route('logistics.vehicles.update', editTarget), {
+                onSuccess: () => {
+                    setIsFormOpen(false);
+                    reset();
+                }
+            });
+        } else {
+            post(route('logistics.vehicles.store'), {
+                onSuccess: () => {
+                    setIsFormOpen(false);
+                    reset();
+                }
+            });
+        }
     };
 
     return (

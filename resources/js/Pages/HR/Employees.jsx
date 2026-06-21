@@ -118,8 +118,8 @@ export default function Employees({ auth, employees, flash }) {
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                     <div>
                                         <label className="text-xs font-bold text-gray-600 mb-1 block">الرقم الوظيفي</label>
-                                        <input className="w-full rounded-lg border-gray-300 text-sm" value={data.employee_no} onChange={e => setData('employee_no', e.target.value)} placeholder="أو اترك فارغاً للتوليد" disabled={!!editTarget} />
-                                        <p className="text-[10px] text-gray-400 mt-0.5">توليد تلقائي في حال عدم الإدخال</p>
+                                        <input className="w-full rounded-lg border-gray-300 bg-gray-100 text-sm text-gray-500 font-mono" value={data.employee_no || 'يتم التوليد تلقائياً'} readOnly disabled />
+                                        <p className="text-[10px] text-gray-400 mt-0.5">توليد تلقائي بواسطة النظام</p>
                                     </div>
                                     <div><label className="text-xs font-bold text-gray-600 mb-1 block">الاسم بالعربي *</label><input className="w-full rounded-lg border-gray-300 text-sm" value={data.name} onChange={e => setData('name', e.target.value)} required /></div>
                                     <div><label className="text-xs font-bold text-gray-600 mb-1 block">الجنسية *</label><input className="w-full rounded-lg border-gray-300 text-sm" value={data.nationality} onChange={e => setData('nationality', e.target.value)} required placeholder="مثال: سعودي، مصري..." /></div>
