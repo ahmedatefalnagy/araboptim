@@ -12,7 +12,7 @@
             left: 0px;
             right: 0px;
             height: 80px;
-            border-bottom: 2px solid #0056b3;
+            border-bottom: 2px solid #1e3a8a;
         }
 
         footer {
@@ -21,7 +21,7 @@
             left: -10px;
             right: -10px;
             height: 24px;
-            background: #0056b3;
+            background: #1e3a8a;
             color: #fff;
             padding: 4px 10px;
             font-size: 9px;
@@ -42,7 +42,7 @@
             direction: ltr;
             text-align: right;
             font-size: 10px;
-            color: #333;
+            color: #334155;
             margin: 0;
             padding: 0;
         }
@@ -53,7 +53,7 @@
             left: -30px;
             right: -30px;
             height: 6px;
-            background: #0056b3;
+            background: #1e3a8a;
             z-index: 2000;
         }
 
@@ -61,21 +61,22 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 5px;
-            border: 1px solid #000;
+            border: 1px solid #cbd5e1;
         }
         .premium-table thead th {
-            background-color: #0056b3;
+            background-color: #1e3a8a;
             color: #ffffff;
-            padding: 6px 5px;
+            padding: 8px 6px;
             font-size: 9px;
             text-align: center;
-            border: 1px solid #000;
+            border: 1px solid #cbd5e1;
         }
         .premium-table tbody td {
-            padding: 6px 5px;
-            border: 1px solid #000;
+            padding: 8px 6px;
+            border: 1px solid #e2e8f0;
             font-size: 9px;
             text-align: center;
+            color: #334155;
         }
         
         .text-center { text-align: center !important; }

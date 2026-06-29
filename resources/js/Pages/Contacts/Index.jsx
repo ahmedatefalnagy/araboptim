@@ -65,6 +65,7 @@ export default function Index({ auth, type, contacts, flash, search: initialSear
                                         { id: 'all', label: 'الكل' },
                                         { id: 'customer', label: 'عملاء' },
                                         { id: 'supplier', label: 'موردين' },
+                                        { id: 'employee', label: 'موظفين' },
                                         { id: 'partner', label: 'شركات' }
                                     ].map((tab) => (
                                         <Link
@@ -160,6 +161,7 @@ export default function Index({ auth, type, contacts, flash, search: initialSear
                                                         {contact.is_related_party && <span className="bg-amber-50 text-amber-700 text-[10px] px-3 py-1 rounded-full border border-amber-100 font-black">طرف علاقة</span>}
                                                         {contact.is_main_company && <span className="bg-indigo-50 text-indigo-700 text-[10px] px-3 py-1 rounded-full border border-indigo-100 font-black">شركة رئيسية</span>}
                                                         {contact.is_sub_client && <span className="bg-teal-50 text-teal-700 text-[10px] px-3 py-1 rounded-full border border-teal-100 font-black">عميل فرعي</span>}
+                                                        {contact.type === 'employee' && <span className="bg-emerald-50 text-emerald-700 text-[10px] px-3 py-1 rounded-full border border-emerald-100 font-black">موظف</span>}
                                                     </div>
                                                 </td>
                                                 <td className="px-6 py-5">

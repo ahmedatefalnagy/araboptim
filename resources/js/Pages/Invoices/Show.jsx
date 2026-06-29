@@ -5,6 +5,20 @@ export default function Show({ auth, invoice }) {
     const { settings } = usePage().props;
     const isSale = ['sale', 'sale_return', 'sale_quotation', 'sale_order'].includes(invoice.type);
     
+    const docTypeLabels = {
+        sale: 'فاتورة مبيعات ضريبية',
+        sale_return: 'مردود مبيعات',
+        purchase: 'فاتورة مشتريات',
+        purchase_return: 'مردود مشتريات',
+        sale_quotation: 'عرض سعر مبيعات',
+        sale_order: 'أمر بيع إداري',
+        purchase_quotation: 'طلب عرض سعر مشتريات',
+        purchase_order: 'أمر شراء مبدئي',
+        work_order: 'أمر شغل',
+        goods_receipt: 'تسوية مستودع - إضافة بضاعة',
+        goods_issue: 'تسوية مستودع - إضافة تالف',
+    };
+
     const titles = {
         sale: { ar: 'فاتورة ضريبية مبسطة' },
         sale_return: { ar: 'إشعار دائن ضريبي' },
@@ -15,8 +29,8 @@ export default function Show({ auth, invoice }) {
         purchase_quotation: { ar: 'طلب عرض سعر مشتريات' },
         purchase_order: { ar: 'أمر شراء مبدئي' },
         work_order: { ar: 'طلب صيانة / خدمة' },
-        goods_receipt: { ar: 'سند استلام مواد للمستودع' },
-        goods_issue: { ar: 'سند صرف مواد من المستودع' },
+        goods_receipt: { ar: 'تسوية المستودع - إضافة بضاعة' },
+        goods_issue: { ar: 'تسوية المستودع - إضافة تالف' },
     };
 
     const currentTitle = titles[invoice.type] || { ar: 'مستند مالي' };
@@ -104,8 +118,101 @@ export default function Show({ auth, invoice }) {
                                      (invoice.type === 'goods_issue' ? 'سند الصرف الموقع' : 'المرفق الأصلي')))}
                                 </a>
                             )}
+
+                            {/* Conversion Action Buttons */}
+                            {invoice.type === 'sale_quotation' && (
+                                <>
+                                    <Link 
+                                        href={route('invoices.create', { type: 'sale_order', parent_document_id: invoice.id })}
+                                        className="bg-emerald-600 text-white px-6 py-2.5 rounded-xl shadow-sm hover:bg-emerald-700 transition-all font-bold flex items-center gap-2 border border-emerald-700"
+                                    >
+                                        تحويل لأمر بيع إداري
+                                    </Link>
+                                    <Link 
+                                        href={route('invoices.create', { type: 'work_order', parent_document_id: invoice.id })}
+                                        className="bg-indigo-600 text-white px-6 py-2.5 rounded-xl shadow-sm hover:bg-indigo-700 transition-all font-bold flex items-center gap-2 border border-indigo-700"
+                                    >
+                                        تعميد كأمر شغل
+                                    </Link>
+                                </>
+                            )}
+                            {invoice.type === 'sale_order' && (
+                                <Link 
+                                    href={route('invoices.create', { type: 'sale', parent_document_id: invoice.id })}
+                                    className="bg-emerald-600 text-white px-6 py-2.5 rounded-xl shadow-sm hover:bg-emerald-700 transition-all font-bold flex items-center gap-2 border border-emerald-700"
+                                >
+                                    إصدار فاتورة مبيعات
+                                </Link>
+                            )}
+                            {invoice.type === 'purchase_quotation' && (
+                                <Link 
+                                    href={route('invoices.create', { type: 'purchase_order', parent_document_id: invoice.id })}
+                                    className="bg-emerald-600 text-white px-6 py-2.5 rounded-xl shadow-sm hover:bg-emerald-700 transition-all font-bold flex items-center gap-2 border border-emerald-700"
+                                >
+                                    تحويل لأمر شراء
+                                </Link>
+                            )}
+                            {invoice.type === 'purchase_order' && (
+                                <Link 
+                                    href={route('invoices.create', { type: 'purchase', parent_document_id: invoice.id })}
+                                    className="bg-emerald-600 text-white px-6 py-2.5 rounded-xl shadow-sm hover:bg-emerald-700 transition-all font-bold flex items-center gap-2 border border-emerald-700"
+                                >
+                                    إصدار فاتورة مشتريات
+                                </Link>
+                            )}
+
                         </div>
                     </div>
+
+                    {/* Document Traceability Chain */}
+                    {(invoice.parent_document || (invoice.child_documents && invoice.child_documents.length > 0)) && (
+                        <div className="mb-6 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm print:hidden">
+                            <h3 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                </svg>
+                                تتبع المستندات المرتبطة (Traceability Chain)
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {invoice.parent_document && (
+                                    <div className="p-4 bg-blue-50/50 rounded-xl border border-blue-100 flex justify-between items-center">
+                                        <div>
+                                            <span className="text-[10px] text-blue-600 font-bold block mb-1">مستند المصدر الأب (Origin Document)</span>
+                                            <span className="font-mono text-sm text-gray-900 font-bold">
+                                                {docTypeLabels[invoice.parent_document.type] || invoice.parent_document.type} - {invoice.parent_document.invoice_no}
+                                            </span>
+                                        </div>
+                                        <Link 
+                                            href={route('invoices.show', invoice.parent_document.id)}
+                                            className="text-xs bg-white text-blue-700 px-3 py-1.5 rounded-lg border border-blue-200 font-bold hover:bg-blue-50 transition-colors"
+                                        >
+                                            عرض المستند الأب &larr;
+                                        </Link>
+                                    </div>
+                                )}
+                                {invoice.child_documents && invoice.child_documents.length > 0 && (
+                                    <div className="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 space-y-3">
+                                        <span className="text-[10px] text-emerald-600 font-bold block">المستندات التابعة الابنة (Follow-up Documents)</span>
+                                        <div className="space-y-2">
+                                            {invoice.child_documents.map(child => (
+                                                <div key={child.id} className="flex justify-between items-center bg-white p-2 rounded-lg border border-emerald-100/50">
+                                                    <span className="font-mono text-xs text-gray-700">
+                                                        {docTypeLabels[child.type] || child.type} - <span className="font-bold">{child.invoice_no}</span>
+                                                    </span>
+                                                    <Link 
+                                                        href={route('invoices.show', child.id)}
+                                                        className="text-[11px] text-emerald-700 font-bold hover:underline"
+                                                    >
+                                                        عرض &larr;
+                                                    </Link>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
 
                     {/* Invoice Paper Document */}
                     <div className="bg-white shadow-2xl rounded-sm overflow-hidden print:shadow-none print:border-0 print:m-0 print:w-full document-paper">
@@ -205,7 +312,7 @@ export default function Show({ auth, invoice }) {
                                         <th className="px-4 py-3 text-right">#</th>
                                         <th className="px-4 py-3 text-right">الوصف</th>
                                         <th className="px-4 py-3 text-center">الكمية</th>
-                                        {invoice.type !== 'work_order' && (
+                                        {!['work_order', 'goods_receipt', 'goods_issue'].includes(invoice.type) && (
                                             <>
                                                 <th className="px-4 py-3 text-center">سعر الوحدة</th>
                                                 <th className="px-4 py-3 text-center">الضريبة</th>
@@ -223,7 +330,7 @@ export default function Show({ auth, invoice }) {
                                                 <p className="text-[10px] text-gray-500 font-mono uppercase">{line.item?.sku}</p>
                                             </td>
                                             <td className="px-4 py-4 border-b border-gray-100 text-center font-bold font-mono text-lg">{parseFloat(line.quantity)}</td>
-                                            {invoice.type !== 'work_order' && (
+                                            {!['work_order', 'goods_receipt', 'goods_issue'].includes(invoice.type) && (
                                                 <>
                                                     <td className="px-4 py-4 border-b border-gray-100 text-center font-mono">{parseFloat(line.unit_price).toFixed(2)}</td>
                                                     <td className="px-4 py-4 border-b border-gray-100 text-center">
@@ -270,7 +377,7 @@ export default function Show({ auth, invoice }) {
                                 </div>
                             </div>
 
-                            {invoice.type !== 'work_order' && (
+                            {!['work_order', 'goods_receipt', 'goods_issue'].includes(invoice.type) && (
                                 <div className="w-full md:w-80 space-y-3 bg-gray-50 p-6 rounded-2xl border border-gray-100 h-fit">
                                     <div className="flex justify-between items-center text-gray-600">
                                         <span className="text-sm font-bold">المجموع الفرعي</span>

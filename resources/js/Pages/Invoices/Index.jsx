@@ -12,8 +12,8 @@ export default function Index({ auth, type, invoices, flash }) {
         purchase_quotation: 'طلبات عروض أسعار المشتريات',
         purchase_order: 'أوامر الشراء',
         work_order: 'طلبات عروض العمل والصيانة',
-        goods_receipt: 'سندات استلام المواد للمستودع',
-        goods_issue: 'سندات صرف المواد من المستودع',
+        goods_receipt: 'تسوية المستودع - إضافة بضاعة',
+        goods_issue: 'تسوية المستودع - إضافة تالف',
     };
 
     const isFinancial = ['sale', 'sale_return', 'purchase', 'purchase_return'].includes(type);
@@ -67,11 +67,9 @@ export default function Index({ auth, type, invoices, flash }) {
                                         <th className="px-6 py-4 font-semibold">رقم المستند</th>
                                         <th className="px-6 py-4 font-semibold">التاريخ</th>
                                         <th className="px-6 py-4 font-semibold">{contactHeader}</th>
-                                        {type !== 'work_order' && (
+                                        {!['work_order', 'goods_receipt', 'goods_issue'].includes(type) && (
                                             <>
-                                                {!['goods_receipt', 'goods_issue'].includes(type) && (
-                                                    <th className="px-6 py-4 font-semibold text-center">ZATCA</th>
-                                                )}
+                                                <th className="px-6 py-4 font-semibold text-center">ZATCA</th>
                                                 <th className="px-6 py-4 font-semibold">المبلغ (أساس)</th>
                                                 <th className="px-6 py-4 font-semibold text-blue-600">الضريبة</th>
                                                 <th className="px-6 py-4 font-semibold text-green-700">الإجمالي</th>
@@ -87,20 +85,18 @@ export default function Index({ auth, type, invoices, flash }) {
                                                 <td className="px-6 py-4 font-mono font-medium">{invoice.invoice_no}</td>
                                                 <td className="px-6 py-4 text-gray-600">{invoice.invoice_date}</td>
                                                 <td className="px-6 py-4 font-bold text-gray-800">{invoice.contact?.name || 'محذوف'}</td>
-                                                {type !== 'work_order' && (
+                                                {!['work_order', 'goods_receipt', 'goods_issue'].includes(type) && (
                                                     <>
-                                                        {!['goods_receipt', 'goods_issue'].includes(type) && (
-                                                            <td className="px-6 py-4 text-center">
-                                                                {invoice.qr_code_base64 ? (
-                                                                    <span title="مكتملة ZATCA" className="inline-flex items-center justify-center bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold w-full mx-auto">
-                                                                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                                                                        معتمدة
-                                                                    </span>
-                                                                ) : (
-                                                                    <span className="text-gray-300">-</span>
-                                                                )}
-                                                            </td>
-                                                        )}
+                                                        <td className="px-6 py-4 text-center">
+                                                            {invoice.qr_code_base64 ? (
+                                                                <span title="مكتملة ZATCA" className="inline-flex items-center justify-center bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold w-full mx-auto">
+                                                                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                                                    معتمدة
+                                                                </span>
+                                                            ) : (
+                                                                <span className="text-gray-300">-</span>
+                                                            )}
+                                                        </td>
                                                         <td className="px-6 py-4 font-mono">{invoice.total_base}</td>
                                                         <td className="px-6 py-4 font-mono text-blue-600">{invoice.total_tax}</td>
                                                         <td className="px-6 py-4 font-mono font-bold text-green-700 bg-green-50/30">{invoice.total_amount}</td>

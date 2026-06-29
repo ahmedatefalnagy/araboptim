@@ -6,30 +6,68 @@
         border: none !important;
     }
     .truck-banner {
-        background-color: #0056b3;
+        background-color: #1e3a8a;
         color: #ffffff;
         text-align: center;
-        padding: 6px 15px;
+        padding: 8px 15px;
         font-weight: bold;
         font-size: 11px;
         margin-top: 10px;
         margin-bottom: 5px;
+        border-radius: 4px;
+    }
+    .meta-card-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 8px;
+        font-size: 9px;
+        border: 1px solid #cbd5e1;
+        background-color: #f8fafc;
+        border-radius: 6px;
+    }
+    .meta-card-table td {
+        border: 1px solid #e2e8f0;
+        padding: 0;
+        vertical-align: top;
+    }
+    .meta-inner-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: none;
+    }
+    .meta-inner-table td {
+        border: none !important;
+        padding: 6px 8px;
+    }
+    .meta-label {
+        background-color: #f1f5f9;
+        color: #475569;
+        font-weight: bold;
+        font-size: 8px;
+        text-align: center;
+        width: 35%;
+        border-left: 1px solid #e2e8f0 !important;
+    }
+    .meta-value {
+        text-align: center;
+        font-weight: bold;
+        color: #1e293b;
     }
 </style>
 
 <table class="mockup-meta-table" style="width: 100%; border-collapse: collapse; margin-top: 5px; margin-bottom: 10px; font-size: 9px; border: none;">
     <!-- Row 1: C.R. & VAT + Tax Invoice Box -->
     <tr>
-        <td width="30%" style="text-align: left; vertical-align: middle; padding: 2px; border: none;">
+        <td width="30%" style="text-align: left; vertical-align: middle; padding: 2px; border: none; color: #475569;">
             <div><strong>C.R :</strong> {{ \App\Models\Setting::get('company_commercial_record', '1009037942') }}</div>
             <div><strong>VAT No :</strong> {{ \App\Models\Setting::get('company_vat_no', '312253166440003') }}</div>
         </td>
         <td width="40%" style="text-align: center; vertical-align: middle; border: none;">
-            <div style="border: 1.5px solid #000; background-color: #f2f2f2; padding: 6px 15px; display: inline-block; font-weight: bold; font-size: 11px; line-height: 1.3; text-align: center;">
+            <div style="border: 1px solid #1e3a8a; background-color: #f1f5f9; color: #1e3a8a; padding: 8px 18px; display: inline-block; font-weight: bold; font-size: 11px; line-height: 1.4; text-align: center; border-radius: 4px;">
                 {!! $title !!}
             </div>
         </td>
-        <td width="30%" style="text-align: right; vertical-align: middle; padding: 2px; border: none;">
+        <td width="30%" style="text-align: right; vertical-align: middle; padding: 2px; border: none; color: #475569;">
             <div><strong>سجل تجاري :</strong> {{ \App\Models\Setting::get('company_commercial_record', '1009037942') }}</div>
             <div><strong>الرقم الضريبي :</strong> {{ \App\Models\Setting::get('company_vat_no', '312253166440003') }}</div>
         </td>
@@ -37,24 +75,24 @@
 </table>
 
 {{-- Meta Information Boxes --}}
-<table style="width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 9px;">
+<table class="meta-card-table">
     <tr>
         <!-- Left Column: Dates -->
-        <td width="30%" style="border: 1px solid #000; padding: 0; vertical-align: top;">
-            <table width="100%" style="border-collapse: collapse; border: none;">
-                <tr style="border-bottom: 1px solid #000;">
-                    <td width="40%" style="padding: 5px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold; font-size: 8px;">
+        <td width="33%">
+            <table class="meta-inner-table">
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td class="meta-label">
                         Due Date :<br>التاريخ
                     </td>
-                    <td style="padding: 5px; text-align: center; font-weight: bold;">
+                    <td class="meta-value">
                         {{ $invoice['invoice_date'] }}
                     </td>
                 </tr>
-                <tr style="border-bottom: 1px solid #000;">
-                    <td style="padding: 5px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold; font-size: 8px;">
+                <tr>
+                    <td class="meta-label">
                         Date Issue :<br>الموافق
                     </td>
-                    <td style="padding: 5px; text-align: center; font-weight: bold;">
+                    <td class="meta-value">
                         @php
                             $hijriDate = \App\Helpers\PdfHelper::gregorianToHijri($invoice['invoice_date']);
                         @endphp
@@ -65,44 +103,44 @@
         </td>
         
         <!-- Middle Column: Buyer Name & VAT -->
-        <td width="40%" style="border: 1px solid #000; padding: 0; vertical-align: top;">
-            <table width="100%" style="border-collapse: collapse; border: none;">
-                <tr style="border-bottom: 1px solid #000;">
-                    <td width="30%" style="padding: 5px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold; font-size: 8px;">
+        <td width="34%">
+            <table class="meta-inner-table">
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td class="meta-label" style="width: 30%;">
                         Buyer Name :<br>اسم العميل
                     </td>
-                    <td style="padding: 5px; text-align: center; font-weight: bold;">
+                    <td class="meta-value">
                         {{ $invoice['contact']['name'] ?? '--' }}
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding: 5px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold; font-size: 8px;">
+                    <td class="meta-label" style="width: 30%;">
                         Buyer Vat :<br>رقم ضريبي
                     </td>
-                    <td style="padding: 5px; text-align: center; font-weight: bold; font-family: monospace;">
+                    <td class="meta-value" style="font-family: monospace;">
                         {{ $invoice['contact']['tax_number'] ?? 'N/A' }}
                     </td>
                 </tr>
             </table>
         </td>
         
-        <!-- Right Column: Claim No & Buyer No -->
-        <td width="30%" style="border: 1px solid #000; padding: 0; vertical-align: top;">
-            <table width="100%" style="border-collapse: collapse; border: none;">
-                <tr style="border-bottom: 1px solid #000;">
-                    <td width="40%" style="padding: 5px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold; font-size: 8px;">
+        <!-- Right Column: Claim No & Cost Center -->
+        <td width="33%">
+            <table class="meta-inner-table">
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td class="meta-label" style="width: 40%;">
                         Claim No :<br>رقم الفاتورة
                     </td>
-                    <td style="padding: 5px; text-align: center; font-weight: bold; font-family: monospace; font-size: 11px;">
+                    <td class="meta-value" style="font-family: monospace; font-size: 10px; color: #1e3a8a;">
                         {{ $invoice['invoice_no'] }}
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding: 5px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold; font-size: 8px;">
-                        Buyer No :<br>رقم العميل
+                    <td class="meta-label" style="width: 40%;">
+                        Cost Center :<br>مركز التكلفة
                     </td>
-                    <td style="padding: 5px; text-align: center; font-weight: bold; font-family: monospace;">
-                        {{ $invoice['contact_id'] }}
+                    <td class="meta-value" style="color: #0d9488;">
+                        {{ $invoice['costCenter']['name'] ?? '--' }}
                     </td>
                 </tr>
             </table>
@@ -124,17 +162,17 @@
 </div>
 
 {{-- Trips Details Table --}}
-<table class="premium-table" style="width: 100%; border-collapse: collapse; margin-top: 5px; border: 1.5px solid #000;">
+<table class="premium-table">
     <thead>
-        <tr style="background-color: #0056b3; color: #ffffff;">
-            <th width="5%" style="border: 1px solid #000; padding: 5px; font-size: 9px; text-align: center;">م<br><span style="font-family: 'DejaVu Sans', sans-serif; font-size: 7px;">S.N</span></th>
-            <th width="10%" style="border: 1px solid #000; padding: 5px; font-size: 9px; text-align: center;">التاريخ<br><span style="font-family: 'DejaVu Sans', sans-serif; font-size: 7px;">Date</span></th>
-            <th width="15%" style="border: 1px solid #000; padding: 5px; font-size: 9px; text-align: center;">من<br><span style="font-family: 'DejaVu Sans', sans-serif; font-size: 7px;">From</span></th>
-            <th width="15%" style="border: 1px solid #000; padding: 5px; font-size: 9px; text-align: center;">إلى<br><span style="font-family: 'DejaVu Sans', sans-serif; font-size: 7px;">To</span></th>
-            <th width="20%" style="border: 1px solid #000; padding: 5px; font-size: 9px; text-align: center;">اسم المورد<br><span style="font-family: 'DejaVu Sans', sans-serif; font-size: 7px;">Supplier Name</span></th>
-            <th width="12%" style="border: 1px solid #000; padding: 5px; font-size: 9px; text-align: center;">السعر<br><span style="font-family: 'DejaVu Sans', sans-serif; font-size: 7px;">Price</span></th>
-            <th width="12%" style="border: 1px solid #000; padding: 5px; font-size: 9px; text-align: center;">الضريبة<br><span style="font-family: 'DejaVu Sans', sans-serif; font-size: 7px;">VAT</span></th>
-            <th width="11%" style="border: 1px solid #000; padding: 5px; font-size: 9px; text-align: center;">الاجمالي<br><span style="font-family: 'DejaVu Sans', sans-serif; font-size: 7px;">Total</span></th>
+        <tr>
+            <th width="5%">S.N<br>م</th>
+            <th width="10%">Date<br>التاريخ</th>
+            <th width="15%">From<br>من</th>
+            <th width="15%">To<br>إلى</th>
+            <th width="20%">Supplier Name<br>اسم المورد</th>
+            <th width="12%">Price<br>السعر</th>
+            <th width="12%">VAT<br>الضريبة</th>
+            <th width="11%">Total<br>الاجمالي</th>
         </tr>
     </thead>
     <tbody>
@@ -151,14 +189,14 @@
                     $tripDate = isset($trip['created_at']) ? date('d-M', strtotime($trip['created_at'])) : '---';
                 @endphp
                 <tr>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold;">{{ $index + 1 }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold; font-size: 8px;">{{ $tripDate }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: right; padding-right: 6px; font-weight: bold; font-size: 8px;">{{ $trip['destination'] ?? '' }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: right; padding-right: 6px; font-weight: bold; font-size: 8px;">{{ $trip['origin'] ?? '' }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: right; padding-right: 6px; font-weight: bold; font-size: 8px;">{{ $trip['end_customer_name'] ?? '' }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold;">{{ number_format($price, 2) }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold;">{{ number_format($vatAmount, 2) }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold;">{{ number_format($lineTotal, 2) }}</td>
+                    <td style="text-align: center; font-weight: bold;">{{ $index + 1 }}</td>
+                    <td style="text-align: center; font-size: 8px;">{{ $tripDate }}</td>
+                    <td style="text-align: right; padding-right: 6px; font-weight: bold; font-size: 8px;">{{ $trip['destination'] ?? '' }}</td>
+                    <td style="text-align: right; padding-right: 6px; font-weight: bold; font-size: 8px;">{{ $trip['origin'] ?? '' }}</td>
+                    <td style="text-align: right; padding-right: 6px; font-weight: bold; font-size: 8px;">{{ $trip['end_customer_name'] ?? '' }}</td>
+                    <td style="text-align: center; font-weight: bold;">{{ number_format($price, 2) }}</td>
+                    <td style="text-align: center; font-weight: bold;">{{ number_format($vatAmount, 2) }}</td>
+                    <td style="text-align: center; font-weight: bold;">{{ number_format($lineTotal, 2) }}</td>
                 </tr>
             @endforeach
         @else
@@ -170,22 +208,22 @@
                     $totalAll += $line['total'];
                 @endphp
                 <tr>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold;">{{ $index + 1 }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold; font-size: 8px;">{{ $invoice['invoice_date'] }}</td>
-                    <td colspan="3" style="border: 1px solid #000; padding: 5px; text-align: right; padding-right: 8px; font-weight: bold; font-size: 8px;">{{ $line['item_name'] ?? $line['item']['name'] ?? '' }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold;">{{ number_format($line['subtotal'], 2) }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold;">{{ number_format($line['tax_amount'], 2) }}</td>
-                    <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold;">{{ number_format($line['total'], 2) }}</td>
+                    <td style="text-align: center; font-weight: bold;">{{ $index + 1 }}</td>
+                    <td style="text-align: center; font-size: 8px;">{{ $invoice['invoice_date'] }}</td>
+                    <td colspan="3" style="text-align: right; padding-right: 8px; font-weight: bold; font-size: 8px;">{{ $line['item_name'] ?? $line['item']['name'] ?? '' }}</td>
+                    <td style="text-align: center; font-weight: bold;">{{ number_format($line['subtotal'], 2) }}</td>
+                    <td style="text-align: center; font-weight: bold;">{{ number_format($line['tax_amount'], 2) }}</td>
+                    <td style="text-align: center; font-weight: bold;">{{ number_format($line['total'], 2) }}</td>
                 </tr>
             @endforeach
         @endif
 
         {{-- Totals Row --}}
-        <tr style="background-color: #f2f2f2; font-weight: bold;">
-            <td colspan="5" style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold; font-size: 9px;"></td>
-            <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold; font-size: 10px;">{{ number_format($totalPrice, 2) }}</td>
-            <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold; font-size: 10px;">{{ number_format($totalVat, 2) }}</td>
-            <td style="border: 1px solid #000; padding: 5px; text-align: center; font-weight: bold; font-size: 10px;">{{ number_format($totalAll, 2) }}</td>
+        <tr style="background-color: #f1f5f9; font-weight: bold;">
+            <td colspan="5" style="text-align: center; font-weight: bold; font-size: 9px; color: #475569;">الإجمالي / Total</td>
+            <td style="text-align: center; font-weight: bold; font-size: 10px; color: #1e293b;">{{ number_format($totalPrice, 2) }}</td>
+            <td style="text-align: center; font-weight: bold; font-size: 10px; color: #1e3a8a;">{{ number_format($totalVat, 2) }}</td>
+            <td style="text-align: center; font-weight: bold; font-size: 10px; color: #1e293b;">{{ number_format($totalAll, 2) }}</td>
         </tr>
     </tbody>
 </table>
@@ -194,45 +232,45 @@
 <table width="100%" style="margin-top: 15px; border-collapse: collapse; border: none;">
     <tr>
         <!-- Totals Table -->
-        <td width="35%" style="vertical-align: top; padding: 0; border: none;">
-            <table width="100%" style="border-collapse: collapse; border: 1px solid #000; font-size: 9px;">
-                <tr style="border-bottom: 1px solid #000;">
-                    <td width="55%" style="padding: 4px; text-align: center; font-weight: bold; background-color: #f2f2f2; border-left: 1px solid #000;">
+        <td width="38%" style="vertical-align: top; padding: 0; border: none;">
+            <table width="100%" style="border-collapse: collapse; border: 1px solid #cbd5e1; font-size: 9px; background-color: #f8fafc; border-radius: 4px;">
+                <tr style="border-bottom: 1px solid #cbd5e1;">
+                    <td width="55%" style="padding: 6px; text-align: center; font-weight: bold; background-color: #f1f5f9; border-left: 1px solid #cbd5e1;">
                         المجموع الفرعي / Sub Total
                     </td>
-                    <td style="padding: 4px; text-align: center; font-weight: bold;">
+                    <td style="padding: 6px; text-align: center; font-weight: bold; color: #334155;">
                         {{ number_format($invoice['total_base'], 2) }}
                     </td>
                 </tr>
-                <tr style="border-bottom: 1px solid #000;">
-                    <td style="padding: 4px; text-align: center; font-weight: bold; background-color: #f2f2f2; border-left: 1px solid #000;">
+                <tr style="border-bottom: 1px solid #cbd5e1;">
+                    <td style="padding: 6px; text-align: center; font-weight: bold; background-color: #f1f5f9; border-left: 1px solid #cbd5e1;">
                         الخصم / Discount
                     </td>
-                    <td style="padding: 4px; text-align: center; font-weight: bold;">
+                    <td style="padding: 6px; text-align: center; font-weight: bold; color: #64748b;">
                         0.00
                     </td>
                 </tr>
-                <tr style="border-bottom: 1px solid #000;">
-                    <td style="padding: 4px; text-align: center; font-weight: bold; background-color: #f2f2f2; border-left: 1px solid #000;">
+                <tr style="border-bottom: 1px solid #cbd5e1;">
+                    <td style="padding: 6px; text-align: center; font-weight: bold; background-color: #f1f5f9; border-left: 1px solid #cbd5e1;">
                         الإجمالي ق الضريبة / Vat Before
                     </td>
-                    <td style="padding: 4px; text-align: center; font-weight: bold;">
+                    <td style="padding: 6px; text-align: center; font-weight: bold; color: #334155;">
                         {{ number_format($invoice['total_base'], 2) }}
                     </td>
                 </tr>
-                <tr style="border-bottom: 1px solid #000;">
-                    <td style="padding: 4px; text-align: center; font-weight: bold; background-color: #f2f2f2; border-left: 1px solid #000;">
+                <tr style="border-bottom: 1px solid #cbd5e1;">
+                    <td style="padding: 6px; text-align: center; font-weight: bold; background-color: #f1f5f9; border-left: 1px solid #cbd5e1;">
                         ضريبة مضافة 15 % / Tax 15 %
                     </td>
-                    <td style="padding: 4px; text-align: center; font-weight: bold;">
+                    <td style="padding: 6px; text-align: center; font-weight: bold; color: #1e3a8a;">
                         {{ number_format($invoice['total_tax'], 2) }}
                     </td>
                 </tr>
-                <tr style="background-color: #f2f2f2;">
-                    <td style="padding: 5px; text-align: center; font-weight: bold; border-left: 1px solid #000; font-size: 10px;">
+                <tr style="background-color: #f1f5f9;">
+                    <td style="padding: 8px; text-align: center; font-weight: bold; border-left: 1px solid #cbd5e1; font-size: 10px; color: #1e3a8a;">
                         المستحق دفعة / Payable
                     </td>
-                    <td style="padding: 5px; text-align: center; font-weight: bold; font-size: 10px;">
+                    <td style="padding: 8px; text-align: center; font-weight: bold; font-size: 11px; color: #1e3a8a;">
                         {{ number_format($invoice['total_amount'], 2) }}
                     </td>
                 </tr>
@@ -240,42 +278,42 @@
         </td>
         
         <!-- QR Code Block -->
-        <td width="25%" style="vertical-align: middle; text-align: center; padding: 0 10px; border: none;">
+        <td width="22%" style="vertical-align: middle; text-align: center; padding: 0 10px; border: none;">
             @if(isset($qrCode))
-                <img src="data:image/png;base64,{{ $qrCode }}" style="width: 100px; height: 100px; border: 1.5px solid #000; padding: 2px;">
+                <img src="data:image/svg+xml;base64,{{ $qrCode }}" style="width: 95px; height: 95px; border: 1px solid #cbd5e1; padding: 4px; background-color: #fff; border-radius: 4px;">
             @endif
         </td>
         
         <!-- Bank Info Block -->
         <td width="40%" style="vertical-align: top; padding: 0; border: none;">
-            <table width="100%" style="border-collapse: collapse; border: 1px solid #000; font-size: 9px;">
-                <tr style="border-bottom: 1px solid #000;">
-                    <td width="30%" style="padding: 4px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold;">
+            <table width="100%" style="border-collapse: collapse; border: 1px solid #cbd5e1; font-size: 9px; background-color: #f8fafc; border-radius: 4px;">
+                <tr style="border-bottom: 1px solid #cbd5e1;">
+                    <td width="30%" style="padding: 6px; background-color: #f1f5f9; border-left: 1px solid #cbd5e1; text-align: center; font-weight: bold; color: #475569;">
                         الاسم / Name
                     </td>
-                    <td style="padding: 4px; text-align: right; padding-right: 8px; font-weight: bold; font-size: 8px;">
+                    <td style="padding: 6px; text-align: right; padding-right: 8px; font-weight: bold; font-size: 8px; color: #334155;">
                         {{ \App\Models\Setting::get('company_name', 'شركة التفاؤل العربية للخدمات اللوجستية') }}
                     </td>
                 </tr>
-                <tr style="border-bottom: 1px solid #000;">
-                    <td style="padding: 4px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold;">
+                <tr style="border-bottom: 1px solid #cbd5e1;">
+                    <td style="padding: 6px; background-color: #f1f5f9; border-left: 1px solid #cbd5e1; text-align: center; font-weight: bold; color: #475569;">
                         البنك / Bank
                     </td>
-                    <td style="padding: 4px; text-align: right; padding-right: 8px; font-weight: bold;">
+                    <td style="padding: 6px; text-align: right; padding-right: 8px; font-weight: bold; color: #334155;">
                         {{ \App\Models\Setting::get('bank_name', 'مصرف الراجحي') }}
                     </td>
                 </tr>
-                <tr style="border-bottom: 1px solid #000;">
-                    <td style="padding: 4px; background-color: #f2f2f2; border-left: 1px solid #000; text-align: center; font-weight: bold;">
+                <tr style="border-bottom: 1px solid #cbd5e1;">
+                    <td style="padding: 6px; background-color: #f1f5f9; border-left: 1px solid #cbd5e1; text-align: center; font-weight: bold; color: #475569;">
                         الإيبان / IBAN
                     </td>
-                    <td style="padding: 4px; text-align: right; padding-right: 8px; font-family: monospace; font-size: 9px; font-weight: bold;">
+                    <td style="padding: 6px; text-align: right; padding-right: 8px; font-family: monospace; font-size: 9px; font-weight: bold; color: #334155;">
                         {{ \App\Models\Setting::get('iban', 'SA7880000511608016212237') }}
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding: 4px; text-align: center; font-weight: bold; background-color: #f2f2f2;">
-                        طريقة السداد <span style="font-family: 'DejaVu Sans', sans-serif; font-size: 8px; font-weight: normal;">( Payment Method )</span>
+                    <td colspan="2" style="padding: 6px; text-align: center; font-weight: bold; background-color: #f1f5f9; color: #334155;">
+                        طريقة السداد <span style="font-family: 'DejaVu Sans', sans-serif; font-size: 8px; font-weight: normal; color: #64748b;">( Payment Method )</span>
                         &nbsp;&nbsp; حوالة بنكية
                     </td>
                 </tr>
@@ -285,15 +323,15 @@
 </table>
 
 {{-- Remarks --}}
-<table width="100%" style="margin-top: 10px; border-collapse: collapse; border: 1px solid #000; font-size: 9px;">
+<table width="100%" style="margin-top: 12px; border-collapse: collapse; border: 1px solid #cbd5e1; font-size: 9px; background-color: #f8fafc; border-radius: 4px;">
     <tr>
-        <td width="15%" style="background-color: #f2f2f2; border-left: 1px solid #000; padding: 4px; text-align: center; font-weight: bold;">
+        <td width="15%" style="background-color: #f1f5f9; border-left: 1px solid #cbd5e1; padding: 6px; text-align: center; font-weight: bold; color: #475569;">
             Remarks :
         </td>
-        <td style="padding: 4px; text-align: right; padding-right: 8px; font-weight: bold;">
+        <td style="padding: 6px; text-align: right; padding-right: 8px; font-weight: bold; color: #334155;">
             {{ $invoice['notes'] ?? '---' }}
         </td>
-        <td width="15%" style="background-color: #f2f2f2; border-right: 1px solid #000; padding: 4px; text-align: center; font-weight: bold;">
+        <td width="15%" style="background-color: #f1f5f9; border-right: 1px solid #cbd5e1; padding: 6px; text-align: center; font-weight: bold; color: #475569;">
             ملاحظات
         </td>
     </tr>
@@ -301,7 +339,7 @@
 
 <!-- Stamp area -->
 <div style="margin-top: 15px; text-align: left; padding-left: 30px;">
-    <div style="width: 90px; height: 90px; border: 2.5px double #0056b3; border-radius: 50%; display: inline-block; text-align: center; padding-top: 15px; color: #0056b3; font-size: 7px; font-weight: bold; line-height: 1.4;">
+    <div style="width: 90px; height: 90px; border: 2px double #1e3a8a; border-radius: 50%; display: inline-block; text-align: center; padding-top: 15px; color: #1e3a8a; font-size: 7px; font-weight: bold; line-height: 1.4; background-color: #fff;">
         مؤسسة التفاؤل العربية<br>س.ت ١٠٠٩٠٣٧٩٤٢<br>المبيعات<br><span style="font-size: 5px; font-family: 'DejaVu Sans', sans-serif;">Arab Optimism Est.</span>
     </div>
 </div>

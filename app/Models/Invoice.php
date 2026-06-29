@@ -22,6 +22,16 @@ class Invoice extends Model
         'notes',
         'attachment_path',
         'created_by',
+        'parent_document_id',
+        'cost_center_id',
+        'payment_mode',
+        'payment_account_id',
+        'qr_code_base64',
+        'xml_content',
+        'xml_uuid',
+        'zatca_hash',
+        'zatca_status',
+        'previous_hash',
     ];
 
     protected $casts = [
@@ -32,6 +42,21 @@ class Invoice extends Model
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);
+    }
+
+    public function parentDocument(): BelongsTo
+    {
+        return $this->belongsTo(Invoice::class, 'parent_document_id');
+    }
+
+    public function childDocuments()
+    {
+        return $this->hasMany(Invoice::class, 'parent_document_id');
+    }
+
+    public function costCenter(): BelongsTo
+    {
+        return $this->belongsTo(CostCenter::class);
     }
 
     public function baseAccount(): BelongsTo

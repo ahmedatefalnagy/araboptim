@@ -20,7 +20,7 @@ class PdfController extends Controller
 
     public function invoice(Invoice $invoice)
     {
-        $invoice->load(['contact', 'lines.item', 'creator', 'trips.vehicle']);
+        $invoice->load(['contact', 'lines.item', 'creator', 'costCenter', 'trips.vehicle']);
         $hasTrips = $invoice->trips()->exists();
 
         // رمز ZATCA QR (المرحلة الأولى) — بيانات البائع من الإعدادات وليست ثابتة في الكود.
@@ -32,7 +32,7 @@ class PdfController extends Controller
             $invoice->total_tax
         );
 
-        $qrCode = base64_encode(QrCode::format('png')->size(150)->generate($qrData));
+        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($qrData));
 
         $titles = [
             'sale' => 'فاتورة ضريبية / Tax Invoice',
@@ -45,6 +45,7 @@ class PdfController extends Controller
             'purchase_return' => 'إشعار مدين - مردود مشتريات / Debit Note',
             'goods_receipt' => 'سند استلام مواد / Goods Receipt Note',
             'goods_issue' => 'سند صرف مواد / Goods Issue Note',
+            'work_order' => 'أمر شغل / Work Order',
         ];
 
         $data = PdfHelper::fixArray([
@@ -60,7 +61,7 @@ class PdfController extends Controller
 
     public function deliveryNote(Invoice $invoice)
     {
-        $invoice->load(['contact', 'lines.item']);
+        $invoice->load(['contact', 'lines.item', 'costCenter']);
 
         $data = PdfHelper::fixArray([
             'invoice' => $invoice,
@@ -72,7 +73,7 @@ class PdfController extends Controller
 
     public function grn(Invoice $invoice)
     {
-        $invoice->load(['contact', 'lines.item']);
+        $invoice->load(['contact', 'lines.item', 'costCenter']);
 
         $data = PdfHelper::fixArray([
             'invoice' => $invoice,
@@ -84,7 +85,7 @@ class PdfController extends Controller
 
     public function voucher(Voucher $voucher)
     {
-        $voucher->load(['contact', 'debitAccount', 'creditAccount']);
+        $voucher->load(['contact', 'debitAccount', 'creditAccount', 'costCenter']);
 
         $titles = [
             'receipt' => 'سند قبض / Receipt Voucher',

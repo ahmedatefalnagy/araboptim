@@ -37,11 +37,37 @@ class VoucherController extends Controller
         ]);
     }
 
+    private function syncEmployeesToContacts()
+    {
+        try {
+            $employees = \App\Models\Employee::where('status', 'active')->get();
+            foreach ($employees as $emp) {
+                $contact = Contact::where('type', 'employee')
+                    ->where('name', $emp->name)
+                    ->first();
+                if (!$contact) {
+                    Contact::create([
+                        'type' => 'employee',
+                        'name' => $emp->name,
+                        'email' => $emp->email,
+                        'phone' => $emp->phone,
+                        'is_active' => true,
+                    ]);
+                }
+            }
+        } catch (\Exception $e) {
+            // Silence exceptions to prevent breaking if tables are not fully migrated
+        }
+    }
+
     public function create(Request $request)
     {
         $type = $request->query('type', 'expense');
         
+        $this->syncEmployeesToContacts();
+        
         $employees = Contact::where('type', 'employee')->get(['id', 'name']);
+        $contacts = Contact::whereIn('type', ['customer', 'supplier'])->get(['id', 'name']);
         
         // Fetch explicit Payment Methods (Cash & Banks)
         // Restricted to codes starting with 1101 (Cash) and 1102 (Banks)
@@ -60,17 +86,22 @@ class VoucherController extends Controller
         // Fetch All Accounts for general purpose
         $allAccounts = Account::where('is_postable', true)->get(['id', 'code', 'name']);
         
+        $costCenters = \App\Models\CostCenter::where('is_active', true)->get(['id', 'code', 'name']);
+        
         return Inertia::render('Vouchers/Create', [
             'type' => $type,
             'employees' => $employees,
+            'contacts' => $contacts,
             'paymentMethods' => $paymentMethods,
             'expenseAccounts' => $expenseAccounts,
             'allAccounts' => $allAccounts,
+            'costCenters' => $costCenters,
         ]);
     }
 
     public function store(Request $request)
     {
+        $this->syncEmployeesToContacts();
         $type = $request->input('type');
         $rules = [
             'type' => 'required|in:expense,advance,petty_cash_issue,petty_cash_receipt,receipt,payment',
@@ -80,6 +111,8 @@ class VoucherController extends Controller
             'description' => 'required|string',
             'debit_description' => 'nullable|string',
             'credit_description' => 'nullable|string',
+            'cost_center_id' => 'nullable|exists:cost_centers,id',
+            'contact_id' => 'nullable|exists:contacts,id',
             'attachment' => 'nullable|file|mimes:pdf,jpg,png,jpeg|max:5120',
         ];
 

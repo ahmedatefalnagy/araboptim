@@ -17,10 +17,10 @@ const UserMenu = ({ user }) => {
     }, []);
 
     return (
-        <div className="relative border-t border-[#4b545c] p-4 bg-[#343a40] mt-auto" ref={menuRef}>
+        <div className="relative border-t border-[#334155] p-4 bg-[#1e293b] mt-auto" ref={menuRef}>
             {/* Upward Menu */}
             {isOpen && (
-                <div className="absolute bottom-full right-0 left-0 mb-2 bg-[#2f353a] rounded shadow-xl border border-[#4b545c] overflow-hidden z-[100] animate-in fade-in slide-in-from-bottom-2 duration-200">
+                <div className="absolute bottom-full right-0 left-0 mb-2 bg-[#0f172a] rounded shadow-xl border border-[#334155] overflow-hidden z-[100] animate-in fade-in slide-in-from-bottom-2 duration-200">
                     <div className="p-1 space-y-0.5">
                         <Link 
                             href={route('profile.edit')}
@@ -48,7 +48,7 @@ const UserMenu = ({ user }) => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-3 cursor-pointer group hover:bg-white/5 p-2 rounded transition-colors"
             >
-                <div className="w-[34px] h-[34px] rounded-full bg-[#4b545c] flex items-center justify-center text-white font-bold text-xs">
+                <div className="w-[34px] h-[34px] rounded-full bg-[#334155] flex items-center justify-center text-white font-bold text-xs">
                     {user?.name ? user.name.substring(0, 2) : '??'}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -78,9 +78,10 @@ export default function AuthenticatedLayout({ user, header, children }) {
         contacts: url.includes('/contacts'),
         inventory: url.includes('/items') || url.includes('/warehouses'),
         cash: url.includes('/vouchers') || url.includes('/cash-register'),
-        accounting: url.includes('/accounts') || url.includes('/journal') || url.includes('/reports') || url.includes('/fixed-assets') || url.includes('/journal-entries'),
+        accounting: url.includes('/accounts') || url.includes('/journal') || url.includes('/fixed-assets') || url.includes('/journal-entries'),
         hr: url.includes('/hr'),
         logistics: url.includes('/logistics'),
+        cost_centers_group: url.includes('/cost-centers') || url.includes('/reports/cost-center-cashflow'),
     });
 
     const toggleMenu = (menu) => {
@@ -126,18 +127,18 @@ export default function AuthenticatedLayout({ user, header, children }) {
                 className={`flex items-center gap-3 px-3 py-2 transition-all duration-150 rounded ${
                     shouldBeActive 
                         ? indent
-                            ? 'bg-indigo-50 text-indigo-700 font-bold' // Active child
-                            : 'bg-[#047bf8] text-white font-bold' // Active parent
+                            ? 'bg-blue-50 text-blue-700 font-bold' // Active child
+                            : 'bg-[#2563eb] text-white font-bold' // Active parent
                         : indent
                             ? 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 font-semibold' // Inactive child (on white bg)
                             : 'text-[#c2c7d0] hover:bg-white/5 hover:text-white' // Inactive parent (on dark bg)
                 } ${indent ? 'pr-8 text-[13px]' : 'text-sm'}`}
             >
                 {icon ? (
-                    <span className={`w-5 h-5 flex items-center justify-center ${shouldBeActive && !indent ? 'text-white' : indent ? (shouldBeActive ? 'text-indigo-600' : 'text-slate-400') : 'text-[#c2c7d0]'}`}>{icon}</span>
+                    <span className={`w-5 h-5 flex items-center justify-center ${shouldBeActive && !indent ? 'text-white' : indent ? (shouldBeActive ? 'text-blue-600' : 'text-slate-400') : 'text-[#c2c7d0]'}`}>{icon}</span>
                 ) : indent ? (
                 <span className="w-5 h-5 flex items-center justify-center">
-                    <svg className={`w-2 h-2 ${shouldBeActive ? 'text-indigo-500' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-2 h-2 ${shouldBeActive ? 'text-blue-500' : 'text-slate-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="10" strokeWidth="3" />
                     </svg>
                 </span>
@@ -154,9 +155,10 @@ export default function AuthenticatedLayout({ user, header, children }) {
                               (id === 'contacts' && url.includes('/contacts')) ||
                               (id === 'inventory' && (url.includes('/items') || url.includes('/warehouses'))) ||
                               (id === 'cash' && (url.includes('/vouchers') || url.includes('/cash-register'))) ||
-                              (id === 'accounting' && (url.includes('/accounts') || url.includes('/journal') || url.includes('/reports') || url.includes('/fixed-assets') || url.includes('/journal-entries'))) ||
+                              (id === 'accounting' && (url.includes('/accounts') || url.includes('/journal') || url.includes('/fixed-assets') || url.includes('/journal-entries'))) ||
                               (id === 'hr' && url.includes('/hr')) ||
-                              (id === 'logistics' && url.includes('/logistics'));
+                              (id === 'logistics' && url.includes('/logistics')) ||
+                              (id === 'cost_centers_group' && (url.includes('/cost-centers') || url.includes('/reports/cost-center-cashflow')));
 
         const shouldHighlight = isAnyGroupOpen ? isOpen : isGroupActive;
 
@@ -166,7 +168,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
                     onClick={() => toggleMenu(id)}
                     className={`w-full flex items-center justify-between px-3 py-2 transition-all duration-150 rounded ${
                         shouldHighlight
-                            ? 'bg-[#047bf8] text-white font-bold' 
+                            ? 'bg-[#2563eb] text-white font-bold' 
                             : 'text-[#c2c7d0] hover:bg-white/5 hover:text-white font-semibold'
                     }`}
                 >
@@ -197,10 +199,10 @@ export default function AuthenticatedLayout({ user, header, children }) {
             )}
 
             {/* Right Sidebar */}
-            <aside className={`fixed lg:static shrink-0 inset-y-0 right-0 z-50 w-72 bg-[#343a40] border-l border-[#4b545c] flex flex-col shadow-2xl lg:shadow-none transition-all duration-500 ease-in-out transform ${sidebarOpen ? 'translate-x-0 lg:mr-0' : 'translate-x-full lg:translate-x-0 lg:-mr-72'}`}>
+            <aside className={`fixed lg:static shrink-0 inset-y-0 right-0 z-50 w-72 bg-[#1e293b] border-l border-[#334155] flex flex-col shadow-2xl lg:shadow-none transition-all duration-500 ease-in-out transform ${sidebarOpen ? 'translate-x-0 lg:mr-0' : 'translate-x-full lg:translate-x-0 lg:-mr-72'}`}>
                 
                 {/* Logo Area */}
-                <div className="py-3 flex items-center justify-center border-b border-[#4b545c] bg-[#343a40] sticky top-0 z-10">
+                <div className="py-3 flex items-center justify-center border-b border-[#334155] bg-[#1e293b] sticky top-0 z-10">
                     <Link href={route('dashboard')} className="flex items-center gap-3 px-5 group">
                         <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                             <ApplicationLogo className="w-14 h-14 object-cover" />
@@ -213,7 +215,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
                 </div>
 
                 {/* Navigation Links */}
-                <div className="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1.5 custom-scrollbar bg-[#343a40]">
+                <div className="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1.5 custom-scrollbar bg-[#1e293b]">
                     
                     <MenuItem 
                         href={route('dashboard')} 
@@ -263,13 +265,17 @@ export default function AuthenticatedLayout({ user, header, children }) {
                         icon={<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>}
                     >
                         <MenuItem indent href={route('items.index')} active={isActive('/items')} label="دليل المنتجات والمخزون" />
-                        <MenuItem indent href={route('invoices.index', {type: 'goods_receipt'})} active={isInvoiceTypeActive('goods_receipt')} label="سندات استلام المواد" />
-                        <MenuItem indent href={route('invoices.index', {type: 'goods_issue'})} active={isInvoiceTypeActive('goods_issue')} label="سندات صرف المواد" />
+                        {user?.role === 'admin' && (
+                            <>
+                                <MenuItem indent href={route('invoices.index', {type: 'goods_receipt'})} active={isInvoiceTypeActive('goods_receipt')} label="تسوية المستودع (إضافة بضاعة)" />
+                                <MenuItem indent href={route('invoices.index', {type: 'goods_issue'})} active={isInvoiceTypeActive('goods_issue')} label="تسوية المستودع (إضافة تالف)" />
+                            </>
+                        )}
                     </MenuGroup>
 
                     {user?.role !== 'storekeeper' && (
                         <>
-                            <div className="px-3 pt-4 pb-2 text-[11px] font-bold text-[#c2c7d0]/60 uppercase tracking-widest">الإدارة والمالية</div>
+                            <div className="px-3 pt-4 pb-2 text-[11px] font-bold text-[#c2c7d0]/60 uppercase tracking-widest">الإدارة</div>
 
                             <MenuGroup 
                                 id="hr" 
@@ -302,6 +308,8 @@ export default function AuthenticatedLayout({ user, header, children }) {
                                 <MenuItem indent href={route('contacts.index')} active={isActive('/contacts')} label="دليل جهات الاتصال" />
                             </MenuGroup>
 
+                            <div className="px-3 pt-4 pb-2 text-[11px] font-bold text-[#c2c7d0]/60 uppercase tracking-widest">المالية</div>
+
                             <MenuGroup 
                                 id="cash" 
                                 label="إدارة الصندوق" 
@@ -313,6 +321,15 @@ export default function AuthenticatedLayout({ user, header, children }) {
                             </MenuGroup>
 
                             <MenuGroup 
+                                 id="cost_centers_group" 
+                                 label="مراكز التكلفة" 
+                                 icon={<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>}
+                            >
+                                 <MenuItem indent href={route('cost-centers.index')} active={isActive('/cost-centers')} label="دليل مراكز التكلفة" />
+                                 {/* <MenuItem indent href={route('reports.costCenterCashflow')} active={isActive('/reports/cost-center-cashflow')} label="تقرير حركة النقدية" /> */}
+                            </MenuGroup>
+
+                            <MenuGroup 
                                 id="accounting" 
                                 label="الحسابات والمالية" 
                                 icon={<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>}
@@ -320,8 +337,14 @@ export default function AuthenticatedLayout({ user, header, children }) {
                                 <MenuItem indent href={route('journal.entries.index')} active={isActive('/journal-entries')} label="القيود اليومية" />
                                 <MenuItem indent href={route('fixed-assets.index')} active={isActive('/fixed-assets')} label="الأصول الثابتة" />
                                 <MenuItem indent href={route('accounts.index')} active={isActive('/accounts')} label="شجرة الحسابات" />
-                                <MenuItem indent href={route('reports.index')} active={isActive('/reports')} label="التقارير المالية" />
                             </MenuGroup>
+
+                            <MenuItem 
+                                href={route('reports.index')} 
+                                active={isActive('/reports') && !url.includes('/reports/cost-center-cashflow')} 
+                                label="التقارير المالية" 
+                                icon={<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>}
+                            />
                         </>
                     )}
 

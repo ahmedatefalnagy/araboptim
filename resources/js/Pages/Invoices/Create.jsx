@@ -2,7 +2,7 @@ import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-export default function Create({ auth, type, contacts, items, warehouses, paymentAccounts = [], costCenters = [], parentDocument = null, fiscalYears = [], selectedFiscalYearId = null }) {
+export default function Create({ auth, type, contacts, items, warehouses, paymentAccounts = [], costCenters = [], parentDocument = null, workOrders = [], fiscalYears = [], selectedFiscalYearId = null }) {
     const { default_date } = usePage().props;
     const generateInvoiceNo = () => {
         const prefix = {
@@ -113,8 +113,8 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
         purchase_quotation: 'طلب عرض سعر مشتريات',
         purchase_order: 'أمر شراء مبدئي',
         work_order: 'طلب جديد (شراء / صيانة / خدمة)',
-        goods_receipt: 'سند استلام مواد للمستودع',
-        goods_issue: 'سند صرف مواد من المستودع',
+        goods_receipt: 'تسوية المستودع - إضافة بضاعة',
+        goods_issue: 'تسوية المستودع - إضافة تالف',
     };
 
     const contactLabel = String(type).includes('sale') ? 'العميل' : 
@@ -187,59 +187,61 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                     {errors.contact_id && <div className="text-red-500 text-xs mt-2">{errors.contact_id}</div>}
 
                                     {/* Payment Mode Selection */}
-                                    <div className="mt-4 p-4 bg-white rounded-xl border border-gray-100 shadow-inner">
-                                        <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-3">طريقة الدفع للمستند</label>
-                                        <div className="flex gap-2 p-1 bg-gray-100 rounded-lg">
-                                            <button
-                                                type="button"
-                                                onClick={() => { setData('payment_mode', 'credit'); setData('payment_account_id', ''); }}
-                                                className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${data.payment_mode === 'credit' ? 'bg-white text-indigo-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                                            >
-                                                آجل (على الحساب)
-                                            </button>
-                                            <button
-                                                type="button"
-                                                onClick={() => { setData('payment_mode', 'cash'); setData('payment_account_id', ''); }}
-                                                className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${data.payment_mode === 'cash' ? 'bg-white text-emerald-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                                            >
-                                                نقدي (كاش)
-                                            </button>
-                                            <button
-                                                type="button"
-                                                onClick={() => { setData('payment_mode', 'bank'); setData('payment_account_id', ''); }}
-                                                className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${data.payment_mode === 'bank' ? 'bg-white text-sky-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                                            >
-                                                تحويل بنكي (بنك)
-                                            </button>
-                                        </div>
-
-                                        {(data.payment_mode === 'cash' || data.payment_mode === 'bank') && (
-                                            <div className="mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                                                <label className="block text-[10px] font-bold text-gray-400 mb-1">
-                                                    {data.payment_mode === 'bank' ? 'اختر الحساب البنكي' : 'اختر الصندوق النقدي'}
-                                                </label>
-                                                <select
-                                                    required={data.payment_mode === 'cash' || data.payment_mode === 'bank'}
-                                                    className="w-full rounded-lg border-gray-200 text-xs font-bold focus:ring-emerald-500 focus:border-emerald-500"
-                                                    value={data.payment_account_id}
-                                                    onChange={e => setData('payment_account_id', e.target.value)}
+                                    {!['work_order', 'goods_receipt', 'goods_issue'].includes(type) && (
+                                        <div className="mt-4 p-4 bg-white rounded-xl border border-gray-100 shadow-inner">
+                                            <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-3">طريقة الدفع للمستند</label>
+                                            <div className="flex gap-2 p-1 bg-gray-100 rounded-lg">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => { setData('payment_mode', 'credit'); setData('payment_account_id', ''); }}
+                                                    className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${data.payment_mode === 'credit' ? 'bg-white text-indigo-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
                                                 >
-                                                    <option value="">{data.payment_mode === 'bank' ? '-- اختر الحساب البنكي --' : '-- اختر الصندوق النقدي --'}</option>
-                                                    {paymentAccounts
-                                                        .filter(acc => {
-                                                            const code = String(acc.code || '');
-                                                            // 112x = حسابات بنكية، 111x = صناديق نقدية
-                                                            if (data.payment_mode === 'bank') return code.startsWith('112') || (code.startsWith('1') && /بنك|bank/i.test(acc.name || ''));
-                                                            return code.startsWith('111') || (code.startsWith('1') && /صندوق|نقد|cash/i.test(acc.name || ''));
-                                                        })
-                                                        .map(acc => (
-                                                            <option key={acc.id} value={acc.id}>{acc.code} - {acc.name}</option>
-                                                        ))}
-                                                </select>
-                                                {errors.payment_account_id && <div className="text-red-500 text-[10px] mt-1">{errors.payment_account_id}</div>}
+                                                    آجل (على الحساب)
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => { setData('payment_mode', 'cash'); setData('payment_account_id', ''); }}
+                                                    className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${data.payment_mode === 'cash' ? 'bg-white text-emerald-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                                                >
+                                                    نقدي (كاش)
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => { setData('payment_mode', 'bank'); setData('payment_account_id', ''); }}
+                                                    className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${data.payment_mode === 'bank' ? 'bg-white text-sky-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                                                >
+                                                    تحويل بنكي (بنك)
+                                                </button>
                                             </div>
-                                        )}
-                                    </div>
+
+                                            {(data.payment_mode === 'cash' || data.payment_mode === 'bank') && (
+                                                <div className="mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                                                    <label className="block text-[10px] font-bold text-gray-400 mb-1">
+                                                        {data.payment_mode === 'bank' ? 'اختر الحساب البنكي' : 'اختر الصندوق النقدي'}
+                                                    </label>
+                                                    <select
+                                                        required={data.payment_mode === 'cash' || data.payment_mode === 'bank'}
+                                                        className="w-full rounded-lg border-gray-200 text-xs font-bold focus:ring-emerald-500 focus:border-emerald-500"
+                                                        value={data.payment_account_id}
+                                                        onChange={e => setData('payment_account_id', e.target.value)}
+                                                    >
+                                                        <option value="">{data.payment_mode === 'bank' ? '-- اختر الحساب البنكي --' : '-- اختر الصندوق النقدي --'}</option>
+                                                        {paymentAccounts
+                                                            .filter(acc => {
+                                                                const code = String(acc.code || '');
+                                                                // 112x = حسابات بنكية، 111x = صناديق نقدية
+                                                                if (data.payment_mode === 'bank') return code.startsWith('112') || (code.startsWith('1') && /بنك|bank/i.test(acc.name || ''));
+                                                                return code.startsWith('111') || (code.startsWith('1') && /صندوق|نقد|cash/i.test(acc.name || ''));
+                                                             })
+                                                            .map(acc => (
+                                                                <option key={acc.id} value={acc.id}>{acc.code} - {acc.name}</option>
+                                                            ))}
+                                                    </select>
+                                                    {errors.payment_account_id && <div className="text-red-500 text-[10px] mt-1">{errors.payment_account_id}</div>}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="md:col-span-1 border-r border-gray-100 pr-4">
@@ -268,10 +270,27 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                     >
                                         <option value="">== بدون مركز تكلفة ==</option>
                                         {costCenters.map(cc => (
-                                            <option key={cc.id} value={cc.id}>{cc.code} - {cc.name}</option>
+                                            <option key={cc.id} value={cc.id}>{cc.name}</option>
                                         ))}
                                     </select>
                                     {errors.cost_center_id && <div className="text-red-500 text-xs mt-2">{errors.cost_center_id}</div>}
+
+                                    {['sale_quotation', 'purchase_quotation'].includes(type) && (
+                                        <>
+                                            <label className="block text-sm font-bold text-gray-800 mt-4 mb-2">ربط بأمر الشغل (اختياري)</label>
+                                            <select
+                                                className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
+                                                value={data.parent_document_id}
+                                                onChange={e => setData('parent_document_id', e.target.value)}
+                                            >
+                                                <option value="">== بدون أمر شغل ==</option>
+                                                {workOrders.map(wo => (
+                                                    <option key={wo.id} value={wo.id}>{wo.invoice_no}</option>
+                                                ))}
+                                            </select>
+                                            {errors.parent_document_id && <div className="text-red-500 text-xs mt-2">{errors.parent_document_id}</div>}
+                                        </>
+                                    )}
                                 </div>
 
                                 <div className="md:col-span-1 border-r border-gray-100 pr-4">

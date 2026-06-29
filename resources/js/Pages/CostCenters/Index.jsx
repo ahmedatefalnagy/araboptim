@@ -156,7 +156,6 @@ export default function Index({ auth, costCenters, flash }) {
                                                 <td className="px-6 py-4 text-center">
                                                     <div className="flex items-center justify-center gap-3">
                                                         <button onClick={() => handleEdit(cc)} className="text-blue-600 font-bold hover:underline">تعديل</button>
-                                                        <button onClick={() => handleDelete(cc.id)} className="text-red-500 font-bold hover:underline">حذف</button>
                                                     </div>
                                                 </td>
                                             </tr>

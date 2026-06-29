@@ -1,7 +1,7 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-export default function Create({ auth, type, employees, paymentMethods, expenseAccounts, allAccounts }) {
+export default function Create({ auth, type, employees, contacts = [], paymentMethods, expenseAccounts, allAccounts, costCenters = [] }) {
     const { default_date } = usePage().props;
     const generateVoucherNo = () => {
         const prefix = {
@@ -132,6 +132,30 @@ export default function Create({ auth, type, employees, paymentMethods, expenseA
 
                             <div className="grid grid-cols-1 gap-6 p-6 bg-gray-50 rounded-xl border border-gray-200">
                                 
+                                {/* Unified Customer/Supplier Contact select */}
+                                {['receipt', 'payment', 'expense'].includes(type) && (
+                                    <div>
+                                        <label className="block text-sm font-bold text-gray-800 mb-2">
+                                            {type === 'receipt' ? 'استلام من (العميل/الجهة) / Received From' : 'صرف إلى (المورد/الجهة) / Pay To' } *
+                                        </label>
+                                        <select
+                                            required={['receipt', 'payment'].includes(type)}
+                                            className="w-full rounded-xl border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                            value={data.contact_id}
+                                            onChange={e => setData('contact_id', e.target.value)}
+                                        >
+                                           <option value="">{type === 'receipt' ? '-- اختر العميل --' : '-- اختر المورد/الجهة --'}</option>
+                                           {contacts.map(c => (
+                                               <option key={c.id} value={c.id}>{c.name} (عميل/مورد)</option>
+                                           ))}
+                                           {employees.map(e => (
+                                               <option key={e.id} value={e.id}>{e.name} (موظف)</option>
+                                           ))}
+                                       </select>
+                                       {errors.contact_id && <div className="text-red-500 text-sm mt-1">{errors.contact_id}</div>}
+                                   </div>
+                               )}
+
                                 {/* Professional Receipt/Payment Logic */}
                                 {['receipt', 'payment'].includes(type) ? (
                                     <div className="space-y-4">

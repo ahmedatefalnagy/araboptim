@@ -19,6 +19,7 @@ class ContactController extends Controller
             ->when($type === 'customer', fn($q) => $q->where('is_customer', true))
             ->when($type === 'supplier', fn($q) => $q->where('is_supplier', true))
             ->when($type === 'partner', fn($q) => $q->where('is_related_party', true))
+            ->when($type === 'employee', fn($q) => $q->where('type', 'employee'))
             ->when($search, function($q) use ($search) {
                 $q->where(function($sq) use ($search) {
                     $sq->where('name', 'like', "%{$search}%")
@@ -83,18 +84,34 @@ class ContactController extends Controller
 
         $contact = Contact::create($validated);
 
-        // Auto-generate account if none provided
+        // Link directly to general accounts (like Odoo) to prevent inflating chart of accounts
+        $generalCodes = [
+            'customer' => '1103',
+            'supplier' => '2101',
+            'employee' => '1106',
+            'partner'  => '2102',
+        ];
+
         if (!$contact->receivable_account_id && ($contact->is_customer || $contact->is_related_party || $contact->type === 'employee')) {
-            $newAccountId = $this->createAccountForContact($contact);
-            if ($newAccountId) {
-                $contact->update(['receivable_account_id' => $newAccountId]);
+            $typeKey = $contact->type === 'employee' ? 'employee' : ($contact->is_related_party ? 'partner' : 'customer');
+            $code = $generalCodes[$typeKey];
+            $acc = Account::where('code', $code)->first();
+            if ($acc) {
+                if (!$acc->is_postable) {
+                    $acc->update(['is_postable' => true]);
+                }
+                $contact->update(['receivable_account_id' => $acc->id]);
             }
         }
 
         if (!$contact->payable_account_id && $contact->is_supplier) {
-            $newAccountId = $this->createAccountForContact($contact);
-            if ($newAccountId) {
-                $contact->update(['payable_account_id' => $newAccountId]);
+            $code = $generalCodes['supplier'];
+            $acc = Account::where('code', $code)->first();
+            if ($acc) {
+                if (!$acc->is_postable) {
+                    $acc->update(['is_postable' => true]);
+                }
+                $contact->update(['payable_account_id' => $acc->id]);
             }
         }
 
@@ -156,68 +173,5 @@ class ContactController extends Controller
             return redirect()->back()->withErrors(['message' => 'لا يمكن مسح جهة الاتصال لأن لها حركات مالية مرتبطة.']);
         }
     }
-
-    /**
-     * Auto generates an Account in the Chart of Accounts under the right directory
-     */
-    private function createAccountForContact(Contact $contact)
-    {
-        // Define root logic based on Chart of Accounts
-        $typeData = [
-            'customer' => ['name' => 'العملاء (ذمم مدينة)', 'code' => '1103', 'type' => 'asset', 'group' => 'customers'],
-            'supplier' => ['name' => 'الموردون', 'code' => '2101', 'type' => 'liability', 'group' => 'suppliers'],
-            'employee' => ['name' => 'عهد وسلف الموظفين', 'code' => '1106', 'type' => 'asset', 'group' => 'employees'],
-            'partner'  => ['name' => 'دائنون متنوعون', 'code' => '2102', 'type' => 'liability', 'group' => 'partners'],
-        ];
-
-        $groupInfo = $typeData[$contact->type ?? 'customer'] ?? $typeData['customer'];
-        
-        // 1. Find or create the Account Type
-        $accType = AccountType::where('code', $groupInfo['type'])->first();
-        $accTypeId = $accType ? $accType->id : 1; // Fallback to 1 if not found
-
-        // 2. Find or create the root Account "e.g. 1103 العملاء"
-        $parentAccount = Account::firstOrCreate([
-            'code' => $groupInfo['code']
-        ], [
-            'name' => $groupInfo['name'],
-            'account_type_id' => $accTypeId,
-            'level' => 3,
-            'is_postable' => false, // It's a folder container
-            'is_active' => true,
-        ]);
-
-        // Ensure parent is not postable so we can add children
-        if ($parentAccount->is_postable) {
-            $parentAccount->update(['is_postable' => false]);
-        }
-
-        // 3. Create the actual postable account for this specific customer
-        // Find the max code under this parent
-        $latestChild = Account::where('parent_id', $parentAccount->id)
-            ->where('code', 'like', $groupInfo['code'] . '-%')
-            ->orderBy('id', 'desc')
-            ->first();
-
-        $newCode = $groupInfo['code'] . '-001';
-        if ($latestChild) {
-            $parts = explode('-', $latestChild->code);
-            if (count($parts) > 1) {
-                $num = (int)end($parts);
-                $newCode = $groupInfo['code'] . '-' . str_pad($num + 1, 3, '0', STR_PAD_LEFT);
-            }
-        }
-
-        $newAccount = Account::create([
-            'code' => $newCode,
-            'name' => $contact->name,
-            'parent_id' => $parentAccount->id,
-            'account_type_id' => $accType->id,
-            'level' => $parentAccount->level + 1,
-            'is_postable' => true, // It is postable!
-            'is_active' => true,
-        ]);
-
-        return $newAccount->id;
-    }
 }
+

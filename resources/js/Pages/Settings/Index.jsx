@@ -2,35 +2,36 @@ import { Head, useForm } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
 export default function Index({ auth, settings, fiscalYears }) {
-    const { data, setData, put, processing, errors, reset } = useForm({
-        company_name: settings.company_name || '',
-        company_name_en: settings.company_name_en || '',
-        company_address: settings.company_address || '',
-        company_phone: settings.company_phone || '',
-        company_fax: settings.company_fax || '',
-        company_email: settings.company_email || '',
-        company_vat_no: settings.company_vat_no || '',
-        company_commercial_record: settings.company_commercial_record || '',
-        bank_name: settings.bank_name || '',
-        account_number: settings.account_number || '',
-        iban: settings.iban || '',
-        default_fiscal_year_id: settings.default_fiscal_year_id || '',
-        enable_advances: settings.enable_advances === '1' || settings.enable_advances === true,
-        enable_vouchers: settings.enable_vouchers === '1' || settings.enable_vouchers === true,
-        enable_invoices: settings.enable_invoices === '1' || settings.enable_invoices === true,
-        enable_financial_statements: settings.enable_financial_statements === '1' || settings.enable_financial_statements === true,
-    });
-
-    const submit = (e) => {
-        e.preventDefault();
-        put(route('settings.update'), {
-            ...data,
-            enable_advances: data.enable_advances ? '1' : '0',
-            enable_vouchers: data.enable_vouchers ? '1' : '0',
-            enable_invoices: data.enable_invoices ? '1' : '0',
-            enable_financial_statements: data.enable_financial_statements ? '1' : '0',
-        });
-    };
+     const { data, setData, put, processing, errors, reset, transform } = useForm({
+         company_name: settings.company_name || '',
+         company_name_en: settings.company_name_en || '',
+         company_address: settings.company_address || '',
+         company_phone: settings.company_phone || '',
+         company_fax: settings.company_fax || '',
+         company_email: settings.company_email || '',
+         company_vat_no: settings.company_vat_no || '',
+         company_commercial_record: settings.company_commercial_record || '',
+         bank_name: settings.bank_name || '',
+         account_number: settings.account_number || '',
+         iban: settings.iban || '',
+         default_fiscal_year_id: settings.default_fiscal_year_id || '',
+         enable_advances: settings.enable_advances === '1' || settings.enable_advances === true,
+         enable_vouchers: settings.enable_vouchers === '1' || settings.enable_vouchers === true,
+         enable_invoices: settings.enable_invoices === '1' || settings.enable_invoices === true,
+         enable_financial_statements: settings.enable_financial_statements === '1' || settings.enable_financial_statements === true,
+     });
+ 
+     const submit = (e) => {
+         e.preventDefault();
+         transform((data) => ({
+             ...data,
+             enable_advances: data.enable_advances ? '1' : '0',
+             enable_vouchers: data.enable_vouchers ? '1' : '0',
+             enable_invoices: data.enable_invoices ? '1' : '0',
+             enable_financial_statements: data.enable_financial_statements ? '1' : '0',
+         }));
+         put(route('settings.update'));
+     };
 
     return (
         <AuthenticatedLayout user={auth.user}>
@@ -45,6 +46,15 @@ export default function Index({ auth, settings, fiscalYears }) {
 
                     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
                         <form onSubmit={submit} className="space-y-8">
+                            {Object.keys(errors).length > 0 && (
+                                <div className="bg-red-50 text-red-600 p-4 rounded-xl text-sm font-bold border border-red-100">
+                                    <ul className="list-disc list-inside">
+                                        {Object.entries(errors).map(([key, err]) => (
+                                            <li key={key}>{err}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                             <div>
                                 <h3 className="text-lg font-bold text-gray-800 mb-4 pb-2 border-b">بيانات الشركة</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

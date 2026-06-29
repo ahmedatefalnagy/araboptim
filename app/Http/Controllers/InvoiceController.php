@@ -34,6 +34,10 @@ class InvoiceController extends Controller
     {
         $type = $request->query('type', 'sale');
         
+        if (in_array($type, ['goods_receipt', 'goods_issue']) && auth()->user()?->role !== 'admin') {
+            abort(403, 'غير مصرح للقيام بهذه العملية.');
+        }
+        
         $invoices = Invoice::with(['contact', 'journalEntry'])
             ->where('type', $type)
             ->latest('invoice_date')
@@ -49,10 +53,14 @@ class InvoiceController extends Controller
     {
         $type = $request->query('type', 'sale');
         
+        if (in_array($type, ['goods_receipt', 'goods_issue']) && auth()->user()?->role !== 'admin') {
+            abort(403, 'غير مصرح للقيام بهذه العملية.');
+        }
+        
         if (in_array($type, ['goods_receipt', 'goods_issue'])) {
             $contacts = Contact::all(['id', 'name', 'account_id']);
         } else {
-            $contactType = in_array($type, ['sale', 'sale_return']) ? 'customer' : 'supplier';
+            $contactType = in_array($type, ['sale', 'sale_return', 'sale_quotation', 'sale_order', 'work_order']) ? 'customer' : 'supplier';
             $contacts = Contact::where('type', $contactType)->get(['id', 'name', 'account_id']);
         }
         $items = Item::where('is_active', true)->get(['id', 'name', 'sku', 'price', 'cost_price', 'tax_rate', 'type', 'track_inventory']);
@@ -80,6 +88,7 @@ class InvoiceController extends Controller
         
         $parentDocumentId = $request->query('parent_document_id');
         $parentDocument = $parentDocumentId ? Invoice::with('lines.item')->find($parentDocumentId) : null;
+        $workOrders = Invoice::where('type', 'work_order')->latest()->get(['id', 'invoice_no']);
         
         return Inertia::render('Invoices/Create', [
             'type' => $type,
@@ -89,6 +98,7 @@ class InvoiceController extends Controller
             'costCenters' => $costCenters,
             'paymentAccounts' => $paymentAccounts,
             'parentDocument' => $parentDocument,
+            'workOrders' => $workOrders,
             'fiscalYears' => $fiscalYears,
             'selectedFiscalYearId' => $defaultYearId,
         ]);
@@ -96,6 +106,10 @@ class InvoiceController extends Controller
 
     public function store(Request $request)
     {
+        if (in_array($request->input('type'), ['goods_receipt', 'goods_issue']) && auth()->user()?->role !== 'admin') {
+            abort(403, 'غير مصرح للقيام بهذه العملية.');
+        }
+
         $validated = $request->validate([
             'type' => 'required|in:sale,sale_return,purchase,purchase_return,sale_quotation,sale_order,purchase_quotation,purchase_order,work_order,goods_receipt,goods_issue',
             'contact_id' => 'required|exists:contacts,id',
@@ -133,6 +147,17 @@ class InvoiceController extends Controller
             // Auto Resolve System Accounts
             $resolvedAccounts = $isFinancial ? $this->resolveSystemAccounts($validated['type']) : ['base' => null, 'tax' => null];
             
+            // Resolve parent_document_id and auto-inherit linked work order if parent is a quotation/order
+            $parentDocumentId = $validated['parent_document_id'] ?? null;
+            if ($parentDocumentId) {
+                $parentDoc = Invoice::find($parentDocumentId);
+                if ($parentDoc && in_array($parentDoc->type, ['sale_quotation', 'purchase_quotation', 'sale_order', 'purchase_order'])) {
+                    if ($parentDoc->parentDocument && $parentDoc->parentDocument->type === 'work_order') {
+                        $parentDocumentId = $parentDoc->parent_document_id;
+                    }
+                }
+            }
+
             // Create Invoice
             $invoice = Invoice::create([
                 'type' => $validated['type'],
@@ -149,7 +174,7 @@ class InvoiceController extends Controller
                 'base_account_id' => $resolvedAccounts['base'],
                 'tax_account_id' => $resolvedAccounts['tax'], 
                 'cost_center_id' => $validated['cost_center_id'] ?? null,
-                'parent_document_id' => $validated['parent_document_id'] ?? null,
+                'parent_document_id' => $parentDocumentId,
                 'created_by' => auth()->id() ?? 1,
             ]);
 
@@ -258,6 +283,9 @@ class InvoiceController extends Controller
 
     public function edit(Invoice $invoice)
     {
+        if (in_array($invoice->type, ['goods_receipt', 'goods_issue']) && auth()->user()?->role !== 'admin') {
+            abort(403, 'غير مصرح للقيام بهذه العملية.');
+        }
         // Invoices or returns cannot be edited if already finalized/cleared
         if (in_array($invoice->type, ['sale', 'sale_return', 'purchase', 'purchase_return']) && 
             in_array($invoice->zatca_status, ['cleared', 'reported'])) {
@@ -269,7 +297,7 @@ class InvoiceController extends Controller
         $invoice->load('lines.item');
 
         $type = $invoice->type;
-        $contactType = in_array($type, ['sale', 'sale_return', 'sale_quotation', 'sale_order']) ? 'customer' : 'supplier';
+        $contactType = in_array($type, ['sale', 'sale_return', 'sale_quotation', 'sale_order', 'work_order']) ? 'customer' : 'supplier';
         $contacts = Contact::where('type', $contactType)->get(['id', 'name', 'account_id']);
         $items = Item::where('is_active', true)->get(['id', 'name', 'sku', 'price', 'cost_price', 'tax_rate', 'type', 'track_inventory']);
         $warehouses = Warehouse::where('is_active', true)->get();
@@ -291,6 +319,7 @@ class InvoiceController extends Controller
         $defaultYearId = Setting::get('default_fiscal_year_id');
         $fiscalYears = FiscalYear::orderByDesc('start_date')
             ->get(['id', 'name', 'start_date', 'end_date']);
+        $workOrders = Invoice::where('type', 'work_order')->latest()->get(['id', 'invoice_no']);
 
         return Inertia::render('Invoices/Edit', [
             'invoice' => $invoice,
@@ -300,6 +329,7 @@ class InvoiceController extends Controller
             'warehouses' => $warehouses,
             'costCenters' => $costCenters,
             'paymentAccounts' => $paymentAccounts,
+            'workOrders' => $workOrders,
             'fiscalYears' => $fiscalYears,
             'selectedFiscalYearId' => $invoice->fiscal_year_id ?? $defaultYearId,
         ]);
@@ -307,6 +337,9 @@ class InvoiceController extends Controller
 
     public function update(Request $request, Invoice $invoice)
     {
+        if (in_array($invoice->type, ['goods_receipt', 'goods_issue']) && auth()->user()?->role !== 'admin') {
+            abort(403, 'غير مصرح للقيام بهذه العملية.');
+        }
         if (in_array($invoice->type, ['sale', 'sale_return', 'purchase', 'purchase_return']) && 
             in_array($invoice->zatca_status, ['cleared', 'reported'])) {
             return redirect()->back()->withErrors(['message' => 'لا يمكن تعديل الفاتورة بعد اعتمادها وتصديرها.']);
@@ -317,6 +350,7 @@ class InvoiceController extends Controller
             'contact_id' => 'required|exists:contacts,id',
             'warehouse_id' => 'nullable|exists:warehouses,id',
             'cost_center_id' => 'nullable|exists:cost_centers,id',
+            'parent_document_id' => 'nullable|exists:invoices,id',
             'invoice_no' => 'required|string|unique:invoices,invoice_no,' . $invoice->id,
             'invoice_date' => 'required|date',
             'payment_mode' => 'nullable|in:cash,credit,bank',
@@ -380,6 +414,17 @@ class InvoiceController extends Controller
             
             $resolvedAccounts = $isFinancial ? $this->resolveSystemAccounts($validated['type']) : ['base' => null, 'tax' => null];
 
+            // Resolve parent_document_id and auto-inherit linked work order if parent is a quotation/order
+            $parentDocumentId = $validated['parent_document_id'] ?? $invoice->parent_document_id;
+            if ($parentDocumentId) {
+                $parentDoc = Invoice::find($parentDocumentId);
+                if ($parentDoc && in_array($parentDoc->type, ['sale_quotation', 'purchase_quotation', 'sale_order', 'purchase_order'])) {
+                    if ($parentDoc->parentDocument && $parentDoc->parentDocument->type === 'work_order') {
+                        $parentDocumentId = $parentDoc->parent_document_id;
+                    }
+                }
+            }
+
             $invoice->update([
                 'type' => $validated['type'],
                 'contact_id' => $validated['contact_id'],
@@ -392,6 +437,7 @@ class InvoiceController extends Controller
                 'base_account_id' => $resolvedAccounts['base'],
                 'tax_account_id' => $resolvedAccounts['tax'], 
                 'cost_center_id' => $validated['cost_center_id'] ?? null,
+                'parent_document_id' => $parentDocumentId,
             ]);
 
             foreach ($validated['lines'] as $line) {
@@ -497,7 +543,11 @@ class InvoiceController extends Controller
 
     public function show(Invoice $invoice)
     {
-        $invoice->load(['contact', 'baseAccount', 'taxAccount', 'journalEntry', 'lines.item']);
+        if (in_array($invoice->type, ['goods_receipt', 'goods_issue']) && auth()->user()?->role !== 'admin') {
+            abort(403, 'غير مصرح للقيام بهذه العملية.');
+        }
+
+        $invoice->load(['contact', 'baseAccount', 'taxAccount', 'journalEntry', 'lines.item', 'parentDocument', 'childDocuments']);
         return Inertia::render('Invoices/Show', [
             'invoice' => $invoice
         ]);
@@ -505,6 +555,10 @@ class InvoiceController extends Controller
 
     public function destroy(Invoice $invoice)
     {
+        if (in_array($invoice->type, ['goods_receipt', 'goods_issue']) && auth()->user()?->role !== 'admin') {
+            abort(403, 'غير مصرح للقيام بهذه العملية.');
+        }
+
         DB::beginTransaction();
         try {
             if ($invoice->journalEntry) {
