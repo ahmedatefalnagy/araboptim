@@ -176,18 +176,18 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
         goods_issue: 'تسوية المستودع - إضافة تالف',
     };
 
-    const contactLabel = String(type).includes('sale') ? 'العميل' : 
-                         (String(type).includes('work') ? 'العميل' : 
-                         (type === 'goods_receipt' ? 'جهة الاستلام (المورد/العميل/أخرى)' :
-                         (type === 'goods_issue' ? 'جهة الصرف (المستلم/الموظف/العميل)' : 'المورد')));
-                         
-    const gradient = String(type).includes('sale') ? 'from-emerald-600 to-teal-700' : 
-                     (String(type).includes('work') ? 'from-orange-500 to-red-600' : 
-                     (['goods_receipt', 'goods_issue'].includes(type) ? 'from-purple-600 to-indigo-700' : 'from-blue-600 to-indigo-700'));
-                     
-    const accent = String(type).includes('sale') ? 'emerald' : 
-                   (String(type).includes('work') ? 'orange' : 
-                   (['goods_receipt', 'goods_issue'].includes(type) ? 'purple' : 'blue'));
+    const contactLabel = String(type).includes('sale') ? 'العميل' :
+        (String(type).includes('work') ? 'العميل' :
+            (type === 'goods_receipt' ? 'جهة الاستلام (المورد/العميل/أخرى)' :
+                (type === 'goods_issue' ? 'جهة الصرف (المستلم/الموظف/العميل)' : 'المورد')));
+
+    const gradient = String(type).includes('sale') ? 'from-emerald-600 to-teal-700' :
+        (String(type).includes('work') ? 'from-orange-500 to-red-600' :
+            (['goods_receipt', 'goods_issue'].includes(type) ? 'from-purple-600 to-indigo-700' : 'from-blue-600 to-indigo-700'));
+
+    const accent = String(type).includes('sale') ? 'emerald' :
+        (String(type).includes('work') ? 'orange' :
+            (['goods_receipt', 'goods_issue'].includes(type) ? 'purple' : 'blue'));
 
     const submit = (e) => {
         e.preventDefault();
@@ -291,7 +291,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                                                 // 112x = حسابات بنكية، 111x = صناديق نقدية
                                                                 if (data.payment_mode === 'bank') return code.startsWith('112') || (code.startsWith('1') && /بنك|bank/i.test(acc.name || ''));
                                                                 return code.startsWith('111') || (code.startsWith('1') && /صندوق|نقد|cash/i.test(acc.name || ''));
-                                                             })
+                                                            })
                                                             .map(acc => (
                                                                 <option key={acc.id} value={acc.id}>{acc.code} - {acc.name}</option>
                                                             ))}
@@ -378,10 +378,10 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
 
                                 <div className="md:col-span-1 border-r border-gray-100 pr-4">
                                     <label className="block text-sm font-bold text-gray-800 mb-2">
-                                        {type === 'purchase' ? 'فاتورة الشراء الأصلية' : 
-                                         (type === 'sale' ? 'سند التسليم الموقع' : 
-                                         (type === 'goods_receipt' ? 'سند الاستلام الموقع والمختوم' : 
-                                         (type === 'goods_issue' ? 'سند الصرف الموقع والمختوم' : 'المرفق المساعد')))}
+                                        {type === 'purchase' ? 'فاتورة الشراء الأصلية' :
+                                            (type === 'sale' ? 'سند التسليم الموقع' :
+                                                (type === 'goods_receipt' ? 'سند الاستلام الموقع والمختوم' :
+                                                    (type === 'goods_issue' ? 'سند الصرف الموقع والمختوم' : 'المرفق المساعد')))}
                                     </label>
                                     <input
                                         type="file"
@@ -566,8 +566,8 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                     <div className="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden border border-gray-100 animate-in fade-in zoom-in-95 duration-200" dir="rtl">
                         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-slate-900 text-white">
                             <h3 className="font-extrabold text-lg">إضافة صنف جديد سريع</h3>
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 onClick={() => setIsItemModalOpen(false)}
                                 className="text-gray-400 hover:text-white transition-colors"
                             >
@@ -578,9 +578,9 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="md:col-span-2">
                                     <label className="block text-sm font-semibold text-gray-800 mb-1">اسم الصنف <span className="text-red-500">*</span></label>
-                                    <input 
-                                        type="text" 
-                                        required 
+                                    <input
+                                        type="text"
+                                        required
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
                                         value={newItem.name}
                                         onChange={e => setNewItem(prev => ({ ...prev, name: e.target.value }))}
@@ -590,8 +590,8 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-800 mb-1">رمز الصنف (SKU)</label>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500 font-mono"
                                         value={newItem.sku}
                                         onChange={e => setNewItem(prev => ({ ...prev, sku: e.target.value }))}
@@ -601,7 +601,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-800 mb-1">نوع الصنف</label>
-                                    <select 
+                                    <select
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
                                         value={newItem.type}
                                         onChange={e => setNewItem(prev => ({ ...prev, type: e.target.value }))}
@@ -612,7 +612,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-800 mb-1">سعر التكلفة (SAR) <span className="text-red-500">*</span></label>
-                                    <input 
+                                    <input
                                         type="number" step="0.01" min="0" required
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500 font-mono"
                                         value={newItem.cost_price}
@@ -621,7 +621,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-800 mb-1">سعر البيع (SAR) <span className="text-red-500">*</span></label>
-                                    <input 
+                                    <input
                                         type="number" step="0.01" min="0" required
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500 font-mono"
                                         value={newItem.price}
@@ -630,7 +630,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-800 mb-1">المجموعة <span className="text-red-500">*</span></label>
-                                    <select 
+                                    <select
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
                                         value={newItem.category_id}
                                         onChange={e => setNewItem(prev => ({ ...prev, category_id: e.target.value }))}
@@ -644,7 +644,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                 </div>
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-800 mb-1">وحدة القياس <span className="text-red-500">*</span></label>
-                                    <select 
+                                    <select
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
                                         value={newItem.unit_id}
                                         onChange={e => setNewItem(prev => ({ ...prev, unit_id: e.target.value }))}
@@ -658,15 +658,15 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                 </div>
                             </div>
                             <div className="pt-4 border-t border-gray-100 flex justify-end gap-3">
-                                <button 
-                                    type="submit" 
+                                <button
+                                    type="submit"
                                     disabled={itemSaving}
                                     className="bg-slate-900 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-slate-800 transition-colors shadow-md disabled:opacity-50"
                                 >
                                     {itemSaving ? 'جاري الحفظ...' : 'حفظ الصنف'}
                                 </button>
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     onClick={() => setIsItemModalOpen(false)}
                                     className="border border-gray-200 text-gray-600 px-6 py-2.5 rounded-xl font-bold hover:bg-gray-50 transition-colors"
                                 >
