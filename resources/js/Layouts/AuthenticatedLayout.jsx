@@ -76,7 +76,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
         sales: url.includes('/invoices') && (url.includes('sale') || !url.includes('purchase') && !url.includes('work')),
         purchases: url.includes('/invoices') && url.includes('purchase'),
         contacts: url.includes('/contacts'),
-        inventory: url.includes('/items') || url.includes('/warehouses'),
+        inventory: url.includes('/items') || url.includes('/warehouses') || url.includes('/item-categories') || url.includes('/units'),
         cash: url.includes('/vouchers') || url.includes('/cash-register'),
         accounting: url.includes('/accounts') || url.includes('/journal') || url.includes('/fixed-assets') || url.includes('/journal-entries'),
         hr: url.includes('/hr'),
@@ -153,7 +153,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
         const isGroupActive = (id === 'sales' && url.includes('/invoices') && (url.includes('sale') || !url.includes('purchase') && !url.includes('work'))) ||
                               (id === 'purchases' && url.includes('/invoices') && url.includes('purchase')) ||
                               (id === 'contacts' && url.includes('/contacts')) ||
-                              (id === 'inventory' && (url.includes('/items') || url.includes('/warehouses'))) ||
+                              (id === 'inventory' && (url.includes('/items') || url.includes('/warehouses') || url.includes('/item-categories') || url.includes('/units'))) ||
                               (id === 'cash' && (url.includes('/vouchers') || url.includes('/cash-register'))) ||
                               (id === 'accounting' && (url.includes('/accounts') || url.includes('/journal') || url.includes('/fixed-assets') || url.includes('/journal-entries'))) ||
                               (id === 'hr' && url.includes('/hr')) ||
@@ -265,6 +265,8 @@ export default function AuthenticatedLayout({ user, header, children }) {
                         icon={<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>}
                     >
                         <MenuItem indent href={route('items.index')} active={isActive('/items')} label="دليل المنتجات والمخزون" />
+                        <MenuItem indent href={route('item-categories.index')} active={isActive('/item-categories')} label="مجموعات الأصناف" />
+                        <MenuItem indent href={route('units.index')} active={isActive('/units')} label="وحدات القياس" />
                         {user?.role === 'admin' && (
                             <>
                                 <MenuItem indent href={route('invoices.index', {type: 'goods_receipt'})} active={isInvoiceTypeActive('goods_receipt')} label="تسوية المستودع (إضافة بضاعة)" />

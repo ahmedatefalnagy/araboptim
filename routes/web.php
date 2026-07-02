@@ -89,6 +89,8 @@ Route::prefix('journal')->name('journal.')->group(function () {
     Route::resource('contacts', \App\Http\Controllers\ContactController::class);
     Route::resource('invoices', \App\Http\Controllers\InvoiceController::class);
     Route::resource('items', \App\Http\Controllers\ItemController::class);
+    Route::resource('item-categories', \App\Http\Controllers\ItemCategoryController::class);
+    Route::resource('units', \App\Http\Controllers\UnitController::class);
     Route::get('vouchers/cash-register', [\App\Http\Controllers\VoucherController::class, 'cashRegister'])->name('vouchers.cash-register');
     Route::resource('vouchers', \App\Http\Controllers\VoucherController::class);
     Route::resource('cost-centers', \App\Http\Controllers\CostCenterController::class);
