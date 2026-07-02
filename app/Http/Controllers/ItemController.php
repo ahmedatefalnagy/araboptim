@@ -52,6 +52,32 @@ class ItemController extends Controller
         return redirect()->route('items.index')->with('message', 'تم إضافة الصنف بنجاح');
     }
 
+    public function quickStore(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'sku' => 'nullable|string|max:255|unique:items',
+            'barcode' => 'nullable|string|max:255|unique:items',
+            'type' => 'required|in:product,service',
+            'price' => 'required|numeric|min:0',
+            'cost_price' => 'required|numeric|min:0',
+            'tax_rate' => 'required|numeric|min:0',
+            'unit_id' => 'required|exists:units,id',
+            'category_id' => 'required|exists:item_categories,id',
+            'track_inventory' => 'boolean',
+            'alert_quantity' => 'numeric|min:0',
+            'is_active' => 'boolean',
+            'description' => 'nullable|string',
+        ]);
+
+        $item = Item::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'item' => $item
+        ]);
+    }
+
     public function edit(Item $item)
     {
         $categories = ItemCategory::all();

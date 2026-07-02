@@ -17,6 +17,8 @@ export default function Index({ auth }) {
                 { name: 'دفتر الأستاذ', route: 'reports.ledger', icon: '📘', color: 'bg-slate-800', desc: 'General Ledger' },
                 { name: 'المصروفات', route: 'reports.expenses', icon: '💸', color: 'bg-rose-600', desc: 'Expenses' },
                 { name: 'الأصول الثابتة', route: 'reports.fixedAssets', icon: '🏢', color: 'bg-amber-600', desc: 'Fixed Assets' },
+                { name: 'حركة مركز التكلفة', route: 'reports.costCenter', icon: '🎯', color: 'bg-teal-600', desc: 'Cost Center Ledger' },
+                { name: 'حركة نقدية مراكز التكلفة', route: 'reports.costCenterCashflow', icon: '💵', color: 'bg-cyan-600', desc: 'Cost Center Cashflow' },
             ]
         },
         {

@@ -90,6 +90,9 @@ class InvoiceController extends Controller
         $parentDocument = $parentDocumentId ? Invoice::with('lines.item')->find($parentDocumentId) : null;
         $workOrders = Invoice::where('type', 'work_order')->latest()->get(['id', 'invoice_no']);
         
+        $categories = \App\Models\ItemCategory::all(['id', 'name']);
+        $units = \App\Models\Unit::where('is_active', true)->get(['id', 'name', 'short_name']);
+
         return Inertia::render('Invoices/Create', [
             'type' => $type,
             'contacts' => $contacts,
@@ -101,6 +104,8 @@ class InvoiceController extends Controller
             'workOrders' => $workOrders,
             'fiscalYears' => $fiscalYears,
             'selectedFiscalYearId' => $defaultYearId,
+            'categories' => $categories,
+            'units' => $units,
         ]);
     }
 
@@ -321,6 +326,9 @@ class InvoiceController extends Controller
             ->get(['id', 'name', 'start_date', 'end_date']);
         $workOrders = Invoice::where('type', 'work_order')->latest()->get(['id', 'invoice_no']);
 
+        $categories = \App\Models\ItemCategory::all(['id', 'name']);
+        $units = \App\Models\Unit::where('is_active', true)->get(['id', 'name', 'short_name']);
+
         return Inertia::render('Invoices/Edit', [
             'invoice' => $invoice,
             'type' => $type,
@@ -332,6 +340,8 @@ class InvoiceController extends Controller
             'workOrders' => $workOrders,
             'fiscalYears' => $fiscalYears,
             'selectedFiscalYearId' => $invoice->fiscal_year_id ?? $defaultYearId,
+            'categories' => $categories,
+            'units' => $units,
         ]);
     }
 

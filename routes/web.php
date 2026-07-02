@@ -93,6 +93,7 @@ Route::prefix('journal')->name('journal.')->group(function () {
 
     Route::resource('contacts', \App\Http\Controllers\ContactController::class);
     Route::resource('invoices', \App\Http\Controllers\InvoiceController::class);
+    Route::post('items/quick-store', [\App\Http\Controllers\ItemController::class, 'quickStore'])->name('items.quick-store');
     Route::resource('items', \App\Http\Controllers\ItemController::class);
     Route::resource('item-categories', \App\Http\Controllers\ItemCategoryController::class);
     Route::resource('units', \App\Http\Controllers\UnitController::class);
