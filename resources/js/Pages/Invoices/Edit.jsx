@@ -1,8 +1,110 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import axios from 'axios';
 
-export default function Edit({ auth, invoice, type, contacts, items, warehouses, paymentAccounts = [], costCenters = [], workOrders = [], fiscalYears = [], selectedFiscalYearId = null }) {
+export default function Edit({ auth, invoice, type, contacts, items, warehouses, paymentAccounts = [], costCenters = [], workOrders = [], fiscalYears = [], selectedFiscalYearId = null, categories = [], units = [] }) {
+    const [localItems, setLocalItems] = useState(items);
+    const [localCategories, setLocalCategories] = useState(categories);
+    const [localUnits, setLocalUnits] = useState(units);
+
+    const [isItemModalOpen, setIsItemModalOpen] = useState(false);
+    const [newItem, setNewItem] = useState({
+        name: '',
+        sku: '',
+        barcode: '',
+        type: 'product',
+        price: 0,
+        cost_price: 0,
+        tax_rate: 15,
+        unit_id: units[0]?.id || '',
+        category_id: categories[0]?.id || '',
+        track_inventory: true,
+        alert_quantity: 0,
+        is_active: true,
+        description: ''
+    });
+    const [itemSaving, setItemSaving] = useState(false);
+    const [itemErrors, setItemErrors] = useState({});
+
+    // Effect to update unit/category default ids if local list changes
+    useEffect(() => {
+        if (!newItem.unit_id && localUnits.length > 0) {
+            setNewItem(prev => ({ ...prev, unit_id: localUnits[0].id }));
+        }
+        if (!newItem.category_id && localCategories.length > 0) {
+            setNewItem(prev => ({ ...prev, category_id: localCategories[0].id }));
+        }
+    }, [localUnits, localCategories]);
+
+    const saveQuickItem = async (e) => {
+        e.preventDefault();
+        setItemSaving(true);
+        setItemErrors({});
+        try {
+            const response = await axios.post(route('items.quick-store'), newItem);
+            if (response.data.success) {
+                const createdItem = response.data.item;
+                setLocalItems(prev => [...prev, createdItem]);
+                setIsItemModalOpen(false);
+                setNewItem({
+                    name: '',
+                    sku: '',
+                    barcode: '',
+                    type: 'product',
+                    price: 0,
+                    cost_price: 0,
+                    tax_rate: 15,
+                    unit_id: localUnits[0]?.id || '',
+                    category_id: localCategories[0]?.id || '',
+                    track_inventory: true,
+                    alert_quantity: 0,
+                    is_active: true,
+                    description: ''
+                });
+                alert('تم إضافة الصنف بنجاح! يمكنك الآن اختياره من الفاتورة.');
+            }
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.errors) {
+                setItemErrors(error.response.data.errors);
+            } else {
+                alert('حدث خطأ أثناء إضافة الصنف');
+            }
+        } finally {
+            setItemSaving(false);
+        }
+    };
+
+    const handleAddCategory = async () => {
+        const name = prompt('أدخل اسم المجموعة الجديدة:');
+        if (!name) return;
+        try {
+            const response = await axios.post(route('item-categories.quick-store'), { name });
+            if (response.data.success) {
+                setLocalCategories(prev => [...prev, response.data.category]);
+                setNewItem(prev => ({ ...prev, category_id: response.data.category.id }));
+            }
+        } catch (error) {
+            alert('خطأ: قد تكون المجموعة موجودة بالفعل أو مدخلات غير صالحة.');
+        }
+    };
+
+    const handleAddUnit = async () => {
+        const name = prompt('أدخل اسم وحدة القياس (مثل: حبة، كرتون):');
+        if (!name) return;
+        const short_name = prompt('أدخل الرمز الاختصاري للوحدة (مثل: حبة، كرتون):', name);
+        if (!short_name) return;
+        try {
+            const response = await axios.post(route('units.quick-store'), { name, short_name });
+            if (response.data.success) {
+                setLocalUnits(prev => [...prev, response.data.unit]);
+                setNewItem(prev => ({ ...prev, unit_id: response.data.unit.id }));
+            }
+        } catch (error) {
+            alert('خطأ: قد تكون وحدة القياس موجودة بالفعل أو مدخلات غير صالحة.');
+        }
+    };
+
     const initialLines = invoice.lines && invoice.lines.length > 0
         ? invoice.lines.map(line => ({
             id: line.id,
@@ -48,7 +150,7 @@ export default function Edit({ auth, invoice, type, contacts, items, warehouses,
         const line = { ...newLines[index] };
 
         if (field === 'item_id') {
-            const selectedItem = items.find(i => i.id == value);
+            const selectedItem = localItems.find(i => i.id == value);
             line.item_id = value;
             if (selectedItem) {
                 line.unit_price = type === 'purchase' ? selectedItem.cost_price : selectedItem.price;
@@ -331,14 +433,23 @@ export default function Edit({ auth, invoice, type, contacts, items, warehouses,
                                         <svg className={`w-5 h-5 text-${accent}-600`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                                         سطور المنتجات والخدمات
                                     </h3>
-                                    <button
-                                        type="button"
-                                        onClick={addLine}
-                                        className={`text-white bg-${accent}-600 px-4 py-2 rounded-xl text-sm font-bold hover:bg-${accent}-700 transition-colors shadow-sm flex items-center gap-1`}
-                                    >
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" /></svg>
-                                        إضافة سطر
-                                    </button>
+                                    <div className="flex gap-2">
+                                        <button
+                                            type="button"
+                                            onClick={() => setIsItemModalOpen(true)}
+                                            className="text-indigo-700 bg-indigo-50 border border-indigo-200 px-4 py-2 rounded-xl text-sm font-bold hover:bg-indigo-100 transition-colors shadow-sm flex items-center gap-1"
+                                        >
+                                            + إضافة صنف سريع
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={addLine}
+                                            className={`text-white bg-${accent}-600 px-4 py-2 rounded-xl text-sm font-bold hover:bg-${accent}-700 transition-colors shadow-sm flex items-center gap-1`}
+                                        >
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" /></svg>
+                                            إضافة سطر
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-right text-sm">
@@ -367,7 +478,7 @@ export default function Edit({ auth, invoice, type, contacts, items, warehouses,
                                                             onChange={e => updateLineItem(index, 'item_id', e.target.value)}
                                                         >
                                                             <option value="">-- ابحث عن الصنف --</option>
-                                                            {items.map(i => (
+                                                            {localItems.map(i => (
                                                                 <option key={i.id} value={i.id}>
                                                                     {i.sku ? `[${i.sku}] ` : ''} {i.name} {i.track_inventory ? '📦' : '⚙️'}
                                                                 </option>
@@ -482,6 +593,142 @@ export default function Edit({ auth, invoice, type, contacts, items, warehouses,
                     </form>
                 </div>
             </div>
+
+            {/* Quick Add Item Modal */}
+            {isItemModalOpen && (
+                <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
+                    <div className="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden border border-gray-100 animate-in fade-in zoom-in-95 duration-200" dir="rtl">
+                        <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-slate-900 text-white">
+                            <h3 className="font-extrabold text-lg">إضافة صنف جديد سريع</h3>
+                            <button
+                                type="button"
+                                onClick={() => setIsItemModalOpen(false)}
+                                className="text-gray-400 hover:text-white transition-colors"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                        </div>
+                        <form onSubmit={saveQuickItem} className="p-6 space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="md:col-span-2">
+                                    <label className="block text-sm font-semibold text-gray-800 mb-1">اسم الصنف <span className="text-red-500">*</span></label>
+                                    <input
+                                        type="text"
+                                        required
+                                        className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
+                                        value={newItem.name}
+                                        onChange={e => setNewItem(prev => ({ ...prev, name: e.target.value }))}
+                                        placeholder="مثال: لابتوب، قلم، خدمة نقل"
+                                    />
+                                    {itemErrors.name && <p className="text-red-500 text-xs mt-1">{itemErrors.name[0]}</p>}
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-800 mb-1">رمز الصنف (SKU)</label>
+                                    <input
+                                        type="text"
+                                        className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500 font-mono"
+                                        value={newItem.sku}
+                                        onChange={e => setNewItem(prev => ({ ...prev, sku: e.target.value }))}
+                                        placeholder="مثال: SKU-1002"
+                                    />
+                                    {itemErrors.sku && <p className="text-red-500 text-xs mt-1">{itemErrors.sku[0]}</p>}
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-800 mb-1">نوع الصنف</label>
+                                    <select
+                                        className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
+                                        value={newItem.type}
+                                        onChange={e => setNewItem(prev => ({ ...prev, type: e.target.value }))}
+                                    >
+                                        <option value="product">منتج مخزني</option>
+                                        <option value="service">خدمة (بدون مخزون)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-800 mb-1">سعر التكلفة (SAR) <span className="text-red-500">*</span></label>
+                                    <input
+                                        type="number" step="0.01" min="0" required
+                                        className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500 font-mono"
+                                        value={newItem.cost_price}
+                                        onChange={e => setNewItem(prev => ({ ...prev, cost_price: parseFloat(e.target.value) || 0 }))}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-gray-800 mb-1">سعر البيع (SAR) <span className="text-red-500">*</span></label>
+                                    <input
+                                        type="number" step="0.01" min="0" required
+                                        className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500 font-mono"
+                                        value={newItem.price}
+                                        onChange={e => setNewItem(prev => ({ ...prev, price: parseFloat(e.target.value) || 0 }))}
+                                    />
+                                </div>
+                                <div>
+                                    <div className="flex justify-between items-center mb-1">
+                                        <label className="block text-sm font-semibold text-gray-800">المجموعة <span className="text-red-500">*</span></label>
+                                        <button
+                                            type="button"
+                                            onClick={handleAddCategory}
+                                            className="text-xs text-indigo-600 hover:text-indigo-800 font-bold"
+                                        >
+                                            + مجموعة جديدة
+                                        </button>
+                                    </div>
+                                    <select
+                                        className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
+                                        value={newItem.category_id}
+                                        onChange={e => setNewItem(prev => ({ ...prev, category_id: e.target.value }))}
+                                        required
+                                    >
+                                        <option value="" disabled>اختر المجموعة...</option>
+                                        {localCategories.map(cat => (
+                                            <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div>
+                                    <div className="flex justify-between items-center mb-1">
+                                        <label className="block text-sm font-semibold text-gray-800">وحدة القياس <span className="text-red-500">*</span></label>
+                                        <button
+                                            type="button"
+                                            onClick={handleAddUnit}
+                                            className="text-xs text-indigo-600 hover:text-indigo-800 font-bold"
+                                        >
+                                            + وحدة جديدة
+                                        </button>
+                                    </div>
+                                    <select
+                                        className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
+                                        value={newItem.unit_id}
+                                        onChange={e => setNewItem(prev => ({ ...prev, unit_id: e.target.value }))}
+                                        required
+                                    >
+                                        <option value="" disabled>اختر الوحدة...</option>
+                                        {localUnits.map(unit => (
+                                            <option key={unit.id} value={unit.id}>{unit.name} ({unit.short_name})</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="pt-4 border-t border-gray-100 flex justify-end gap-3">
+                                <button
+                                    type="submit"
+                                    disabled={itemSaving}
+                                    className="bg-slate-900 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-slate-800 transition-colors shadow-md disabled:opacity-50"
+                                >
+                                    {itemSaving ? 'جاري الحفظ...' : 'حفظ الصنف'}
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsItemModalOpen(false)}
+                                    className="border border-gray-200 text-gray-600 px-6 py-2.5 rounded-xl font-bold hover:bg-gray-50 transition-colors"
+                                >
+                                    إلغاء
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         </AuthenticatedLayout>
     );
 }

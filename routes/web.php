@@ -96,11 +96,13 @@ Route::prefix('journal')->name('journal.')->group(function () {
     Route::post('items/quick-store', [\App\Http\Controllers\ItemController::class, 'quickStore'])->name('items.quick-store');
     Route::resource('items', \App\Http\Controllers\ItemController::class);
     Route::resource('item-categories', \App\Http\Controllers\ItemCategoryController::class);
+    Route::post('item-categories/quick-store', [\App\Http\Controllers\ItemCategoryController::class, 'quickStore'])->name('item-categories.quick-store');
     Route::resource('units', \App\Http\Controllers\UnitController::class);
+    Route::post('units/quick-store', [\App\Http\Controllers\UnitController::class, 'quickStore'])->name('units.quick-store');
     Route::get('vouchers/cash-register', [\App\Http\Controllers\VoucherController::class, 'cashRegister'])->name('vouchers.cash-register');
     Route::resource('vouchers', \App\Http\Controllers\VoucherController::class);
     Route::resource('cost-centers', \App\Http\Controllers\CostCenterController::class);
-    Route::post('warehouses/quick-store', [\App\Http\Controllers\WarehouseController::class, 'quickStore'])->name('warehouses.quick-store');
+    Route::resource('warehouses', \App\Http\Controllers\WarehouseController::class);
 
     // HR Routes
     Route::prefix('hr')->name('hr.')->group(function () {

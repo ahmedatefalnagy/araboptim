@@ -52,4 +52,24 @@ class UnitController extends Controller
 
         return redirect()->route('units.index')->with('message', 'تم حذف وحدة القياس بنجاح');
     }
+
+    public function quickStore(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:units',
+            'short_name' => 'required|string|max:255',
+            'is_active' => 'boolean',
+        ]);
+
+        if (!isset($validated['is_active'])) {
+            $validated['is_active'] = true;
+        }
+
+        $unit = Unit::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'unit' => $unit
+        ]);
+    }
 }

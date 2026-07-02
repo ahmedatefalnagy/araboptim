@@ -50,4 +50,19 @@ class ItemCategoryController extends Controller
 
         return redirect()->route('item-categories.index')->with('message', 'تم حذف المجموعة بنجاح');
     }
+
+    public function quickStore(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:item_categories',
+            'description' => 'nullable|string',
+        ]);
+
+        $category = ItemCategory::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'category' => $category
+        ]);
+    }
 }

@@ -6,6 +6,8 @@ import axios from 'axios';
 export default function Create({ auth, type, contacts, items, warehouses, paymentAccounts = [], costCenters = [], parentDocument = null, workOrders = [], fiscalYears = [], selectedFiscalYearId = null, categories = [], units = [] }) {
     const { default_date } = usePage().props;
     const [localItems, setLocalItems] = useState(items);
+    const [localCategories, setLocalCategories] = useState(categories);
+    const [localUnits, setLocalUnits] = useState(units);
 
     const [isItemModalOpen, setIsItemModalOpen] = useState(false);
     const [newItem, setNewItem] = useState({
@@ -26,6 +28,46 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
     const [itemSaving, setItemSaving] = useState(false);
     const [itemErrors, setItemErrors] = useState({});
 
+    // Effect to update unit/category default ids if local list changes
+    useEffect(() => {
+        if (!newItem.unit_id && localUnits.length > 0) {
+            setNewItem(prev => ({ ...prev, unit_id: localUnits[0].id }));
+        }
+        if (!newItem.category_id && localCategories.length > 0) {
+            setNewItem(prev => ({ ...prev, category_id: localCategories[0].id }));
+        }
+    }, [localUnits, localCategories]);
+
+    const handleAddCategory = async () => {
+        const name = prompt('أدخل اسم المجموعة الجديدة:');
+        if (!name) return;
+        try {
+            const response = await axios.post(route('item-categories.quick-store'), { name });
+            if (response.data.success) {
+                setLocalCategories(prev => [...prev, response.data.category]);
+                setNewItem(prev => ({ ...prev, category_id: response.data.category.id }));
+            }
+        } catch (error) {
+            alert('خطأ: قد تكون المجموعة موجودة بالفعل أو مدخلات غير صالحة.');
+        }
+    };
+
+    const handleAddUnit = async () => {
+        const name = prompt('أدخل اسم وحدة القياس (مثل: حبة، كرتون):');
+        if (!name) return;
+        const short_name = prompt('أدخل الرمز الاختصاري للوحدة (مثل: حبة، كرتون):', name);
+        if (!short_name) return;
+        try {
+            const response = await axios.post(route('units.quick-store'), { name, short_name });
+            if (response.data.success) {
+                setLocalUnits(prev => [...prev, response.data.unit]);
+                setNewItem(prev => ({ ...prev, unit_id: response.data.unit.id }));
+            }
+        } catch (error) {
+            alert('خطأ: قد تكون وحدة القياس موجودة بالفعل أو مدخلات غير صالحة.');
+        }
+    };
+
     const saveQuickItem = async (e) => {
         e.preventDefault();
         setItemSaving(true);
@@ -44,8 +86,8 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                     price: 0,
                     cost_price: 0,
                     tax_rate: 15,
-                    unit_id: units[0]?.id || '',
-                    category_id: categories[0]?.id || '',
+                    unit_id: localUnits[0]?.id || '',
+                    category_id: localCategories[0]?.id || '',
                     track_inventory: true,
                     alert_quantity: 0,
                     is_active: true,
@@ -629,7 +671,16 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-800 mb-1">المجموعة <span className="text-red-500">*</span></label>
+                                    <div className="flex justify-between items-center mb-1">
+                                        <label className="block text-sm font-semibold text-gray-800">المجموعة <span className="text-red-500">*</span></label>
+                                        <button
+                                            type="button"
+                                            onClick={handleAddCategory}
+                                            className="text-xs text-indigo-600 hover:text-indigo-800 font-bold"
+                                        >
+                                            + مجموعة جديدة
+                                        </button>
+                                    </div>
                                     <select
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
                                         value={newItem.category_id}
@@ -637,13 +688,22 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                         required
                                     >
                                         <option value="" disabled>اختر المجموعة...</option>
-                                        {categories.map(cat => (
+                                        {localCategories.map(cat => (
                                             <option key={cat.id} value={cat.id}>{cat.name}</option>
                                         ))}
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-800 mb-1">وحدة القياس <span className="text-red-500">*</span></label>
+                                    <div className="flex justify-between items-center mb-1">
+                                        <label className="block text-sm font-semibold text-gray-800">وحدة القياس <span className="text-red-500">*</span></label>
+                                        <button
+                                            type="button"
+                                            onClick={handleAddUnit}
+                                            className="text-xs text-indigo-600 hover:text-indigo-800 font-bold"
+                                        >
+                                            + وحدة جديدة
+                                        </button>
+                                    </div>
                                     <select
                                         className="w-full rounded-xl border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-500"
                                         value={newItem.unit_id}
@@ -651,7 +711,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                         required
                                     >
                                         <option value="" disabled>اختر الوحدة...</option>
-                                        {units.map(unit => (
+                                        {localUnits.map(unit => (
                                             <option key={unit.id} value={unit.id}>{unit.name} ({unit.short_name})</option>
                                         ))}
                                     </select>

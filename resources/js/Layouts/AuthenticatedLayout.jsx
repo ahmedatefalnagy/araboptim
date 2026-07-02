@@ -267,6 +267,7 @@ export default function AuthenticatedLayout({ user, header, children }) {
                         <MenuItem indent href={route('items.index')} active={isActive('/items')} label="دليل المنتجات والمخزون" />
                         <MenuItem indent href={route('item-categories.index')} active={isActive('/item-categories')} label="مجموعات الأصناف" />
                         <MenuItem indent href={route('units.index')} active={isActive('/units')} label="وحدات القياس" />
+                        <MenuItem indent href={route('warehouses.index')} active={isActive('/warehouses')} label="إدارة المستودعات" />
                         {user?.role === 'admin' && (
                             <>
                                 <MenuItem indent href={route('invoices.index', {type: 'goods_receipt'})} active={isInvoiceTypeActive('goods_receipt')} label="تسوية المستودع (إضافة بضاعة)" />
