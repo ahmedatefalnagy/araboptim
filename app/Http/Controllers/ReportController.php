@@ -1212,4 +1212,266 @@ class ReportController extends Controller
 
         return $results;
     }
+
+    public function costCenterReport(Request $request): Response
+    {
+        $costCenterId = $request->input('cost_center_id');
+        $period = $this->getFiscalYearPeriod();
+        $startDate = $request->input('start_date', $period['start_date']);
+        $endDate = $request->input('end_date', $period['end_date']);
+
+        $costCenters = \App\Models\CostCenter::orderBy('code')->get(['id', 'code', 'name']);
+        
+        $lines = [];
+        $openingBalance = 0;
+        
+        if ($costCenterId) {
+            $costCenterIds = [$costCenterId];
+            $childrenIds = \App\Models\CostCenter::where('parent_id', $costCenterId)->pluck('id')->toArray();
+            $costCenterIds = array_merge($costCenterIds, $childrenIds);
+
+            // Calculate opening balance before start date
+            $openingQuery = DB::table('journal_entry_lines as jel')
+                ->join('journal_entries as je', 'je.id', '=', 'jel.journal_entry_id')
+                ->whereIn('jel.cost_center_id', $costCenterIds)
+                ->where('je.status', 'posted')
+                ->where('je.entry_date', '<', $startDate)
+                ->selectRaw('SUM(jel.debit) as total_debit, SUM(jel.credit) as total_credit')
+                ->first();
+                
+            $openingBalance = ($openingQuery->total_debit ?? 0) - ($openingQuery->total_credit ?? 0);
+
+            // Get lines
+            $lines = JournalEntryLine::with(['journalEntry', 'account', 'contact'])
+                ->whereHas('journalEntry', function ($q) use ($startDate, $endDate) {
+                    $q->where('status', 'posted')
+                      ->whereBetween('entry_date', [$startDate, $endDate]);
+                })
+                ->whereIn('cost_center_id', $costCenterIds)
+                ->join('journal_entries', 'journal_entries.id', '=', 'journal_entry_lines.journal_entry_id')
+                ->orderBy('journal_entries.entry_date')
+                ->orderBy('journal_entries.id')
+                ->select('journal_entry_lines.*')
+                ->get()
+                ->map(function ($line) {
+                    return [
+                        'id' => $line->id,
+                        'date' => $line->journalEntry->entry_date->format('Y-m-d'),
+                        'entry_no' => $line->journalEntry->entry_no,
+                        'account_code' => $line->account?->code,
+                        'account_name' => $line->account?->name,
+                        'description' => $line->description ?: $line->journalEntry->description,
+                        'contact_name' => $line->contact?->name,
+                        'debit' => (float) $line->debit,
+                        'credit' => (float) $line->credit,
+                    ];
+                });
+        }
+
+        return Inertia::render('Reports/CostCenterReport', [
+            'costCenters' => $costCenters,
+            'filters' => [
+                'cost_center_id' => $costCenterId, 
+                'start_date' => $startDate, 
+                'end_date' => $endDate
+            ],
+            'lines' => $lines,
+            'openingBalance' => (float) $openingBalance,
+            'selectedCostCenter' => $costCenterId ? \App\Models\CostCenter::find($costCenterId) : null,
+        ]);
+    }
+
+    public function costCenterCashflowReport(Request $request): Response
+    {
+        $costCenterId = $request->input('cost_center_id');
+        $period = $this->getFiscalYearPeriod();
+        $startDate = $request->input('start_date', $period['start_date']);
+        $endDate = $request->input('end_date', $period['end_date']);
+
+        $costCenters = \App\Models\CostCenter::orderBy('code')->get(['id', 'code', 'name']);
+        
+        $lines = [];
+        $openingBalance = 0;
+        
+        if ($costCenterId) {
+            $costCenterIds = [$costCenterId];
+            $childrenIds = \App\Models\CostCenter::where('parent_id', $costCenterId)->pluck('id')->toArray();
+            $costCenterIds = array_merge($costCenterIds, $childrenIds);
+
+            // Calculate opening balance before start date
+            $openingQuery = DB::table('journal_entry_lines as jel')
+                ->join('journal_entries as je', 'je.id', '=', 'jel.journal_entry_id')
+                ->whereIn('jel.cost_center_id', $costCenterIds)
+                ->where('je.status', 'posted')
+                ->where('je.entry_date', '<', $startDate)
+                ->selectRaw('SUM(jel.debit) as total_debit, SUM(jel.credit) as total_credit')
+                ->first();
+                
+            $openingBalance = ($openingQuery->total_debit ?? 0) - ($openingQuery->total_credit ?? 0);
+
+            // Get lines
+            $lines = JournalEntryLine::with(['journalEntry', 'account', 'contact'])
+                ->whereHas('journalEntry', function ($q) use ($startDate, $endDate) {
+                    $q->where('status', 'posted')
+                      ->whereBetween('entry_date', [$startDate, $endDate]);
+                })
+                ->whereIn('cost_center_id', $costCenterIds)
+                ->join('journal_entries', 'journal_entries.id', '=', 'journal_entry_lines.journal_entry_id')
+                ->orderBy('journal_entries.entry_date')
+                ->orderBy('journal_entries.id')
+                ->select('journal_entry_lines.*')
+                ->get()
+                ->map(function ($line) {
+                    return [
+                        'id' => $line->id,
+                        'date' => $line->journalEntry->entry_date->format('Y-m-d'),
+                        'entry_no' => $line->journalEntry->entry_no,
+                        'account_code' => $line->account?->code,
+                        'account_name' => $line->account?->name,
+                        'description' => $line->description ?: $line->journalEntry->description,
+                        'contact_name' => $line->contact?->name,
+                        'debit' => (float) $line->debit,
+                        'credit' => (float) $line->credit,
+                    ];
+                });
+        }
+
+        return Inertia::render('Reports/CostCenterCashflowReport', [
+            'costCenters' => $costCenters,
+            'filters' => [
+                'cost_center_id' => $costCenterId, 
+                'start_date' => $startDate, 
+                'end_date' => $endDate
+            ],
+            'lines' => $lines,
+            'openingBalance' => (float) $openingBalance,
+            'selectedCostCenter' => $costCenterId ? \App\Models\CostCenter::find($costCenterId) : null,
+        ]);
+    }
+
+    public function exportCostCenter(Request $request)
+    {
+        $costCenterId = $request->input('cost_center_id');
+        $period = $this->getFiscalYearPeriod();
+        $startDate = $request->input('start_date', $period['start_date']);
+        $endDate = $request->input('end_date', $period['end_date']);
+
+        if (!$costCenterId) {
+            return back()->with('error', 'يرجى اختيار مركز التكلفة أولاً');
+        }
+
+        $costCenter = \App\Models\CostCenter::findOrFail($costCenterId);
+        
+        $costCenterIds = [$costCenterId];
+        $childrenIds = \App\Models\CostCenter::where('parent_id', $costCenterId)->pluck('id')->toArray();
+        $costCenterIds = array_merge($costCenterIds, $childrenIds);
+
+        // Calculate Opening Balance
+        $openingQuery = DB::table('journal_entry_lines as jel')
+            ->join('journal_entries as je', 'je.id', '=', 'jel.journal_entry_id')
+            ->whereIn('jel.cost_center_id', $costCenterIds)
+            ->where('je.status', 'posted')
+            ->where('je.entry_date', '<', $startDate)
+            ->selectRaw('SUM(jel.debit) as total_debit, SUM(jel.credit) as total_credit')
+            ->first();
+            
+        $openingBalance = ($openingQuery->total_debit ?? 0) - ($openingQuery->total_credit ?? 0);
+
+        // Fetch Lines
+        $lines = JournalEntryLine::with(['journalEntry', 'account', 'contact'])
+            ->whereHas('journalEntry', function ($q) use ($startDate, $endDate) {
+                $q->where('status', 'posted')
+                  ->whereBetween('entry_date', [$startDate, $endDate]);
+            })
+            ->whereIn('cost_center_id', $costCenterIds)
+            ->join('journal_entries', 'journal_entries.id', '=', 'journal_entry_lines.journal_entry_id')
+            ->orderBy('journal_entries.entry_date')
+            ->orderBy('journal_entries.id')
+            ->select('journal_entry_lines.*')
+            ->get()
+            ->map(function ($line) {
+                return [
+                    'date' => $line->journalEntry->entry_date->format('Y-m-d'),
+                    'entry_no' => $line->journalEntry->entry_no,
+                    'account_code' => $line->account?->code,
+                    'account_name' => $line->account?->name,
+                    'description' => $line->description ?: $line->journalEntry->description,
+                    'debit' => (float) $line->debit,
+                    'credit' => (float) $line->credit,
+                ];
+            });
+
+        $costCenterName = $costCenter->code . ' - ' . $costCenter->name;
+
+        return Excel::download(new \App\Exports\CostCenterExport($lines, $openingBalance, $costCenterName), 'cost_center_' . $costCenter->code . '.xlsx');
+    }
+
+    public function exportCostCenterPdf(Request $request)
+    {
+        $costCenterId = $request->input('cost_center_id');
+        $period = $this->getFiscalYearPeriod();
+        $startDate = $request->input('start_date', $period['start_date']);
+        $endDate = $request->input('end_date', $period['end_date']);
+
+        if (!$costCenterId) {
+            return back()->with('error', 'يرجى اختيار مركز التكلفة أولاً');
+        }
+
+        $costCenter = \App\Models\CostCenter::findOrFail($costCenterId);
+        
+        $costCenterIds = [$costCenterId];
+        $childrenIds = \App\Models\CostCenter::where('parent_id', $costCenterId)->pluck('id')->toArray();
+        $costCenterIds = array_merge($costCenterIds, $childrenIds);
+
+        // Calculate Opening Balance
+        $openingQuery = DB::table('journal_entry_lines as jel')
+            ->join('journal_entries as je', 'je.id', '=', 'jel.journal_entry_id')
+            ->whereIn('jel.cost_center_id', $costCenterIds)
+            ->where('je.status', 'posted')
+            ->where('je.entry_date', '<', $startDate)
+            ->selectRaw('SUM(jel.debit) as total_debit, SUM(jel.credit) as total_credit')
+            ->first();
+            
+        $openingBalance = ($openingQuery->total_debit ?? 0) - ($openingQuery->total_credit ?? 0);
+
+        // Fetch Lines
+        $lines = JournalEntryLine::with(['journalEntry', 'account', 'contact'])
+            ->whereHas('journalEntry', function ($q) use ($startDate, $endDate) {
+                $q->where('status', 'posted')
+                  ->whereBetween('entry_date', [$startDate, $endDate]);
+            })
+            ->whereIn('cost_center_id', $costCenterIds)
+            ->join('journal_entries', 'journal_entries.id', '=', 'journal_entry_lines.journal_entry_id')
+            ->orderBy('journal_entries.entry_date')
+            ->orderBy('journal_entries.id')
+            ->select('journal_entry_lines.*')
+            ->get()
+            ->map(function ($line) {
+                return [
+                    'date' => $line->journalEntry->entry_date->format('Y-m-d'),
+                    'entry_no' => $line->journalEntry->entry_no,
+                    'account_code' => $line->account?->code,
+                    'account_name' => $line->account?->name,
+                    'description' => $line->description ?: $line->journalEntry->description,
+                    'debit' => (float) $line->debit,
+                    'credit' => (float) $line->credit,
+                ];
+            })->toArray();
+
+        // تطبيق الحل الجذري لإصلاح تقطع الحروف العربية
+        $costCenter = \App\Helpers\PdfHelper::fixArray($costCenter);
+        $lines = \App\Helpers\PdfHelper::fixArray($lines);
+        $startDate = \App\Helpers\PdfHelper::fixArabic($startDate);
+        $endDate = \App\Helpers\PdfHelper::fixArabic($endDate);
+
+        $pdf = Pdf::loadView('reports.cost_center_pdf', [
+            'costCenter' => $costCenter,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'openingBalance' => $openingBalance,
+            'lines' => $lines,
+        ]);
+
+        return $pdf->download('cost_center_' . $costCenter['code'] . '.pdf');
+    }
 }

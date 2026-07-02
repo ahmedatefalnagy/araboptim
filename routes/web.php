@@ -81,6 +81,11 @@ Route::prefix('journal')->name('journal.')->group(function () {
         Route::get('/fixed-assets/excel', [\App\Http\Controllers\ReportController::class, 'exportFixedAssets'])->name('fixedAssets.excel');
         Route::get('/fixed-assets/pdf', [\App\Http\Controllers\ReportController::class, 'exportFixedAssetsPdf'])->name('fixedAssets.pdf');
         
+        Route::get('/cost-center', [\App\Http\Controllers\ReportController::class, 'costCenterReport'])->name('costCenter');
+        Route::get('/cost-center/excel', [\App\Http\Controllers\ReportController::class, 'exportCostCenter'])->name('costCenter.excel');
+        Route::get('/cost-center/pdf', [\App\Http\Controllers\ReportController::class, 'exportCostCenterPdf'])->name('costCenter.pdf');
+        Route::get('/cost-center-cashflow', [\App\Http\Controllers\ReportController::class, 'costCenterCashflowReport'])->name('costCenterCashflow');
+        
         Route::get('/hr', [HRReportController::class, 'index'])->name('hr');
         Route::get('/hr/pdf', [HRReportController::class, 'exportPdf'])->name('hr.pdf');
         Route::get('/hr/excel', [HRReportController::class, 'exportExcel'])->name('hr.excel');
