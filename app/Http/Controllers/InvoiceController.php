@@ -60,8 +60,11 @@ class InvoiceController extends Controller
         if (in_array($type, ['goods_receipt', 'goods_issue'])) {
             $contacts = Contact::all(['id', 'name', 'account_id']);
         } else {
-            $contactType = in_array($type, ['sale', 'sale_return', 'sale_quotation', 'sale_order', 'work_order']) ? 'customer' : 'supplier';
-            $contacts = Contact::where('type', $contactType)->get(['id', 'name', 'account_id']);
+            if (in_array($type, ['sale', 'sale_return', 'sale_quotation', 'sale_order', 'work_order'])) {
+                $contacts = Contact::where('is_customer', true)->get(['id', 'name', 'account_id']);
+            } else {
+                $contacts = Contact::where('is_supplier', true)->get(['id', 'name', 'account_id']);
+            }
         }
         $items = Item::where('is_active', true)->get(['id', 'name', 'sku', 'price', 'cost_price', 'tax_rate', 'type', 'track_inventory']);
         $warehouses = Warehouse::where('is_active', true)->get();
@@ -302,8 +305,11 @@ class InvoiceController extends Controller
         $invoice->load('lines.item');
 
         $type = $invoice->type;
-        $contactType = in_array($type, ['sale', 'sale_return', 'sale_quotation', 'sale_order', 'work_order']) ? 'customer' : 'supplier';
-        $contacts = Contact::where('type', $contactType)->get(['id', 'name', 'account_id']);
+        if (in_array($type, ['sale', 'sale_return', 'sale_quotation', 'sale_order', 'work_order'])) {
+            $contacts = Contact::where('is_customer', true)->get(['id', 'name', 'account_id']);
+        } else {
+            $contacts = Contact::where('is_supplier', true)->get(['id', 'name', 'account_id']);
+        }
         $items = Item::where('is_active', true)->get(['id', 'name', 'sku', 'price', 'cost_price', 'tax_rate', 'type', 'track_inventory']);
         $warehouses = Warehouse::where('is_active', true)->get();
         $costCenters = CostCenter::where('is_active', true)->get(['id', 'code', 'name']);

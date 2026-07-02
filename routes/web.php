@@ -100,6 +100,7 @@ Route::prefix('journal')->name('journal.')->group(function () {
     Route::get('vouchers/cash-register', [\App\Http\Controllers\VoucherController::class, 'cashRegister'])->name('vouchers.cash-register');
     Route::resource('vouchers', \App\Http\Controllers\VoucherController::class);
     Route::resource('cost-centers', \App\Http\Controllers\CostCenterController::class);
+    Route::post('warehouses/quick-store', [\App\Http\Controllers\WarehouseController::class, 'quickStore'])->name('warehouses.quick-store');
 
     // HR Routes
     Route::prefix('hr')->name('hr.')->group(function () {
