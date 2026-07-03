@@ -321,7 +321,7 @@
                 <table class="inner-box-table">
                     <tr>
                         <td class="label-cell-vertical">Issue<br>Date:</td>
-                        <td class="value-cell" style="font-family: 'DejaVu Sans', sans-serif;">{{ \Carbon\Carbon::parse($voucher['date'])->format('Y-m-d') }}</td>
+                        <td class="value-cell" style="font-family: 'DejaVu Sans', sans-serif;">{{ \Carbon\Carbon::parse($voucher['date'])->format('d-m-Y') }}</td>
                         <td class="label-cell-vertical">{{ \App\Helpers\PdfHelper::fixArabic('تاريخ') }}<br>{{ \App\Helpers\PdfHelper::fixArabic('السند') }}</td>
                     </tr>
                 </table>

@@ -57,10 +57,22 @@
 
 <table class="mockup-meta-table" style="width: 100%; border-collapse: collapse; margin-top: 5px; margin-bottom: 10px; font-size: 9px; border: none;">
     <!-- Row 1: C.R. & VAT + Tax Invoice Box -->
+@php
+    $isPurchase = in_array($invoice['type'], ['purchase', 'purchase_return', 'purchase_quotation', 'purchase_order']);
+    $buyerName = $isPurchase ? \App\Models\Setting::get('company_name', 'شركة التفاؤل العربية للخدمات اللوجستية') : ($invoice['contact']['name'] ?? '--');
+    $buyerVat = $isPurchase ? \App\Models\Setting::get('company_vat_no', '312253166440003') : ($invoice['contact']['tax_number'] ?? 'N/A');
+@endphp
+
+<table class="mockup-meta-table" style="width: 100%; border-collapse: collapse; margin-top: 5px; margin-bottom: 12px; font-size: 9px; border: none;">
+    <!-- Row 1: C.R. & VAT + Tax Invoice Box -->
     <tr>
         <td width="30%" style="text-align: left; vertical-align: middle; padding: 2px; border: none; color: #475569;">
-            <div><strong>C.R :</strong> {{ \App\Models\Setting::get('company_commercial_record', '1009037942') }}</div>
-            <div><strong>VAT No :</strong> {{ \App\Models\Setting::get('company_vat_no', '312253166440003') }}</div>
+            @if($isPurchase)
+                <div><strong>VAT No :</strong> {{ $invoice['contact']['tax_number'] ?? 'N/A' }}</div>
+            @else
+                <div><strong>C.R :</strong> {{ \App\Models\Setting::get('company_commercial_record', '1009037942') }}</div>
+                <div><strong>VAT No :</strong> {{ \App\Models\Setting::get('company_vat_no', '312253166440003') }}</div>
+            @endif
         </td>
         <td width="40%" style="text-align: center; vertical-align: middle; border: none;">
             <div style="border: 1px solid #1e3a8a; background-color: #f1f5f9; color: #1e3a8a; padding: 8px 18px; display: inline-block; font-weight: bold; font-size: 11px; line-height: 1.4; text-align: center; border-radius: 4px;">
@@ -68,8 +80,12 @@
             </div>
         </td>
         <td width="30%" style="text-align: right; vertical-align: middle; padding: 2px; border: none; color: #475569;">
-            <div><strong>سجل تجاري :</strong> {{ \App\Models\Setting::get('company_commercial_record', '1009037942') }}</div>
-            <div><strong>الرقم الضريبي :</strong> {{ \App\Models\Setting::get('company_vat_no', '312253166440003') }}</div>
+            @if($isPurchase)
+                <div><strong>الرقم الضريبي :</strong> {{ $invoice['contact']['tax_number'] ?? 'N/A' }}</div>
+            @else
+                <div><strong>سجل تجاري :</strong> {{ \App\Models\Setting::get('company_commercial_record', '1009037942') }}</div>
+                <div><strong>الرقم الضريبي :</strong> {{ \App\Models\Setting::get('company_vat_no', '312253166440003') }}</div>
+            @endif
         </td>
     </tr>
 </table>
@@ -85,7 +101,7 @@
                         Due Date :<br>التاريخ
                     </td>
                     <td class="meta-value">
-                        {{ $invoice['invoice_date'] }}
+                        {{ date('d-m-Y', strtotime($invoice['invoice_date'])) }}
                     </td>
                 </tr>
                 <tr>
@@ -107,18 +123,18 @@
             <table class="meta-inner-table">
                 <tr style="border-bottom: 1px solid #e2e8f0;">
                     <td class="meta-label" style="width: 30%;">
-                        Buyer Name :<br>اسم العميل
+                        Buyer Name :<br>اسم العميل/المشتري
                     </td>
                     <td class="meta-value">
-                        {{ $invoice['contact']['name'] ?? '--' }}
+                        {{ $buyerName }}
                     </td>
                 </tr>
                 <tr>
                     <td class="meta-label" style="width: 30%;">
-                        Buyer Vat :<br>رقم ضريبي
+                        Buyer Vat :<br>رقم ضريبي للمشتري
                     </td>
                     <td class="meta-value" style="font-family: monospace;">
-                        {{ $invoice['contact']['tax_number'] ?? 'N/A' }}
+                        {{ $buyerVat }}
                     </td>
                 </tr>
             </table>
@@ -209,7 +225,7 @@
                 @endphp
                 <tr>
                     <td style="text-align: center; font-weight: bold;">{{ $index + 1 }}</td>
-                    <td style="text-align: center; font-size: 8px;">{{ $invoice['invoice_date'] }}</td>
+                    <td style="text-align: center; font-size: 8px;">{{ date('d-m-Y', strtotime($invoice['invoice_date'])) }}</td>
                     <td colspan="3" style="text-align: right; padding-right: 8px; font-weight: bold; font-size: 8px;">{{ $line['item_name'] ?? $line['item']['name'] ?? '' }}</td>
                     <td style="text-align: center; font-weight: bold;">{{ number_format($line['subtotal'], 2) }}</td>
                     <td style="text-align: center; font-weight: bold;">{{ number_format($line['tax_amount'], 2) }}</td>
@@ -279,7 +295,7 @@
         
         <!-- QR Code Block -->
         <td width="22%" style="vertical-align: middle; text-align: center; padding: 0 10px; border: none;">
-            @if(isset($qrCode))
+            @if(in_array($invoice['type'], ['sale', 'sale_return']) && isset($qrCode))
                 <img src="data:image/svg+xml;base64,{{ $qrCode }}" style="width: 95px; height: 95px; border: 1px solid #cbd5e1; padding: 4px; background-color: #fff; border-radius: 4px;">
             @endif
         </td>
@@ -336,12 +352,5 @@
         </td>
     </tr>
 </table>
-
-<!-- Stamp area -->
-<div style="margin-top: 15px; text-align: left; padding-left: 30px;">
-    <div style="width: 90px; height: 90px; border: 2px double #1e3a8a; border-radius: 50%; display: inline-block; text-align: center; padding-top: 15px; color: #1e3a8a; font-size: 7px; font-weight: bold; line-height: 1.4; background-color: #fff;">
-        مؤسسة التفاؤل العربية<br>س.ت ١٠٠٩٠٣٧٩٤٢<br>المبيعات<br><span style="font-size: 5px; font-family: 'DejaVu Sans', sans-serif;">Arab Optimism Est.</span>
-    </div>
-</div>
 
 @endsection

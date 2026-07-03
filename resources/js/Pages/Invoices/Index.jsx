@@ -1,3 +1,4 @@
+import BackButton from '@/Components/BackButton';
 import { Head, Link } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
@@ -19,6 +20,20 @@ export default function Index({ auth, type, invoices, flash }) {
     const isFinancial = ['sale', 'sale_return', 'purchase', 'purchase_return'].includes(type);
     const contactHeader = String(type).includes('sale') ? 'اسم العميل' : (String(type).includes('work') ? 'العميل' : 'اسم المورد');
 
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        try {
+            const d = new Date(dateString);
+            if (isNaN(d.getTime())) return dateString;
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const year = d.getFullYear();
+            return `${day}-${month}-${year}`;
+        } catch (e) {
+            return dateString;
+        }
+    };
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -36,15 +51,21 @@ export default function Index({ auth, type, invoices, flash }) {
                             </p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Link href={route('dashboard')} className="text-gray-600 hover:text-gray-900 px-4 py-2 bg-white rounded-xl shadow-sm border border-gray-200">
-                                العودة للرئيسية
-                            </Link>
                             <Link 
                                 href={route('invoices.create', { type })}
                                 className="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 shadow-sm font-bold"
                             >
-                                + إنشاء مستند جديد
+                                {type === 'work_order' ? '+ إنشاء أمر شغل' :
+                                 type === 'sale' ? '+ إنشاء فاتورة مبيعات' :
+                                 type === 'purchase' ? '+ تسجيل فاتورة مشتريات' :
+                                 type === 'sale_quotation' ? '+ إنشاء عرض سعر' :
+                                 type === 'sale_order' ? '+ إنشاء أمر بيع' :
+                                 type === 'purchase_quotation' ? '+ إنشاء طلب شراء' :
+                                 type === 'purchase_order' ? '+ إنشاء أمر شراء' :
+                                 type === 'goods_receipt' ? '+ تسوية إضافة' :
+                                 type === 'goods_issue' ? '+ تسوية تالف' : '+ إنشاء مستند جديد'}
                             </Link>
+                            <BackButton href={route('dashboard')} />
                         </div>
                     </div>
 
@@ -83,7 +104,7 @@ export default function Index({ auth, type, invoices, flash }) {
                                         invoices.map(invoice => (
                                             <tr key={invoice.id} className="hover:bg-gray-50">
                                                 <td className="px-6 py-4 font-mono font-medium">{invoice.invoice_no}</td>
-                                                <td className="px-6 py-4 text-gray-600">{invoice.invoice_date}</td>
+                                                <td className="px-6 py-4 text-gray-600">{formatDate(invoice.invoice_date)}</td>
                                                 <td className="px-6 py-4 font-bold text-gray-800">{invoice.contact?.name || 'محذوف'}</td>
                                                 {!['work_order', 'goods_receipt', 'goods_issue'].includes(type) && (
                                                     <>
@@ -151,17 +172,19 @@ export default function Index({ auth, type, invoices, flash }) {
                                                                 القيد
                                                             </Link>
                                                         )}
-                                                        <Link 
-                                                            href={route('invoices.destroy', invoice.id)} 
-                                                            method="delete" 
-                                                            as="button"
-                                                            className="text-red-500 hover:text-red-800 bg-red-50 px-3 py-1 rounded-lg text-xs"
-                                                            onClick={e => {
-                                                                if(!confirm('هل أنت متأكد من الحذف؟ سيتم حذف القيد المحاسبي التابع أيضاً!')) e.preventDefault();
-                                                            }}
-                                                        >
-                                                            حذف
-                                                        </Link>
+                                                        {!['sale', 'sale_return', 'purchase', 'purchase_return', 'sale_quotation', 'sale_order', 'purchase_quotation', 'purchase_order', 'work_order'].includes(type) && (
+                                                            <Link 
+                                                                href={route('invoices.destroy', invoice.id)} 
+                                                                method="delete" 
+                                                                as="button"
+                                                                className="text-red-500 hover:text-red-800 bg-red-50 px-3 py-1 rounded-lg text-xs"
+                                                                onClick={e => {
+                                                                    if(!confirm('هل أنت متأكد من الحذف؟ سيتم حذف القيد المحاسبي التابع أيضاً!')) e.preventDefault();
+                                                                }}
+                                                            >
+                                                                حذف
+                                                            </Link>
+                                                        )}
                                                     </div>
                                                 </td>
                                             </tr>

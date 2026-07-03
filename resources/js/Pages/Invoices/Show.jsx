@@ -4,6 +4,20 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 export default function Show({ auth, invoice }) {
     const { settings } = usePage().props;
     const isSale = ['sale', 'sale_return', 'sale_quotation', 'sale_order'].includes(invoice.type);
+
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        try {
+            const d = new Date(dateString);
+            if (isNaN(d.getTime())) return dateString;
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const year = d.getFullYear();
+            return `${day}-${month}-${year}`;
+        } catch (e) {
+            return dateString;
+        }
+    };
     
     const docTypeLabels = {
         sale: 'فاتورة مبيعات ضريبية',
@@ -20,7 +34,7 @@ export default function Show({ auth, invoice }) {
     };
 
     const titles = {
-        sale: { ar: 'فاتورة ضريبية مبسطة' },
+        sale: { ar: 'فاتورة ضريبية' },
         sale_return: { ar: 'إشعار دائن ضريبي' },
         purchase: { ar: 'فاتورة مشتريات' },
         purchase_return: { ar: 'إشعار مدين' },
@@ -60,14 +74,7 @@ export default function Show({ auth, invoice }) {
                                     تعديل المستند
                                 </Link>
                             )}
-                            
-                            <button 
-                                onClick={() => window.print()} 
-                                className="bg-gray-100 text-gray-700 px-6 py-2.5 rounded-xl shadow-sm hover:bg-gray-200 transition-all font-bold flex items-center gap-2 border border-gray-200"
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
-                                طباعة المتصفح
-                            </button>
+
                             
                             {!['goods_receipt', 'goods_issue'].includes(invoice.type) && (
                                 <a 
@@ -220,31 +227,35 @@ export default function Show({ auth, invoice }) {
                         {/* Header Section */}
                         <div className="p-8 border-b-2 border-gray-900 bg-white">
                             <div className="flex justify-between items-start">
-                                {/* Company Info */}
-                                <div className="space-y-1">
-                                    <h1 className="text-3xl font-black text-gray-900">{settings?.company_name || 'مؤسسة عرب أوبتيما للتجارة'}</h1>
-                                    <h2 className="text-xl font-bold text-gray-600">بيانات المنشأة</h2>
-                                    <div className="mt-4 text-sm text-gray-700 font-medium">
-                                        <p>الرقم الضريبي: <span className="font-mono">{settings?.company_vat_no || '300000000000003'}</span></p>
-                                        <p>العنوان: {settings?.company_address || 'الرياض - حي المروج - طريق الملك فهد'}</p>
-                                        <p>هاتف: {settings?.company_phone || '0500000000'}</p>
+                                {/* Company / Supplier Info */}
+                                {['purchase', 'purchase_return', 'purchase_quotation', 'purchase_order'].includes(invoice.type) ? (
+                                    <div className="space-y-1">
+                                        <h1 className="text-3xl font-black text-gray-900">{invoice.contact.name}</h1>
+                                        <h2 className="text-xl font-bold text-gray-600">بيانات المورد (صاحب الفاتورة)</h2>
+                                        <div className="mt-4 text-sm text-gray-700 font-medium">
+                                            <p>الرقم الضريبي: <span className="font-mono">{invoice.contact.tax_number || 'N/A'}</span></p>
+                                            <p>العنوان: {invoice.contact.address || 'N/A'}</p>
+                                            <p>هاتف: {invoice.contact.phone || 'N/A'}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                ) : (
+                                    <div className="space-y-1">
+                                        <h1 className="text-3xl font-black text-gray-900">{settings?.company_name || 'مؤسسة عرب أوبتيما للتجارة'}</h1>
+                                        <h2 className="text-xl font-bold text-gray-600">بيانات المنشأة</h2>
+                                        <div className="mt-4 text-sm text-gray-700 font-medium">
+                                            <p>الرقم الضريبي: <span className="font-mono">{settings?.company_vat_no || '300000000000003'}</span></p>
+                                            <p>العنوان: {settings?.company_address || 'الرياض - حي المروج - طريق الملك فهد'}</p>
+                                            <p>هاتف: {settings?.company_phone || '0500000000'}</p>
+                                        </div>
+                                    </div>
+                                )}
 
                                 {/* QR Code and Title */}
                                 <div className="text-left flex flex-col items-end">
                                     <div className="text-center mb-4">
-                                        <h3 className="text-2xl font-black text-blue-900 underline decoration-double">{currentTitle.ar}</h3>
+                                        <h3 className="text-2xl font-black text-blue-900 underline decoration-double">{invoice.type === 'sale' ? 'فاتورة ضريبية' : currentTitle.ar}</h3>
                                     </div>
-                                    {invoice.qr_code_base64 && (
-                                        <div className="bg-white border p-1 rounded shadow-sm">
-                                            <img 
-                                                src={`data:image/png;base64,${invoice.qr_code_base64}`} 
-                                                alt="QR Code" 
-                                                className="w-32 h-32"
-                                            />
-                                        </div>
-                                    )}
+
                                 </div>
                             </div>
                         </div>
@@ -258,17 +269,38 @@ export default function Show({ auth, invoice }) {
                                 </div>
                                 <div>
                                     <p className="text-[10px] text-gray-400 font-bold uppercase">تاريخ الإصدار</p>
-                                    <p className="font-black text-lg font-mono text-gray-900">{invoice.invoice_date}</p>
+                                    <p className="font-black text-lg font-mono text-gray-900">{formatDate(invoice.invoice_date)}</p>
                                 </div>
-                                <div>
-                                    <p className="text-[10px] text-gray-400 font-bold uppercase">{String(invoice.type).includes('sale') || String(invoice.type).includes('work') ? 'اسم العميل' : 'اسم المورد'}</p>
-                                    <p className="font-black text-lg text-gray-900">{invoice.contact.name}</p>
-                                </div>
-                                {invoice.type !== 'work_order' && (
+                                {invoice.due_date && (
                                     <div>
-                                        <p className="text-[10px] text-gray-400 font-bold uppercase">الرقم الضريبي</p>
-                                        <p className="font-black text-lg font-mono text-gray-900">{invoice.contact.tax_number || 'N/A'}</p>
+                                        <p className="text-[10px] text-gray-400 font-bold uppercase">تاريخ الاستحقاق</p>
+                                        <p className="font-black text-lg font-mono text-gray-900">{formatDate(invoice.due_date)}</p>
                                     </div>
+                                )}
+                                {['purchase', 'purchase_return', 'purchase_quotation', 'purchase_order'].includes(invoice.type) ? (
+                                    <>
+                                        <div>
+                                            <p className="text-[10px] text-gray-400 font-bold uppercase">المشتري (منشأتنا)</p>
+                                            <p className="font-black text-lg text-gray-900">{settings?.company_name || 'مؤسسة عرب أوبتيما للتجارة'}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] text-gray-400 font-bold uppercase">الرقم الضريبي للمشتري</p>
+                                            <p className="font-black text-lg font-mono text-gray-900">{settings?.company_vat_no || '300000000000003'}</p>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div>
+                                            <p className="text-[10px] text-gray-400 font-bold uppercase">{String(invoice.type).includes('sale') || String(invoice.type).includes('work') ? 'اسم العميل' : 'اسم المورد'}</p>
+                                            <p className="font-black text-lg text-gray-900">{invoice.contact.name}</p>
+                                        </div>
+                                        {invoice.type !== 'work_order' && (
+                                            <div>
+                                                <p className="text-[10px] text-gray-400 font-bold uppercase">الرقم الضريبي</p>
+                                                <p className="font-black text-lg font-mono text-gray-900">{invoice.contact.tax_number || 'N/A'}</p>
+                                            </div>
+                                        )}
+                                    </>
                                 )}
                             </div>
                         </div>

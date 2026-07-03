@@ -91,22 +91,38 @@
     <header>
         <table width="100%" style="border-collapse: collapse; border: none;">
             <tr>
-                <td width="15%" style="text-align: left; vertical-align: middle;">
-                    @php $logoPath = public_path('logo.png'); @endphp
-                    @if(file_exists($logoPath))
-                        <img src="{{ $logoPath }}" style="max-height: 55px;">
-                    @else
-                        <div style="color: #0056b3; font-weight: bold; font-size: 16px;">ARAB OPTIMISM</div>
-                    @endif
-                </td>
-                <td width="85%" style="text-align: right; vertical-align: middle; padding-right: 15px;">
-                    <div style="font-size: 18px; font-weight: bold; color: #0056b3;">
-                        {{ \App\Helpers\PdfHelper::fixArabic(\App\Models\Setting::get('company_name', 'شركة التفاؤل العربية للخدمات اللوجستية')) }}
-                    </div>
-                    <div style="font-size: 11px; font-weight: bold; color: #0056b3; font-family: 'DejaVu Sans', sans-serif; margin-top: 2px;">
-                        {{ \App\Models\Setting::get('company_name_en', 'ARAB OPTIMISM for Logistic services Co.') }}
-                    </div>
-                </td>
+                @if(isset($invoice) && in_array($invoice['type'], ['purchase', 'purchase_return', 'purchase_quotation', 'purchase_order']))
+                    <td width="40%" style="text-align: left; vertical-align: middle; font-size: 8px; color: #475569; padding-left: 10px;">
+                        <div><strong>VAT No :</strong> {{ $invoice['contact']['tax_number'] ?? 'N/A' }}</div>
+                        <div><strong>Phone :</strong> {{ $invoice['contact']['phone'] ?? 'N/A' }}</div>
+                        <div><strong>Address :</strong> {{ \App\Helpers\PdfHelper::fixArabic($invoice['contact']['address'] ?? 'N/A') }}</div>
+                    </td>
+                    <td width="60%" style="text-align: right; vertical-align: middle; padding-right: 15px;">
+                        <div style="font-size: 16px; font-weight: bold; color: #1e3a8a;">
+                            {{ \App\Helpers\PdfHelper::fixArabic($invoice['contact']['name'] ?? 'مورد غير معروف') }}
+                        </div>
+                        <div style="font-size: 10px; font-weight: bold; color: #475569; margin-top: 2px;">
+                            فاتورة صادرة من المورد / Supplier Invoice
+                        </div>
+                    </td>
+                @else
+                    <td width="15%" style="text-align: left; vertical-align: middle;">
+                        @php $logoPath = public_path('logo.png'); @endphp
+                        @if(file_exists($logoPath))
+                            <img src="{{ $logoPath }}" style="max-height: 55px;">
+                        @else
+                            <div style="color: #0056b3; font-weight: bold; font-size: 16px;">ARAB OPTIMISM</div>
+                        @endif
+                    </td>
+                    <td width="85%" style="text-align: right; vertical-align: middle; padding-right: 15px;">
+                        <div style="font-size: 18px; font-weight: bold; color: #0056b3;">
+                            {{ \App\Helpers\PdfHelper::fixArabic(\App\Models\Setting::get('company_name', 'شركة التفاؤل العربية للخدمات اللوجستية')) }}
+                        </div>
+                        <div style="font-size: 11px; font-weight: bold; color: #0056b3; font-family: 'DejaVu Sans', sans-serif; margin-top: 2px;">
+                            {{ \App\Models\Setting::get('company_name_en', 'ARAB OPTIMISM for Logistic services Co.') }}
+                        </div>
+                    </td>
+                @endif
             </tr>
         </table>
     </header>

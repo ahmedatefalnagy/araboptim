@@ -3,7 +3,7 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
 export default function Index({ auth, items }) {
-    const { flash } = usePage().props;
+    const { flash, errors } = usePage().props;
 
     return (
         <AuthenticatedLayout
@@ -38,12 +38,21 @@ export default function Index({ auth, items }) {
                         </div>
                     </div>
 
-                    {flash?.message && (
+                    {(flash?.message || flash?.success) && (
                         <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center shadow-sm">
                             <svg className="h-5 w-5 text-emerald-400 ml-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
-                            <p className="text-sm font-medium text-emerald-800">{flash.message}</p>
+                            <p className="text-sm font-medium text-emerald-800">{flash.message || flash.success}</p>
+                        </div>
+                    )}
+
+                    {(flash?.error || errors?.message) && (
+                        <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 flex items-center shadow-sm">
+                            <svg className="h-5 w-5 text-red-400 ml-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                            </svg>
+                            <p className="text-sm font-medium text-red-800">{flash.error || errors.message}</p>
                         </div>
                     )}
 
@@ -133,13 +142,24 @@ export default function Index({ auth, items }) {
                                                     </span>
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
-                                                    <div className="flex items-center justify-end space-x-3 space-x-reverse opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                                        <Link href={route('items.edit', item.id)} className="text-indigo-600 hover:text-indigo-900 bg-indigo-50 p-2 rounded-lg hover:bg-indigo-100 transition-colors">
+                                                    <div className="flex items-center justify-end space-x-3 space-x-reverse">
+                                                        <Link href={route('items.edit', item.id)} className="text-indigo-600 hover:text-indigo-900 bg-indigo-50 p-2 rounded-lg hover:bg-indigo-100 transition-colors" title="تعديل">
                                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                             </svg>
                                                         </Link>
-                                                        <Link href={route('items.destroy', item.id)} method="delete" as="button" className="text-red-500 hover:text-red-700 bg-red-50 p-2 rounded-lg hover:bg-red-100 transition-colors" preserveScroll>
+                                                        <Link 
+                                                            href={route('items.destroy', item.id)} 
+                                                            method="delete" 
+                                                            as="button" 
+                                                            className="text-red-600 hover:text-red-900 bg-red-50 p-2 rounded-lg hover:bg-red-100 transition-colors"
+                                                            title="حذف"
+                                                            onClick={(e) => {
+                                                                if(!confirm('هل أنت متأكد من رغبتك في حذف هذا الصنف؟')) {
+                                                                    e.preventDefault();
+                                                                }
+                                                            }}
+                                                        >
                                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                             </svg>

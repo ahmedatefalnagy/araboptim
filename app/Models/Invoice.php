@@ -10,6 +10,7 @@ class Invoice extends Model
     protected $fillable = [
         'invoice_no',
         'type',
+        'is_taxable',
         'contact_id',
         'invoice_date',
         'due_date',
@@ -37,6 +38,7 @@ class Invoice extends Model
     protected $casts = [
         'invoice_date' => 'date',
         'due_date' => 'date',
+        'is_taxable' => 'boolean',
     ];
 
     public function contact(): BelongsTo

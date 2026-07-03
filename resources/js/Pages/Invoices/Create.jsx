@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import axios from 'axios';
 
-export default function Create({ auth, type, contacts, items, warehouses, paymentAccounts = [], costCenters = [], parentDocument = null, workOrders = [], fiscalYears = [], selectedFiscalYearId = null, categories = [], units = [] }) {
+export default function Create({ auth, type, next_invoice_no = null, contacts, items, warehouses, paymentAccounts = [], costCenters = [], parentDocument = null, workOrders = [], fiscalYears = [], selectedFiscalYearId = null, categories = [], units = [] }) {
     const { default_date } = usePage().props;
     const [localItems, setLocalItems] = useState(items);
     const [localCategories, setLocalCategories] = useState(categories);
@@ -37,6 +37,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
             setNewItem(prev => ({ ...prev, category_id: localCategories[0].id }));
         }
     }, [localUnits, localCategories]);
+
 
     const handleAddCategory = async () => {
         const name = prompt('أدخل اسم المجموعة الجديدة:');
@@ -107,7 +108,7 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
     };
     const generateInvoiceNo = () => {
         const prefix = {
-            sale: 'SAL-',
+            sale: 'INV-',
             sale_return: 'SRT-',
             purchase: 'PUR-',
             purchase_return: 'PRT-',
@@ -141,14 +142,36 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
         contact_id: parentDocument ? parentDocument.contact_id : '',
         cost_center_id: parentDocument ? (parentDocument.cost_center_id || '') : '',
         warehouse_id: warehouses.length > 0 ? warehouses[0].id : '',
-        invoice_no: generateInvoiceNo(),
+        invoice_no: next_invoice_no || generateInvoiceNo(),
         invoice_date: default_date,
+        due_date: parentDocument ? (parentDocument.due_date || default_date) : default_date,
+        is_taxable: true,
         payment_mode: 'credit', // default
         payment_account_id: '',
         notes: parentDocument ? `محولة من مستند مرجعي: ${parentDocument.invoice_no}\n${parentDocument.notes || ''}` : '',
         attachment: null,
         lines: initialLines,
     });
+
+    useEffect(() => {
+        if (!data || !data.lines) return;
+        const updatedLines = data.lines.map(line => {
+            const item = localItems.find(i => i.id == line.item_id);
+            const tr = (data.is_taxable && item) ? parseFloat(item.tax_rate) : 0;
+            const qty = parseFloat(line.quantity || 0);
+            const price = parseFloat(line.unit_price || 0);
+            const subtotal = qty * price;
+            const tax_amount = subtotal * (tr / 100);
+            return {
+                ...line,
+                tax_rate: tr,
+                subtotal: subtotal,
+                tax_amount: tax_amount,
+                total: subtotal + tax_amount
+            };
+        });
+        setData('lines', updatedLines);
+    }, [data.is_taxable]);
 
     const calculateTotals = (linesArray) => {
         let total_base = 0;
@@ -169,10 +192,10 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
             line.item_id = value;
             if (selectedItem) {
                 line.unit_price = type === 'purchase' ? selectedItem.cost_price : selectedItem.price;
-                line.tax_rate = selectedItem.tax_rate;
+                line.tax_rate = data.is_taxable ? selectedItem.tax_rate : 0;
             } else {
                 line.unit_price = 0;
-                line.tax_rate = 15;
+                line.tax_rate = data.is_taxable ? 15 : 0;
             }
         } else {
             line[field] = value;
@@ -267,12 +290,31 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
 
                     <form onSubmit={submit} className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
 
+                        {errors?.message && (
+                            <div className="mx-8 mt-6 bg-red-50 border-r-4 border-red-500 p-4 rounded-xl text-red-800 font-bold">
+                                {errors.message}
+                            </div>
+                        )}
+
                         <div className={`h-2 bg-gradient-to-r ${gradient} w-full`}></div>
 
                         <div className="p-8">
-                            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-8">
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-8">
 
-                                <div className="md:col-span-1">
+                                {/* Row 1: Document Number, Client selection, Tax Type, Issue Date, Due Date */}
+                                <div className="md:col-span-2">
+                                    <label className="block text-sm font-bold text-gray-800 mb-2">رقم المستند الوثائقي</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        readOnly
+                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 font-mono bg-gray-100 cursor-not-allowed`}
+                                        value={data.invoice_no}
+                                    />
+                                    {errors.invoice_no && <div className="text-red-500 text-xs mt-2">{errors.invoice_no}</div>}
+                                </div>
+
+                                <div className="md:col-span-4 border-r border-gray-100 pr-4">
                                     <label className="block text-sm font-bold text-gray-800 mb-2">{contactLabel} الأساسي <span className="text-red-500">*</span></label>
                                     <select
                                         required
@@ -286,10 +328,103 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                         ))}
                                     </select>
                                     {errors.contact_id && <div className="text-red-500 text-xs mt-2">{errors.contact_id}</div>}
+                                </div>
 
-                                    {/* Payment Mode Selection */}
-                                    {!['work_order', 'goods_receipt', 'goods_issue'].includes(type) && (
-                                        <div className="mt-4 p-4 bg-white rounded-xl border border-gray-100 shadow-inner">
+                                <div className="md:col-span-3 border-r border-gray-100 pr-4">
+                                    <label className="block text-sm font-bold text-gray-800 mb-2">تاريخ الإصدار <span className="text-red-500">*</span></label>
+                                    <input
+                                        type="date"
+                                        required
+                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
+                                        value={data.invoice_date}
+                                        onChange={e => setData('invoice_date', e.target.value)}
+                                    />
+                                    {errors.invoice_date && <div className="text-red-500 text-xs mt-2">{errors.invoice_date}</div>}
+                                </div>
+
+                                <div className="md:col-span-3 border-r border-gray-100 pr-4">
+                                    <label className="block text-sm font-bold text-gray-800 mb-2">تاريخ الاستحقاق</label>
+                                    <input
+                                        type="date"
+                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
+                                        value={data.due_date}
+                                        onChange={e => setData('due_date', e.target.value)}
+                                    />
+                                    {errors.due_date && <div className="text-red-500 text-xs mt-2">{errors.due_date}</div>}
+                                </div>
+
+                                {/* Row 2: Warehouse, Cost Center, Parent Document, Attachment, Payment Mode */}
+                                <div className="md:col-span-2 border-t border-gray-100 pt-6 mt-4">
+                                    <label className="block text-sm font-bold text-gray-800 mb-2">
+                                        المستودع المرجعي
+                                        {['sale', 'purchase', 'sale_return', 'purchase_return'].includes(type) ? <span className="text-red-500">*</span> : null}
+                                    </label>
+                                    <select
+                                        required={['sale', 'purchase', 'sale_return', 'purchase_return'].includes(type)}
+                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
+                                        value={data.warehouse_id}
+                                        onChange={e => setData('warehouse_id', e.target.value)}
+                                    >
+                                        <option value="">== اختر المستودع ==</option>
+                                        {warehouses.map(wh => (
+                                            <option key={wh.id} value={wh.id}>{wh.name}</option>
+                                        ))}
+                                    </select>
+                                    {errors.warehouse_id && <div className="text-red-500 text-xs mt-2">{errors.warehouse_id}</div>}
+                                </div>
+
+                                <div className={`border-t border-r border-gray-100 pr-4 pt-6 mt-4 ${['sale_quotation', 'purchase_quotation'].includes(type) ? 'md:col-span-2' : 'md:col-span-4'}`}>
+                                    <label className="block text-sm font-bold text-gray-800 mb-2">مركز التكلفة (اختياري)</label>
+                                    <select
+                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
+                                        value={data.cost_center_id}
+                                        onChange={e => setData('cost_center_id', e.target.value)}
+                                    >
+                                        <option value="">== بدون مركز تكلفة ==</option>
+                                        {costCenters.map(cc => (
+                                            <option key={cc.id} value={cc.id}>{cc.name}</option>
+                                        ))}
+                                    </select>
+                                    {errors.cost_center_id && <div className="text-red-500 text-xs mt-2">{errors.cost_center_id}</div>}
+                                </div>
+
+                                {['sale_quotation', 'purchase_quotation'].includes(type) && (
+                                    <div className="md:col-span-2 border-t border-r border-gray-100 pr-4 pt-6 mt-4">
+                                        <label className="block text-sm font-bold text-gray-800 mb-2">ربط بأمر الشغل (اختياري)</label>
+                                        <select
+                                            className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
+                                            value={data.parent_document_id}
+                                            onChange={e => setData('parent_document_id', e.target.value)}
+                                        >
+                                            <option value="">== بدون أمر شغل ==</option>
+                                            {workOrders.map(wo => (
+                                                <option key={wo.id} value={wo.id}>{wo.invoice_no}</option>
+                                            ))}
+                                        </select>
+                                        {errors.parent_document_id && <div className="text-red-500 text-xs mt-2">{errors.parent_document_id}</div>}
+                                    </div>
+                                )}
+
+                                <div className="md:col-span-2 border-t border-r border-gray-100 pr-4 pt-6 mt-4">
+                                    <label className="block text-sm font-bold text-gray-800 mb-2">
+                                        {type === 'purchase' ? 'فاتورة الشراء الأصلية' :
+                                            (type === 'sale' ? 'سند التسليم الموقع' :
+                                                (type === 'goods_receipt' ? 'سند الاستلام الموقع والمختوم' :
+                                                    (type === 'goods_issue' ? 'سند الصرف الموقع والمختوم' : 'المرفق المساعد')))}
+                                    </label>
+                                    <input
+                                        type="file"
+                                        className="w-full rounded-xl border border-gray-200 p-2 shadow-sm text-xs bg-white"
+                                        onChange={e => setData('attachment', e.target.files[0])}
+                                        accept=".pdf,.png,.jpg,.jpeg"
+                                    />
+                                    <p className="mt-1.5 text-[10px] text-gray-400">PDF, PNG, JPG (حتى 5 ميجابايت)</p>
+                                    {errors.attachment && <div className="text-red-500 text-xs mt-2">{errors.attachment}</div>}
+                                </div>
+
+                                {!['work_order', 'goods_receipt', 'goods_issue'].includes(type) ? (
+                                    <div className="md:col-span-4 border-t border-r border-gray-100 pr-4 pt-6 mt-4">
+                                        <div className="p-4 bg-white rounded-xl border border-gray-100 shadow-inner">
                                             <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-3">طريقة الدفع للمستند</label>
                                             <div className="flex gap-2 p-1 bg-gray-100 rounded-lg">
                                                 <button
@@ -330,9 +465,8 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                                         {paymentAccounts
                                                             .filter(acc => {
                                                                 const code = String(acc.code || '');
-                                                                // 112x = حسابات بنكية، 111x = صناديق نقدية
-                                                                if (data.payment_mode === 'bank') return code.startsWith('112') || (code.startsWith('1') && /بنك|bank/i.test(acc.name || ''));
-                                                                return code.startsWith('111') || (code.startsWith('1') && /صندوق|نقد|cash/i.test(acc.name || ''));
+                                                                if (data.payment_mode === 'bank') return code.startsWith('112') || code.startsWith('1102') || (code.startsWith('1') && /بنك|bank|مصرف|راجحي/i.test(acc.name || ''));
+                                                                return code.startsWith('111') || code.startsWith('1101') || (code.startsWith('1') && /صندوق|نقد|cash/i.test(acc.name || ''));
                                                             })
                                                             .map(acc => (
                                                                 <option key={acc.id} value={acc.id}>{acc.code} - {acc.name}</option>
@@ -342,98 +476,10 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                                 </div>
                                             )}
                                         </div>
-                                    )}
-                                </div>
-
-                                <div className="md:col-span-1 border-r border-gray-100 pr-4">
-                                    <label className="block text-sm font-bold text-gray-800 mb-2">
-                                        المستودع المرجعي
-                                        {['sale', 'purchase', 'sale_return', 'purchase_return'].includes(type) ? <span className="text-red-500">*</span> : null}
-                                    </label>
-                                    <select
-                                        required={['sale', 'purchase', 'sale_return', 'purchase_return'].includes(type)}
-                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
-                                        value={data.warehouse_id}
-                                        onChange={e => setData('warehouse_id', e.target.value)}
-                                    >
-                                        <option value="">== اختر المستودع ==</option>
-                                        {warehouses.map(wh => (
-                                            <option key={wh.id} value={wh.id}>{wh.name}</option>
-                                        ))}
-                                    </select>
-                                    {errors.warehouse_id && <div className="text-red-500 text-xs mt-2">{errors.warehouse_id}</div>}
-
-                                    <label className="block text-sm font-bold text-gray-800 mt-4 mb-2">مركز التكلفة (اختياري)</label>
-                                    <select
-                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
-                                        value={data.cost_center_id}
-                                        onChange={e => setData('cost_center_id', e.target.value)}
-                                    >
-                                        <option value="">== بدون مركز تكلفة ==</option>
-                                        {costCenters.map(cc => (
-                                            <option key={cc.id} value={cc.id}>{cc.name}</option>
-                                        ))}
-                                    </select>
-                                    {errors.cost_center_id && <div className="text-red-500 text-xs mt-2">{errors.cost_center_id}</div>}
-
-                                    {['sale_quotation', 'purchase_quotation'].includes(type) && (
-                                        <>
-                                            <label className="block text-sm font-bold text-gray-800 mt-4 mb-2">ربط بأمر الشغل (اختياري)</label>
-                                            <select
-                                                className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
-                                                value={data.parent_document_id}
-                                                onChange={e => setData('parent_document_id', e.target.value)}
-                                            >
-                                                <option value="">== بدون أمر شغل ==</option>
-                                                {workOrders.map(wo => (
-                                                    <option key={wo.id} value={wo.id}>{wo.invoice_no}</option>
-                                                ))}
-                                            </select>
-                                            {errors.parent_document_id && <div className="text-red-500 text-xs mt-2">{errors.parent_document_id}</div>}
-                                        </>
-                                    )}
-                                </div>
-
-                                <div className="md:col-span-1 border-r border-gray-100 pr-4">
-                                    <label className="block text-sm font-bold text-gray-800 mb-2">رقم المستند الوثائقي</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 font-mono bg-white`}
-                                        value={data.invoice_no}
-                                        onChange={e => setData('invoice_no', e.target.value)}
-                                    />
-                                    {errors.invoice_no && <div className="text-red-500 text-xs mt-2">{errors.invoice_no}</div>}
-                                </div>
-
-                                <div className="md:col-span-1 border-r border-gray-100 pr-4">
-                                    <label className="block text-sm font-bold text-gray-800 mb-2">تاريخ الإصدار <span className="text-red-500">*</span></label>
-                                    <input
-                                        type="date"
-                                        required
-                                        className={`w-full rounded-xl border-gray-200 shadow-sm focus:border-${accent}-500 focus:ring-${accent}-500 bg-white`}
-                                        value={data.invoice_date}
-                                        onChange={e => setData('invoice_date', e.target.value)}
-                                    />
-                                    {errors.invoice_date && <div className="text-red-500 text-xs mt-2">{errors.invoice_date}</div>}
-                                </div>
-
-                                <div className="md:col-span-1 border-r border-gray-100 pr-4">
-                                    <label className="block text-sm font-bold text-gray-800 mb-2">
-                                        {type === 'purchase' ? 'فاتورة الشراء الأصلية' :
-                                            (type === 'sale' ? 'سند التسليم الموقع' :
-                                                (type === 'goods_receipt' ? 'سند الاستلام الموقع والمختوم' :
-                                                    (type === 'goods_issue' ? 'سند الصرف الموقع والمختوم' : 'المرفق المساعد')))}
-                                    </label>
-                                    <input
-                                        type="file"
-                                        className="w-full rounded-xl border border-gray-200 p-2 shadow-sm text-xs bg-white"
-                                        onChange={e => setData('attachment', e.target.files[0])}
-                                        accept=".pdf,.png,.jpg,.jpeg"
-                                    />
-                                    <p className="mt-1.5 text-[10px] text-gray-400">PDF, PNG, JPG (حتى 5 ميجابايت)</p>
-                                    {errors.attachment && <div className="text-red-500 text-xs mt-2">{errors.attachment}</div>}
-                                </div>
+                                    </div>
+                                ) : (
+                                    <div className="md:col-span-4 border-t border-r border-gray-100 pr-4 pt-6 mt-4 bg-transparent"></div>
+                                )}
                             </div>
 
                             <div className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm mb-8">
@@ -442,7 +488,18 @@ export default function Create({ auth, type, contacts, items, warehouses, paymen
                                         <svg className={`w-5 h-5 text-${accent}-600`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                                         سطور المنتجات والخدمات
                                     </h3>
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-2 items-center">
+                                        <div className="flex items-center gap-1.5 ml-2">
+                                            <span className="text-xs font-bold text-gray-500">نوع المستند:</span>
+                                            <select
+                                                className="rounded-xl border-gray-200 text-xs font-bold focus:ring-indigo-500 focus:border-indigo-500 bg-white py-1.5 px-3"
+                                                value={data.is_taxable ? '1' : '0'}
+                                                onChange={e => setData('is_taxable', e.target.value === '1')}
+                                            >
+                                                <option value="1">ضريبية (15%)</option>
+                                                <option value="0">غير ضريبية (معفاة 0%)</option>
+                                            </select>
+                                        </div>
                                         <button
                                             type="button"
                                             onClick={() => setIsItemModalOpen(true)}

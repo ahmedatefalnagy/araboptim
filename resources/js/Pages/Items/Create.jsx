@@ -47,6 +47,12 @@ export default function Create({ auth, categories, units }) {
                         {/* Header Gradient */}
                         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
                         
+                        {errors?.message && (
+                            <div className="mx-8 mt-6 bg-red-50 border-r-4 border-red-500 p-4 rounded-xl text-red-800 font-bold">
+                                {errors.message}
+                            </div>
+                        )}
+                        
                         <div className="p-8">
                             <div className="mb-8 border-b border-gray-100 pb-5">
                                 <h3 className="text-2xl font-bold text-gray-900">البطاقة التعريفية للصنف</h3>

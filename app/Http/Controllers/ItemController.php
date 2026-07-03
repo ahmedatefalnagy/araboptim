@@ -32,7 +32,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:items,name',
             'sku' => 'nullable|string|max:255|unique:items',
             'barcode' => 'nullable|string|max:255|unique:items',
             'type' => 'required|in:product,service',
@@ -55,7 +55,7 @@ class ItemController extends Controller
     public function quickStore(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:items,name',
             'sku' => 'nullable|string|max:255|unique:items',
             'barcode' => 'nullable|string|max:255|unique:items',
             'type' => 'required|in:product,service',
@@ -92,7 +92,7 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:items,name,' . $item->id,
             'sku' => 'nullable|string|max:255|unique:items,sku,' . $item->id,
             'barcode' => 'nullable|string|max:255|unique:items,barcode,' . $item->id,
             'type' => 'required|in:product,service',
@@ -114,11 +114,27 @@ class ItemController extends Controller
 
     public function destroy(Item $item)
     {
+        // Check if there is any stock quantity in any warehouse
+        $stockQty = $item->stocks()->sum('quantity');
+        if ($stockQty > 0) {
+            return redirect()->back()->withErrors(['message' => 'لا يمكن حذف الصنف لوجود كميات متوفرة منه في المستودع.']);
+        }
+
+        // Also check if the item is used in any transactions to avoid foreign key violations or historical loss
+        $hasMovements = $item->movements()->exists();
+        $hasInvoices = \App\Models\InvoiceLine::where('item_id', $item->id)->exists();
+
+        if ($hasMovements || $hasInvoices) {
+            return redirect()->back()->withErrors(['message' => 'لا يمكن حذف الصنف لوجود حركات مخزنية أو فواتير مسجلة عليه. يمكنك إلغاء تفعيله بدلاً من ذلك.']);
+        }
+
         try {
+            // Delete stocks first (if quantity is 0)
+            $item->stocks()->delete();
             $item->delete();
             return redirect()->route('items.index')->with('message', 'تم حذف الصنف بنجاح');
-        } catch (\Illuminate\Database\QueryException $e) {
-            return back()->with('error', 'لا يمكن حذف الصنف لارتباطه بفواتير أو حركات مخزنية. يمكنك إلغاء تفعيله بدلاً من الحذف.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['message' => 'حدث خطأ أثناء محاولة الحذف: ' . $e->getMessage()]);
         }
     }
 }

@@ -73,14 +73,18 @@ class InvoiceController extends Controller
         // Fetch Bank/Cash accounts for quick payment
         $paymentAccounts = Account::where('is_postable', true)
             ->where(function($q) {
-                $q->where('code', 'like', '111%') // Cash
-                  ->orWhere('code', 'like', '112%') // Banks
+                $q->where('code', 'like', '111%') // Cash (general)
+                  ->orWhere('code', 'like', '112%') // Banks (general)
+                  ->orWhere('code', 'like', '1101%') // Cash (database specific)
+                  ->orWhere('code', 'like', '1102%') // Banks (database specific)
                   ->orWhere(function($sub) {
                       $sub->where('code', 'like', '1%')
-                          ->where(function($sub2) {
-                              $sub2->where('name', 'like', '%صندوق%')
-                                   ->orWhere('name', 'like', '%بنك%');
-                          });
+                           ->where(function($sub2) {
+                               $sub2->where('name', 'like', '%صندوق%')
+                                    ->orWhere('name', 'like', '%بنك%')
+                                    ->orWhere('name', 'like', '%مصرف%')
+                                    ->orWhere('name', 'like', '%نقد%');
+                           });
                   });
             })->get(['id', 'code', 'name']);
 
@@ -98,6 +102,7 @@ class InvoiceController extends Controller
 
         return Inertia::render('Invoices/Create', [
             'type' => $type,
+            'next_invoice_no' => $this->getNextInvoiceNo($type),
             'contacts' => $contacts,
             'items' => $items,
             'warehouses' => $warehouses,
@@ -126,8 +131,10 @@ class InvoiceController extends Controller
             'parent_document_id' => 'nullable|exists:invoices,id',
             'invoice_no' => 'required|string|unique:invoices,invoice_no',
             'invoice_date' => 'required|date',
+            'due_date' => 'nullable|date',
             'payment_mode' => 'nullable|in:cash,credit,bank',
             'payment_account_id' => 'required_if:payment_mode,cash,bank|nullable|exists:accounts,id',
+            'is_taxable' => 'nullable|boolean',
             'notes' => 'nullable|string',
             'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
             'lines' => 'required|array|min:1',
@@ -169,12 +176,14 @@ class InvoiceController extends Controller
             // Create Invoice
             $invoice = Invoice::create([
                 'type' => $validated['type'],
+                'is_taxable' => $request->input('is_taxable', true),
                 'contact_id' => $validated['contact_id'],
                 'invoice_no' => $validated['invoice_no'],
                 'invoice_date' => $validated['invoice_date'],
+                'due_date' => $validated['due_date'] ?? null,
                 'payment_mode' => $validated['payment_mode'] ?? 'credit',
                 'payment_account_id' => $validated['payment_account_id'] ?? null,
-                'notes' => $validated['notes'],
+                'notes' => $validated['notes'] ?? null,
                 'attachment_path' => $attachmentPath,
                 'total_base' => 0, 
                 'total_tax' => 0,
@@ -192,7 +201,8 @@ class InvoiceController extends Controller
                 $quantity = floatval($line['quantity']);
                 $unitPrice = floatval($line['unit_price']);
                 $subtotal = $quantity * $unitPrice;
-                $taxAmount = $subtotal * ($item->tax_rate / 100);
+                $taxRate = $invoice->is_taxable ? $item->tax_rate : 0;
+                $taxAmount = $subtotal * ($taxRate / 100);
                 $total = $subtotal + $taxAmount;
 
                 $totalBase += $subtotal;
@@ -203,7 +213,7 @@ class InvoiceController extends Controller
                     'item_name' => $item->name,
                     'quantity' => $quantity,
                     'unit_price' => $unitPrice,
-                    'tax_rate' => $item->tax_rate,
+                    'tax_rate' => $taxRate,
                     'subtotal' => $subtotal,
                     'tax_amount' => $taxAmount,
                     'total' => $total,
@@ -248,7 +258,7 @@ class InvoiceController extends Controller
             $xmlUuid = null;
             $xmlHash = null;
 
-            if ($validated['type'] === 'sale' || $validated['type'] === 'sale_return') {
+            if (($validated['type'] === 'sale' || $validated['type'] === 'sale_return') && $invoice->is_taxable) {
                 $zatca = new ZatcaService();
                 $qrCodeBase64 = $zatca->generateQrCodeBase64(
                     'شركة الأفق للتجارة والمقاولات (تجريبي)', // Seller Name
@@ -280,7 +290,7 @@ class InvoiceController extends Controller
             }
             
             DB::commit();
-            return redirect()->route('invoices.index', ['type' => $invoice->type])
+            return redirect()->route('invoices.show', $invoice->id)
                 ->with('success', 'تم حفظ الفاتورة بنجاح وثم ترحيل القيود وتأثير المخزون!');
                 
         } catch (\Exception $e) {
@@ -318,12 +328,16 @@ class InvoiceController extends Controller
             ->where(function($q) {
                 $q->where('code', 'like', '111%')
                   ->orWhere('code', 'like', '112%')
+                  ->orWhere('code', 'like', '1101%')
+                  ->orWhere('code', 'like', '1102%')
                   ->orWhere(function($sub) {
                       $sub->where('code', 'like', '1%')
-                          ->where(function($sub2) {
-                              $sub2->where('name', 'like', '%صندوق%')
-                                   ->orWhere('name', 'like', '%بنك%');
-                          });
+                           ->where(function($sub2) {
+                               $sub2->where('name', 'like', '%صندوق%')
+                                    ->orWhere('name', 'like', '%بنك%')
+                                    ->orWhere('name', 'like', '%مصرف%')
+                                    ->orWhere('name', 'like', '%نقد%');
+                           });
                   });
             })->get(['id', 'code', 'name']);
 
@@ -369,8 +383,10 @@ class InvoiceController extends Controller
             'parent_document_id' => 'nullable|exists:invoices,id',
             'invoice_no' => 'required|string|unique:invoices,invoice_no,' . $invoice->id,
             'invoice_date' => 'required|date',
+            'due_date' => 'nullable|date',
             'payment_mode' => 'nullable|in:cash,credit,bank',
             'payment_account_id' => 'required_if:payment_mode,cash,bank|nullable|exists:accounts,id',
+            'is_taxable' => 'nullable|boolean',
             'notes' => 'nullable|string',
             'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',
             'lines' => 'required|array|min:1',
@@ -443,12 +459,14 @@ class InvoiceController extends Controller
 
             $invoice->update([
                 'type' => $validated['type'],
+                'is_taxable' => $request->input('is_taxable', true),
                 'contact_id' => $validated['contact_id'],
                 'invoice_no' => $validated['invoice_no'],
                 'invoice_date' => $validated['invoice_date'],
+                'due_date' => $validated['due_date'] ?? null,
                 'payment_mode' => $validated['payment_mode'] ?? 'credit',
                 'payment_account_id' => $validated['payment_account_id'] ?? null,
-                'notes' => $validated['notes'],
+                'notes' => $validated['notes'] ?? null,
                 'attachment_path' => $attachmentPath,
                 'base_account_id' => $resolvedAccounts['base'],
                 'tax_account_id' => $resolvedAccounts['tax'], 
@@ -462,7 +480,8 @@ class InvoiceController extends Controller
                 $quantity = floatval($line['quantity']);
                 $unitPrice = floatval($line['unit_price'] ?? 0);
                 $subtotal = $quantity * $unitPrice;
-                $taxAmount = $subtotal * ($item->tax_rate / 100);
+                $taxRate = $invoice->is_taxable ? $item->tax_rate : 0;
+                $taxAmount = $subtotal * ($taxRate / 100);
                 $total = $subtotal + $taxAmount;
 
                 $totalBase += $subtotal;
@@ -473,7 +492,7 @@ class InvoiceController extends Controller
                     'item_name' => $item->name,
                     'quantity' => $quantity,
                     'unit_price' => $unitPrice,
-                    'tax_rate' => $item->tax_rate,
+                    'tax_rate' => $taxRate,
                     'subtotal' => $subtotal,
                     'tax_amount' => $taxAmount,
                     'total' => $total,
@@ -516,7 +535,7 @@ class InvoiceController extends Controller
             $xmlUuid = null;
             $xmlHash = null;
 
-            if ($validated['type'] === 'sale' || $validated['type'] === 'sale_return') {
+            if (($validated['type'] === 'sale' || $validated['type'] === 'sale_return') && $invoice->is_taxable) {
                 $zatca = new ZatcaService();
                 $qrCodeBase64 = $zatca->generateQrCodeBase64(
                     'شركة الأفق للتجارة والمقاولات (تجريبي)',
@@ -548,7 +567,7 @@ class InvoiceController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('invoices.index', ['type' => $invoice->type])
+            return redirect()->route('invoices.show', $invoice->id)
                 ->with('success', 'تم تعديل المستند بنجاح وتحديث الحسابات والمستودع!');
                 
         } catch (\Exception $e) {
@@ -564,13 +583,47 @@ class InvoiceController extends Controller
         }
 
         $invoice->load(['contact', 'baseAccount', 'taxAccount', 'journalEntry', 'lines.item', 'parentDocument', 'childDocuments']);
+
+        $qrCodeImage = null;
+        if (in_array($invoice->type, ['sale', 'sale_return'])) {
+            try {
+                $zatca = new \App\Services\ZatcaService();
+                if (!$invoice->qr_code_base64) {
+                    $sellerName = \App\Models\Setting::get('company_name', 'مؤسسة عرب أوبتيما للتجارة');
+                    $vatNo = \App\Models\Setting::get('company_vat_no', '300000000000003');
+                    $dateStr = $invoice->invoice_date instanceof \Carbon\Carbon ? $invoice->invoice_date->format('Y-m-d\TH:i:s\Z') : \Carbon\Carbon::parse($invoice->invoice_date)->format('Y-m-d\TH:i:s\Z');
+                    
+                    $invoice->qr_code_base64 = $zatca->generateQrCodeBase64(
+                        $sellerName,
+                        $vatNo,
+                        $dateStr,
+                        $invoice->total_amount,
+                        $invoice->total_tax
+                    );
+                    $invoice->update(['qr_code_base64' => $invoice->qr_code_base64]);
+                }
+                
+                if ($invoice->qr_code_base64) {
+                    $qrCodeImage = base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(150)->generate($invoice->qr_code_base64));
+                }
+            } catch (\Exception $e) {
+                // Fail silently
+            }
+        }
+
         return Inertia::render('Invoices/Show', [
-            'invoice' => $invoice
+            'invoice' => $invoice,
+            'qrCodeImage' => $qrCodeImage
         ]);
     }
 
     public function destroy(Invoice $invoice)
     {
+        $protectedTypes = ['sale', 'sale_return', 'purchase', 'purchase_return', 'sale_quotation', 'sale_order', 'purchase_quotation', 'purchase_order', 'work_order'];
+        if (in_array($invoice->type, $protectedTypes)) {
+            return redirect()->back()->with('error', 'غير مسموح بحذف المستندات الخاصة بدورة المبيعات أو المشتريات أو أوامر الشغل.');
+        }
+
         if (in_array($invoice->type, ['goods_receipt', 'goods_issue']) && auth()->user()?->role !== 'admin') {
             abort(403, 'غير مصرح للقيام بهذه العملية.');
         }
@@ -623,7 +676,15 @@ class InvoiceController extends Controller
             throw new \Exception('لا توجد سنة مالية مفتوحة.');
         }
 
-        if ($invoice->payment_mode === 'credit' && !$contact->account_id) {
+        // Resolve dynamic side based on payment mode and contact accounts
+        $partnerAccount = null;
+        if (in_array($invoice->type, ['sale', 'sale_return'])) {
+            $partnerAccount = $contact->receivable_account_id ?? $contact->account_id;
+        } else {
+            $partnerAccount = $contact->payable_account_id ?? $contact->account_id;
+        }
+
+        if ($invoice->payment_mode === 'credit' && !$partnerAccount) {
             throw new \Exception('جهة الاتصال المحددة غير مربوطة بحساب في الدليل المحاسبي للعمليات الآجلة.');
         }
 
@@ -635,14 +696,6 @@ class InvoiceController extends Controller
         ];
 
         $description = ($typesLabels[$invoice->type] ?? 'فاتورة ') . $invoice->invoice_no . ' - ' . $contact->name;
-        
-        // Resolve dynamic side based on payment mode and contact accounts
-        $partnerAccount = null;
-        if (in_array($invoice->type, ['sale', 'sale_return'])) {
-            $partnerAccount = $contact->receivable_account_id ?? $contact->account_id;
-        } else {
-            $partnerAccount = $contact->payable_account_id ?? $contact->account_id;
-        }
 
         // الدفع النقدي والبنكي كلاهما يستخدم الحساب المختار (صندوق أو حساب بنكي)، والآجل يستخدم حساب الجهة.
         $isImmediatePayment = in_array($invoice->payment_mode, ['cash', 'bank']);
@@ -695,19 +748,19 @@ class InvoiceController extends Controller
         $defs = [
             'sale' => [
                 'base' => ['code' => '4101', 'name' => 'المبيعات', 'type' => 'revenue'],
-                'tax' => ['code' => '2103', 'name' => 'ضريبة القيمة المضافة مستحقة (مخرجات)', 'type' => 'liability']
+                'tax' => ['code' => '2105', 'name' => 'ضريبة القيمة المضافة (دائنة)', 'type' => 'liability']
             ],
             'sale_return' => [
                 'base' => ['code' => '4101', 'name' => 'المبيعات', 'type' => 'revenue'],
-                'tax' => ['code' => '2103', 'name' => 'ضريبة القيمة المضافة مستحقة (مخرجات)', 'type' => 'liability']
+                'tax' => ['code' => '2105', 'name' => 'ضريبة القيمة المضافة (دائنة)', 'type' => 'liability']
             ],
             'purchase' => [
-                'base' => ['code' => '5101', 'name' => 'تكلفة البضاعة المباعة', 'type' => 'expense'],
-                'tax' => ['code' => '1107', 'name' => 'ضريبة القيمة المضافة مدينة (مدخلات)', 'type' => 'asset']
+                'base' => ['code' => '5301', 'name' => 'تكلفة البضاعة المباعة', 'type' => 'expense'],
+                'tax' => ['code' => '1107', 'name' => 'ضريبة القيمة المضافة (مدين)', 'type' => 'asset']
             ],
             'purchase_return' => [
-                'base' => ['code' => '5101', 'name' => 'تكلفة البضاعة المباعة', 'type' => 'expense'],
-                'tax' => ['code' => '1107', 'name' => 'ضريبة القيمة المضافة مدينة (مدخلات)', 'type' => 'asset']
+                'base' => ['code' => '5301', 'name' => 'تكلفة البضاعة المباعة', 'type' => 'expense'],
+                'tax' => ['code' => '1107', 'name' => 'ضريبة القيمة المضافة (مدين)', 'type' => 'asset']
             ],
         ];
 
@@ -720,9 +773,27 @@ class InvoiceController extends Controller
                 $acc = Account::where('name', $def['name'])->first();
             }
 
-            // If still not found, throw exception (to show clear error)
+            // If still not found, let's create it automatically!
             if (!$acc) {
-                throw new \Exception("الحساب المحاسبي المطلوب (كود: {$def['code']}) غير موجود في شجرة الحسابات. يرجى إضافته أولاً.");
+                $parentCode = substr($def['code'], 0, -2);
+                if (empty($parentCode)) {
+                    $parentCode = substr($def['code'], 0, -1);
+                }
+                $parent = Account::where('code', $parentCode)->first();
+                if (!$parent && strlen($parentCode) > 1) {
+                    $parent = Account::where('code', substr($parentCode, 0, 1))->first();
+                }
+
+                $acc = Account::create([
+                    'parent_id' => $parent ? $parent->id : null,
+                    'code' => $def['code'],
+                    'name' => $def['name'],
+                    'account_type_id' => $parent ? $parent->account_type_id : null,
+                    'level' => $parent ? ($parent->level + 1) : 1,
+                    'is_postable' => true,
+                    'is_active' => true,
+                    'report_group' => $parent ? $parent->report_group : null,
+                ]);
             }
 
             // Ensure it is postable
@@ -737,5 +808,38 @@ class InvoiceController extends Controller
             'base' => $getAccount($defs[$type]['base']),
             'tax' => $getAccount($defs[$type]['tax']),
         ];
+    }
+
+    private function getNextInvoiceNo($type)
+    {
+        $prefix = [
+            'sale' => 'INV-',
+            'sale_return' => 'SRT-',
+            'purchase' => 'PUR-',
+            'purchase_return' => 'PRT-',
+            'sale_quotation' => 'QUO-',
+            'sale_order' => 'ORD-',
+            'purchase_quotation' => 'RFQ-',
+            'purchase_order' => 'PO-',
+            'work_order' => 'WKO-',
+            'goods_receipt' => 'GRN-',
+            'goods_issue' => 'GIN-'
+        ][$type] ?? 'DOC-';
+
+        $startNumber = ($type === 'sale') ? 2710 : 1001;
+
+        $lastInvoice = Invoice::where('type', $type)
+            ->where('invoice_no', 'like', $prefix . '%')
+            ->orderBy('id', 'desc')
+            ->first();
+
+        if ($lastInvoice) {
+            $num = (int) str_replace($prefix, '', $lastInvoice->invoice_no);
+            if ($num > 0) {
+                return $prefix . ($num + 1);
+            }
+        }
+
+        return $prefix . $startNumber;
     }
 }
